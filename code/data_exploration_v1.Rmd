@@ -1,0 +1,292 @@
+---
+title: "SCBI 2023 Census Exploration"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results = "hide",message = FALSE, warning = FALSE)
+```
+
+```{r init}
+library(tidyverse)
+library(data.table)
+library(sf)
+library(RColorBrewer)
+
+curStem <- fread("C:/Work/Smithsonian/Repos/2023census/processed_data/scbi.stem4.csv")
+
+prevStem <- fread(paste0("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/tree_main_census/data/census-csv-files/scbi.stem3.csv"))
+
+load("C:/Work/Smithsonian/Repos/Morreale_BiomassChange/data/census/scbi.stem2.rdata")
+
+load("C:/Work/Smithsonian/Repos/Morreale_BiomassChange/data/census/scbi.stem1.rdata")
+
+quadrats <- st_read( "C:/Work/Smithsonian/Repos/2023census/doc/maps/20m_grid/20m_grid.shp")
+
+
+
+```
+
+### Recruitment 2018-2023 ###
+
+#### Trees ####
+
+```{r recruits I}
+
+recruits <- curStem %>% 
+  filter(curStem$table == "recruits") %>% 
+  select(tag,StemTag,quadrat,sp)
+
+r_stems <- recruits %>% 
+  group_by(sp) %>% 
+  summarize(n = n()) %>% 
+  arrange(desc(n))
+r_trees <- recruits %>% 
+  group_by(tag) %>% 
+  slice(1) %>% 
+  ungroup() %>% 
+  group_by(sp) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n)) 
+
+
+ggplot(r_trees,aes(x = reorder(sp,-n),y = n, fill = -n)) +
+  geom_bar(stat =  "identity",col = "black") +
+  scale_fill_gradient(low = "grey20",high = "grey80") +
+  theme_classic() +
+  ylab("# of Recruits (Trees)") +
+  xlab(" ") +
+  theme(legend.position = "none")
+```
+
+#### Stems ####
+
+
+```{r recruits II}
+ggplot(r_stems,aes(x = reorder(sp,-n),y = n, fill = -n)) +
+  geom_bar(stat =  "identity",col = "black") +
+  scale_fill_gradient(low = "grey20",high = "grey80") +
+  theme_classic() +
+  ylab("# of Recruits (Stems)") +
+  xlab(" ") +
+  theme(legend.position = "none")
+```
+
+### Mortality 2018-2023 ###
+
+#### Stems ####
+
+```{r mortality}
+ids_prev_living <- prevStem %>% 
+  filter(status == "A") %>% 
+  mutate(taglink = paste0(tag,StemTag))
+m_stems <- curStem %>% 
+  mutate(taglink = paste0(tag,StemTag)) %>% 
+  filter(taglink %in% ids_prev_living$taglink & status_current != "LI") %>% 
+  group_by(sp) %>% 
+  summarize(n = n())
+
+ggplot(m_stems,aes(x = reorder(sp,-n),y = n, fill = -n)) +
+  geom_bar(stat =  "identity",col = "black") +
+  scale_fill_gradient2(low = "grey40",high = "grey80") +
+  theme_classic() +
+  ylab("Mortality (# of Stems)") +
+  xlab(" ") +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45))
+
+```
+
+### Compositional Shifts ###
+
+#### Relative Abundance (by stem count) of top 15 species in 2018 census ####
+```{r }
+complete_quads <- unique(curStem$quadrat) %>% na.omit()
+
+c2018_ra <- prevStem %>% #calculate relative abundance for 2018 census in quadrats that have been completed so far in 2023
+  filter(status == "A" & quadrat %in% complete_quads) %>% 
+  group_by(sp) %>% 
+  summarize(StemCount = n()) %>% 
+  mutate(RelAbund = StemCount/sum(StemCount), Census = "2018") %>% 
+  arrange(desc(RelAbund))
+
+c2013_ra <- scbi.stem2 %>%  
+  mutate(quadrat = as.numeric(quadrat)) %>% 
+  filter(status == "A" & quadrat %in% complete_quads) %>% 
+  group_by(sp) %>% 
+  summarize(StemCount = n()) %>% 
+  mutate(RelAbund = StemCount/sum(StemCount), Census = "2013") %>% 
+  arrange(desc(RelAbund))
+
+c2008_ra <- scbi.stem1 %>%  
+  mutate(quadrat = as.numeric(quadrat)) %>% 
+  filter(status == "A" & quadrat %in% complete_quads) %>% 
+  group_by(sp) %>% 
+  summarize(StemCount = n()) %>% 
+  mutate(RelAbund = StemCount/sum(StemCount), Census = "2008") %>% 
+  arrange(desc(RelAbund))
+
+allCens_ra <- curStem %>% 
+  filter(status_current == "LI") %>% 
+  group_by(sp) %>% 
+  summarize(StemCount = n()) %>% 
+  mutate(RelAbund = StemCount/sum(StemCount), Census = "2023") %>% 
+  bind_rows(c2018_ra, c2013_ra,c2008_ra) %>% 
+  #bind_rows(c2018_ra) %>% 
+  mutate(Census = as.factor(Census)) 
+
+topRanked_sp <- c2018_ra %>% 
+  slice_head(n = 15) 
+
+plotdf <- allCens_ra %>% 
+  filter(sp %in% topRanked_sp$sp)
+
+
+ggplot(plotdf,aes(x = reorder(sp,-RelAbund),y = RelAbund, group = Census, fill = Census)) + 
+  geom_bar(stat = "identity",position = "dodge", col = "black") +
+  scale_fill_grey() +
+  xlab("") +
+  ylab("Relative Abundance") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+### Species Size Class Distributions of top 15 species in 2018 census ###
+
+```{r fig.height= 30, fig.width = 6}
+brks <- c(seq(0,120, by = 20),170)
+
+c2018_sp_size_ab <- prevStem %>%  
+  filter(status == "A" & quadrat %in% complete_quads) %>% 
+  mutate(dbh_classes = cut(as.numeric(dbh)/10,breaks = brks,right = F)) %>% 
+  group_by(sp,dbh_classes) %>% 
+  summarize(StemCount = n()) %>% 
+  ungroup() %>% 
+  complete(sp,nesting(dbh_classes),fill = list(StemCount = 0)) %>% 
+  mutate(Census = "2018") %>% 
+  arrange(desc(StemCount))
+
+c2013_sp_size_ab <- scbi.stem2 %>%  
+  mutate(quadrat = as.numeric(quadrat)) %>% 
+  filter(status == "A" & quadrat %in% complete_quads) %>% 
+  mutate(dbh_classes = cut(as.numeric(dbh)/10,breaks = brks,right = F)) %>% 
+  group_by(sp,dbh_classes) %>% 
+  summarize(StemCount = n()) %>% 
+  ungroup() %>% 
+  complete(sp,nesting(dbh_classes),fill = list(StemCount = 0)) %>% 
+  mutate(Census = "2013") %>% 
+  arrange(desc(StemCount))
+
+c2008_sp_size_ab <- scbi.stem1 %>%  
+  mutate(quadrat = as.numeric(quadrat)) %>% 
+  filter(status == "A" & quadrat %in% complete_quads) %>% 
+  mutate(dbh_classes = cut(as.numeric(dbh)/10,breaks = brks,right = F)) %>% 
+  group_by(sp,dbh_classes) %>% 
+  summarize(StemCount = n()) %>% 
+  ungroup() %>% 
+  complete(sp,nesting(dbh_classes),fill = list(StemCount = 0)) %>% 
+  mutate(Census = "2008") %>% 
+  arrange(desc(StemCount))
+
+allCens_sp_size_ab <- curStem %>% 
+  filter(status_current == "LI") %>% 
+  mutate(dbh_classes = cut(as.numeric(dbh_current)/10,breaks = brks,right = F)) %>% 
+  group_by(sp,dbh_classes) %>% 
+  summarize(StemCount = n()) %>% 
+  ungroup() %>% 
+  complete(sp,nesting(dbh_classes),fill = list(StemCount = 0)) %>% 
+  mutate(Census = "2023") %>% 
+  bind_rows(c2018_sp_size_ab, c2013_sp_size_ab,c2008_sp_size_ab) %>% 
+  #bind_rows(c2018_sp_size_ab) %>% 
+  mutate(Census = as.factor(Census)) 
+
+
+plotdf_size <- allCens_sp_size_ab %>% 
+  filter(sp %in% topRanked_sp$sp) 
+
+
+ggplot(plotdf_size,aes(x = dbh_classes,y = StemCount, group = Census, fill = Census)) + 
+  geom_bar(stat = "identity",position = "dodge", col = "black") +
+ # geom_line(aes(col = Census)) +
+  facet_wrap(~sp,scales = "free",ncol = 1) +
+  scale_fill_grey() +
+  xlab("") +
+  ylab("Number of stems") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45,vjust = .8))
+
+```
+
+
+
+### Change in Aboveground Biomass ###
+
+
+```{r}
+library(allodb)
+
+sp.table <- fread(paste0("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/species_lists/Tree%20ecology/SCBI_ForestGEO_sp_ecology.csv")) %>% 
+  select(spcode,family,genus,species)
+latlong <- c(-78.1454, 38.8935)
+area_ha_measured <- (length(unique(curStem$quadrat)) * 400) / 10000
+
+curLive <- curStem %>% 
+  filter(status_current == "LI") %>% 
+  select(quadrat,dbh = dbh_current,spcode = species) %>% 
+  mutate(Census = "2023")
+AllLive <- scbi.stem1 %>%  
+  mutate(Census = "2008") %>% 
+  bind_rows(scbi.stem2 %>% mutate(Census = "2013")) %>% 
+  mutate(quadrat = as.numeric(quadrat)) %>% 
+  filter(status == "A" & quadrat %in% complete_quads) %>% 
+  select(quadrat,dbh, spcode = sp,Census) %>% 
+  bind_rows(prevStem  %>% 
+              filter(status == "A" & quadrat %in% complete_quads) %>% select(quadrat,dbh,spcode = sp) %>% mutate(Census = "2018")) %>% 
+  mutate(dbh = as.numeric(dbh)) %>% 
+  bind_rows(curLive)
+  
+AGB_stems <- AllLive %>% 
+  left_join(sp.table) %>% 
+  mutate(AGB = allodb::get_biomass(dbh = dbh/10, genus = genus, species = genus, coords = latlong))
+
+census_AGB <- AGB_stems %>% 
+  mutate(AGB_Mg = AGB / 1000) %>% 
+  group_by(Census) %>% 
+  summarize(AGB_ha = sum(AGB_Mg)/area_ha_measured) 
+
+species_AGB <- AGB_stems %>% 
+#  filter(spcode %in% topRanked_sp$sp) %>% 
+  mutate(plt_sp = if_else(spcode %in% c("litu","fram","qual","quru","quve"),
+                          spcode,"Other")) %>% 
+  mutate(AGB_Mg = AGB / 1000) %>% 
+  group_by(Census,plt_sp) %>% 
+  summarize(AGB_ha = sum(AGB_Mg)/area_ha_measured)
+
+
+
+ggplot(census_AGB ,aes(x = as.numeric(Census), y = AGB_ha)) +
+  geom_point(cex = 2, col = "blue") +
+  geom_line(alpha = .2, lwd = 1.2, col = "blue") +
+  xlab("Census") +
+  ggtitle("SCBI Aboveground Biomass") +
+  ylab(expression(AGB~(Mg~ha^-1))) +
+  theme_classic() +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 20),
+        title = element_text(size = 22))
+
+ggplot(species_AGB ,aes(x = as.numeric(Census), y = AGB_ha,group = plt_sp, col = plt_sp)) +
+  geom_point(cex = 2) +
+  geom_line(alpha = .2, lwd = 1.2) +
+  xlab("Census") +
+  ggtitle("Selected Species AGB") +
+  ylab(expression(AGB~(Mg~ha^-1))) +
+  scale_y_continuous(breaks = seq(0,140,by = 20))  +
+  scale_color_brewer(palette = "Dark2", name = "Species") +
+  theme_bw() +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 20),
+        title = element_text(size = 22))
+
+```
+
