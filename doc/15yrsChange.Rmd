@@ -97,7 +97,7 @@ article type:  -->
 - However, these models do not incorporate nuisance species -- i.e., species whose local abundance has been dramatically increased as a result of human activities and that are causing ecological harm. 
 - Nuisance species are known to increase tree mortality (non-endemic pests and pathogens) and decrease recruitment (deer, non-endemic plants) throughout the (Eastern US) temperate deciduous biome, yet we don't know net effect on current and future C cycling
 - Here, we use 15 years of detailed census data from a large forest dynamics plot with a deer exclosure to understand how nuisance species are affecting C cycling
-- we show increased biomass mortality, reduced ∆AGB (outside deer exclosure), reduced AGB (outside deer exclosure)?
+- we show increased biomass mortality, reduced ∆AGB (only outside deer exclosure?), reduced AGB (only outside deer exclosure?)
 - if current trends continue, forest will continue to lose C sequestration capacity/ likely to be C source in future
 - thus, C sequestration potential of temperate deciduous forests is overestimated
 
@@ -105,24 +105,34 @@ article type:  -->
 
 \newpage
 
+# Papers to read
+- earth system models (pay special attention to predictions and uncertainty for eastern US)
+  - @wu_uncertainty_2023. - do they say anything about nuisance species?
+  - @ahlstrom_robustness_2012
+- @miller_overabundant_2023
+  - what were there metrics? would it be worth applying their metrics to our forest in order to classify by their system?
+
 # Introduction  
 
 The temperate forest biome plays a critical role in the global carbon cycle, accounting for almost half of the net global forest carbon (C) sink [@harris_global_2021], with deciduous forests representing a substantial portion of this, sequestering >300 Tg C yr^-1^ [@pugh_role_2019]. 
 Although currently a C sink, the future of the biome remains uncertain.
-The dominant view imbued in Earth System Models is that, at least within the eastern US, the biome is likely to remain a C sink for the remainder of the 21st century [@finzi_carbon_2020; @wu_uncertainty_2023; @refs], but with declining CO~2~ sequestration capacity. <!--I think this is true, but check/ find more refs.-->
-However, ... [@wu_uncertainty_2023]
-<!--Global C models generally agree that the biome's CO~2~ sequestration capacity is likely to decline [@ahlstrom_robustness_2012].-->
-Yet, global C models predict an wide range of future trajectories of CO~2~ sequestration [@ahlstrom_robustness_2012;@arora_carbon_2020]<!--check refs-->, and current global C models do not represent some influential mechanisms [e.g., @fatichi_moving_2014], including the effects of nuisance species. 
+The dominant view imbued in Earth System Models is that, at least within the eastern US, the biome is likely to remain a C sink for the remainder of the 21st century [@finzi_carbon_2020; @wu_uncertainty_2023], albeit with declining CO~2~ sequestration capacity [@ahlström_robustness_2012]. 
+Yet, global C models predict a wide range of future trajectories of CO~2~ sequestration [@ahlstrom_robustness_2012;@arora_carbon_2020]<!--check refs-->, and current global C models do not represent some influential mechanisms [e.g., @fatichi_moving_2014].
+One mechanism that is not represented in global C models is the impact of nuisance species -- i.e., endemic or non-endemic species that, as a result of human influence, have much greater abundance in an ecosystem than they did historically, resulting in undesirable ecological consequences [@refs]. 
+Similarly, the impact of nuisance species on forest carbon budgets is not considered in machine learning/niche models that seek to project future forest distribution and carbon stocks [**?** @wu_uncertainty_2023], nor in carbon offset projects [**???** @refs].
+This is problematic in that nuisance species -- including non-endemic insect pests and pathogens, non-endemic plants, and over-abundant herbivores -- are dramatically impacting carbon cycling in temperate deciduous forests around the world [@refs]. 
 
-Nuisance species...
+## (paragraph on tree mortality from non-endemic pests and pathogens)
 
-- often non-endemic
-- white-tailed deer is important endemic nuisance species, over-abundant because of human influence
-
-
-Tree mortality ...
 
 Non-endemic pests and pathogens have been important driver of mortality [@anderson-teixeira_longterm_2021].
+
+
+## (paragraph on recruitment failure because of deer and non-endemic plants)
+
+- white-tailed deer (*Odocoileus virginianus* ) is important endemic nuisance species, over-abundant because of human influence
+
+@mcgarvey_effects_2013
 
 The capacity to regenerate following disturbances, including ongoing gap formation through mortality of canopy trees, critically influences long-term forest dynamics.
 Regeneration depends first upon seed production and then upon seedling recruitment, survival, and growth into trees.
@@ -132,14 +142,20 @@ In the mid-Atlantic region of eastern North America, forests face a severe “re
 Low juvenile abundance in the region is driven by a combination of over-abundant deer, competition with non-endemic species, and possibly climate change [@russell_interactions_2017; @miller_compounding_2019;@miller_overabundant_2023].
 The juveniles that are present tend to represent a different, more mesophytic set of species (*Acer spp.*, *Fagus grandifolia*) than currently dominate much of the region (*Quercus spp.*, *Carya spp.*, @miller_compounding_2019; @nowacki_climate_2015]--a dynamic driven by fire suppression and mesophication [@refs].
 
+
 Here, we use 15 years of detailed census data from a large forest dynamics plot including a 4-ha deer exclosure to test the following hypotheses:
 (1) canopy tree mortality and associated biomass loss are increasing, in large part due to non-endemic nuisance species (pests & pathogens)
-(2) growth and recruitment (outside deer exclosure) have not kept pace with tree mortality, resulting in declining AGB (or at least ∆AGB)
-(3) C sequestration (∆AGB) has declined, and will decline further if current trends continue
+(2) growth and recruitment (outside deer exclosure) have not kept pace with tree mortality, resulting in declining AGB (-∆AGB)
+(3) C stocks have declined (-∆AGB), and will decline further if current trends continue
 
 
 # Materials and Methods 
 
+## Study site
+
+## Data collection
+
+## Analyses
 
 # Results 
 
