@@ -82,10 +82,21 @@ article type:  -->
 ## example = 1 
 
 #Figures
-photos = 1
+map_and_photos = 1
 photo_represenative_upland = "1a"
 photo_deer_exclosure = "1b"
 photo_graveyard = "1c"
+
+biomass_trends = 2 #line plot showing biomass through time for entire plot and each of the 3 focal sections
+
+loss_gain_net = 3 # 4-panel figure showing ∆AGB, loss, and gain for (a) whole plot, (b) upland, (c) deer exclosure, (d) graveyard
+
+mortality_by_genera = 4 # 4-panel figure showing biomass mortality by genera for for (a) whole plot, (b) upland, (c) deer exclosure, (d) graveyard
+
+regen_failure = 5 #some figure illustrating absence of small canopy trees/ shifting  size distributions
+
+
+
 ```
 
 \newpage
@@ -140,9 +151,9 @@ The juveniles that are present tend to represent a different, more mesophytic se
 
 
 Here, we use 15 years of detailed census data from a large forest dynamics plot including a 4-ha deer exclosure to test the following hypotheses:
-(1) canopy tree mortality and associated biomass loss are increasing, in large part due to non-endemic nuisance species (pests & pathogens)
-(2) growth and recruitment (outside deer exclosure) have not kept pace with tree mortality, resulting in declining AGB (-∆AGB)
-(3) C stocks have declined (-∆AGB), and will decline further if current trends continue
+(1) C stocks have declined (-∆AGB)
+(2) canopy tree mortality and associated biomass loss are increasing, in large part due to non-endemic nuisance species (pests & pathogens)
+(3) recruitment (outside deer exclosure) and growth have not kept pace with tree mortality, implying that future mortality will result in substantial net biomass loss (regeneration debt)
 
 
 # Materials and Methods 
@@ -158,7 +169,7 @@ In addition to our consideration of the plot as a whole, we give special conside
 The latter was delineated based on *(define & describe criteria)*
 
 
-![**Photos within the SCBI ForestGEO plot: (a) represenative upland forest, (b) deer exclosure, (c) "tree graveyard" in NE corner ** *(Perhaps combine these with a map of the plot?)*](display/photos.png)
+![**Figure `r map_and_photos`. Photos within the SCBI ForestGEO plot: (a) represenative upland forest, (b) deer exclosure, (c) "tree graveyard" in NE corner ** *(Perhaps combine these with a map of the plot?)*](display/photos.png)
 
 ## Data collection
 
