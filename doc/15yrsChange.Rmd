@@ -84,8 +84,10 @@ article type:  -->
 ## example = 1 
 
 #Figures
-## example = 1
-
+photos = 1
+photo_represenative_upland = "1a"
+photo_deer_exclosure = "1b"
+photo_graveyard = "1c"
 ```
 
 \newpage
@@ -110,15 +112,16 @@ article type:  -->
 The temperate forest biome plays a critical role in the global carbon cycle, accounting for almost half of the net global forest carbon (C) sink [@harris_global_2021], with deciduous forests representing a substantial portion of this, sequestering >300 Tg C yr^-1^ [@pugh_role_2019]. 
 Although currently a C sink, the future of the biome remains uncertain.
 The dominant view imbued in Earth System Models is that, at least within the eastern US, the biome is likely to remain a C sink for the remainder of the 21st century [@finzi_carbon_2020; @wu_uncertainty_2023], albeit with declining CO~2~ sequestration capacity [@ahlström_robustness_2012]. 
-Yet, global C models predict a wide range of future trajectories of CO~2~ sequestration [@ahlström_robustness_2012;@arora_carbon_2020]<!--check refs-->, and current global C models do not represent some influential mechanisms [e.g., @fatichi_moving_2014].
+Yet, global C models predict a wide range of future trajectories of CO~2~ sequestration [@ahlström_robustness_2012;@arora_carbon_2020]<!--check refs-->, and current global C models do not represent some influential mechanisms [e.g., @fatichi_moving_2014; @clark_continentwide_2021].
 One mechanism that is not represented in global C models is the impact of nuisance species -- i.e., endemic or non-endemic species that, as a result of human influence, have much greater abundance in an ecosystem than they did historically, resulting in undesirable ecological consequences [@refs]. 
 Similarly, the impact of nuisance species on forest carbon budgets is not considered in machine learning/niche models that seek to project future forest distribution and carbon stocks [**?** @wu_uncertainty_2023], nor in carbon offset projects [**???** @refs].
-This is problematic in that nuisance species -- including non-endemic insect pests and pathogens, non-endemic plants, and over-abundant herbivores -- are dramatically impacting carbon cycling in temperate deciduous forests around the world [@refs]. 
+This is problematic in that nuisance species -- including non-endemic insect pests and pathogens, non-endemic plants, and over-abundant herbivores -- are dramatically impacting carbon cycling in temperate deciduous forests around the world, as described below. 
 
 ## (paragraph on tree mortality from non-endemic pests and pathogens)
 
 
 Non-endemic pests and pathogens have been important driver of mortality [@anderson-teixeira_longterm_2021].
+These can reduce C and need to be considered in future climate change projections.
 
 @fei_biomass_2019
 
@@ -148,7 +151,26 @@ Here, we use 15 years of detailed census data from a large forest dynamics plot 
 
 ## Study site
 
+*(describe location, forest type, etc)*
+
+In addition to our consideration of the plot as a whole, we give special consideration to three portions of the plot:
+(1) representative upland forest (Fig. `r photo_represenative_upland`) - # ha of the plot, excluding areas around streams (*delineated using topographic wetness index, described in @mcgregor_tree_2021*) and the two special focal areas
+(2) deer exclosure (Fig. `r photo_deer_exclosure`)- 4 ha portion of upland forest in the SE quarter of the plot, fenced in YEAR and maintained mainly deer-free for the past ## years;
+(3) "tree graveyard" (Fig. `r photo_graveyard`) - a # ha section of upland forest in the NE corner of the plot where extensive mortality of *Fraxinus* and other canopy trees within the past decade has resulted in an open canopy and heavy ground cover of invasive plants. 
+The latter was delineated based on *(define & describe criteria)*
+
+
+![**Photos within the SCBI ForestGEO plot: (a) represenative upland forest, (b) deer exclosure, (c) "tree graveyard" in NE corner ** *(Perhaps combine these with a map of the plot?)*](display/photos.png)
+
 ## Data collection
+
+*(describe main census & years occurred)*
+
+*(describe mortality census)*
+
+*(describe invasive plants survey)*
+
+*(describe seedlings survey, if used)*
 
 ## Analyses
 
