@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Authors (tentative / incomplete list, not in order):** 
 
-
+Luca Morreale
 
 Krystal Bagnaschi
 
@@ -44,8 +44,6 @@ Valentine Herrmann^1^ ( Orcid ID : 0000-0002-4519-481X)
 David Mitre
 
 Jess Shue
-
-Luca Morreale
 
 William McShea
 
