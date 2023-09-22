@@ -83,15 +83,15 @@ article type:  -->
 
 #Figures
 map_and_photos = 1
-photo_represenative_upland = "1a"
-photo_deer_exclosure = "1b"
+photo_deer_exclosure = "1a"
+photo_represenative_upland = "1b"
 photo_graveyard = "1c"
 
 biomass_trends = 2 #line plot showing biomass through time for entire plot and each of the 3 focal sections
 
-loss_gain_net = 3 # 4-panel figure showing ∆AGB, loss, and gain for (a) whole plot, (b) upland, (c) deer exclosure, (d) graveyard
+loss_gain_net = 3 # 4-panel figure showing ∆AGB, loss, and gain for (a) whole plot, (b) deer exclosure, (c) upland, (d) graveyard
 
-mortality_by_genera = 4 # 4-panel figure showing biomass mortality by genera for for (a) whole plot, (b) upland, (c) deer exclosure, (d) graveyard
+mortality_by_genera = 4 # 4-panel figure showing biomass mortality by genera for for (a) whole plot, (b) deer exclosure, (c) upland, (d) graveyard
 
 regen_failure = 5 #some figure illustrating absence of small canopy trees/ shifting  size distributions
 
@@ -162,14 +162,16 @@ Here, we use 15 years of detailed census data from a large forest dynamics plot 
 
 *(describe location, forest type, etc)*
 
-In addition to our consideration of the plot as a whole, we give special consideration to three portions of the plot:
-(1) representative upland forest (Fig. `r photo_represenative_upland`) - # ha of the plot, excluding areas around streams (*delineated using topographic wetness index, described in @mcgregor_tree_2021*) and the two special focal areas
-(2) deer exclosure (Fig. `r photo_deer_exclosure`)- 4 ha portion of upland forest in the SE quarter of the plot, fenced in YEAR and maintained mainly deer-free for the past ## years;
-(3) "tree graveyard" (Fig. `r photo_graveyard`) - a # ha section of upland forest in the NE corner of the plot where extensive mortality of *Fraxinus* and other canopy trees within the past decade has resulted in an open canopy and heavy ground cover of invasive plants. 
-The latter was delineated based on *(define & describe criteria)*
+In addition to our consideration of the plot as a whole, we give special consideration to three portions of the plot, all upland forest (i.e., excluding low-lying areas around streams):
+(1) low deer, low non-endemic insects & pathogens (Fig. `r photo_deer_exclosure`)- 4 ha portion of upland forest in the SE quarter of the plot, fenced in YEAR and maintained with only occasional deer presence for the past ## years and with relatively low abundance of canopy species affected by non-endemic pests and pathogens;
+(2) high deer, low non-endemic insects & pathogens (Fig. `r photo_represenative_upland`) - # ha of upland forest outside the deer exclosure with relatively low abundance of canopy species affected by non-endemic pests and pathogens; 
+(3) high deer, high non-endemic insects & pathogens (Fig. `r photo_graveyard`) - a # ha section of upland forest outside the deer exclosure with relatively high abundance of canopy species affected by non-endemic pests and pathogens. 
+These areas were delineated as follows.
+Upland forest was defined according to topographic wetness index, originally calculated for the SCBI plot in @mcgregor_tree_2021.
+Vulnerability to non-endemic insects & pathogens was defined based on the abundance of canopy species affected by non-endemic pests and pathogens at the time of plot establishment (2008).
 
 
-![**Figure `r map_and_photos`. Photos within the SCBI ForestGEO plot: (a) represenative upland forest, (b) deer exclosure, (c) "tree graveyard" in NE corner ** *(Perhaps combine these with a map of the plot?)*](display/photos.png)
+![**Figure `r map_and_photos`. Photos within the SCBI ForestGEO plot: (a) low deer, low non-endemic insects & pathogens, (b) high deer, low non-endemic insects & pathogens, (c) high deer, high non-endemic insects & pathogens ** *(add a map of the plot)* All photos taken September 2023 by K. Anderson-Teixeira.](display/photos.png)
 
 ## Data collection
 
