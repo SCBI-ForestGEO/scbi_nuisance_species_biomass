@@ -134,19 +134,23 @@ These can reduce C and need to be considered in future climate change projection
 
 @fei_biomass_2019
 
+Non-endemic pests and pathogens facilitate invasin of non-endemic plants [@guo_impacts_2023 and refs therein].
+
 ## (paragraph on recruitment failure because of deer and non-endemic plants)
 
 - white-tailed deer (*Odocoileus virginianus* ) is important endemic nuisance species, over-abundant because of human influence
 
 @mcgarvey_effects_2013
 @holm_interactive_2013
+@knauer_understory_2023 
 
 The capacity to regenerate following disturbances, including ongoing gap formation through mortality of canopy trees, critically influences long-term forest dynamics.
 Regeneration depends first upon seed production and then upon seedling recruitment, survival, and growth into trees.
 When any one of these steps fails, the stage is set for disturbance to push forest ecosystems over a tipping point, whereby there is little chance that a forest will recover to it's pre-disturbance state in the foreseeable future [@refs].
 Global change pressures can set the stage for such critical transitions by gradually shifting baseline conditions, making post-disturbance recovery unlikely despite the persistence of mature trees [@anderson-teixeira_altered_2013; @mcdowell_pervasive_2020; @refs]. 
 In the mid-Atlantic region of eastern North America, forests face a severe “regeneration debt”, meaning that there are insufficient juveniles of current canopy tree species to replace the mature cohort when they eventually die [@miller_compounding_2019;@miller_overabundant_2023]. 
-Low juvenile abundance in the region is driven by a combination of over-abundant deer, competition with non-endemic species, and possibly climate change [@russell_interactions_2017; @miller_compounding_2019;@miller_overabundant_2023].
+Low juvenile abundance in the region is driven by a combination of over-abundant deer, competition with non-endemic species, and possibly climate change [@russell_interactions_2017; @miller_compounding_2019;@miller_overabundant_2023;@gorchov_differential_2021].
+Deer are the biggest problem [@gorchov_differential_2021].
 The juveniles that are present tend to represent a different, more mesophytic set of species (*Acer spp.*, *Fagus grandifolia*) than currently dominate much of the region (*Quercus spp.*, *Carya spp.*, @miller_compounding_2019; @nowacki_climate_2015]--a dynamic driven by fire suppression and mesophication [@refs].
 
 
@@ -185,9 +189,13 @@ Vulnerability to non-endemic insects & pathogens was defined based on the abunda
 
 ## Analyses
 
+apply the metric of @miller_overabundant_2023 to determine imminent failure/ probable failure/ insecure/ secure?
+
 # Results 
 
 # Discussion 
+
+@holtmann_carbon_2021
 
 # Conclusions (optional)
 
