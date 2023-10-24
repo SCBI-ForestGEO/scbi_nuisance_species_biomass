@@ -3,6 +3,8 @@ title: ''
 output: 
     #pdf_document: 
     bookdown::word_document2: 
+      md_extensions: +raw_html-markdown_in_html_blocks
+      pandoc_args: ['--lua-filter', 'read_html.lua']
       reference_docx: word-styles-reference.docx #make sure this line is indented! see this guide for formatting: https://rmarkdown.rstudio.com/articles_docx.html
   #officedown::rdocx_document
 bibliography: references.bib
@@ -210,11 +212,13 @@ The authors declare no conflict of interest.
 # Authors' contributions {-#Authors}
 *[Name of author 1] and [Name of author 2] conceived the ideas and designed methodology; [Name of author 1] and [Name of author 3] collected the data; [Name of author 2] and [Name of author 4] analysed the data; [Name of author 1] and [Name of author 4] led the writing of the manuscript. All authors contributed critically to the drafts and gave final approval for publication.*
 
-# Data availability {-#Data}
-
-
 \newpage
-# References {-#References}
+
+# References {-}
+
+<div id="refs"></div>
+
+# Data availability {-#Data}
 
 
 
