@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Authors (tentative / incomplete list, not in order):** 
 
-Luca Morreale
+Luca L. Morreale^1,2^*
 
 Krystal Bagnaschi
 
@@ -49,7 +49,7 @@ Jess Shue
 
 William McShea
 
-Kristina J. Anderson-Teixeira^1,2^* ( Orcid ID : 0000-0001-8461-9713)
+Kristina J. Anderson-Teixeira^1,2^ ( Orcid ID : 0000-0001-8461-9713)
 
 
 
@@ -63,7 +63,7 @@ Kristina J. Anderson-Teixeira^1,2^* ( Orcid ID : 0000-0001-8461-9713)
 2. Forest Global Earth Observatory, Smithsonian Tropical Research Institute, Apartado Postal 0843-03092, Panama City, Panama
 
 
-*corresponding author: teixeirak@si.edu; +1 540 635 6546
+*corresponding author: MorrealeLL@si.edu; +1 607 227 1350
 
 **Running head:** <!-- ≤45 characters-->
 
@@ -71,8 +71,8 @@ for submission to Anthromes joint special collection in New Phytologist/ Plants,
 
 <!--JOURNAL
 
-Target journal: 
-Instructions for authors: 
+Target journal:
+Instructions for authors:
 article type:  -->
 
 
@@ -105,14 +105,7 @@ regen_failure = 5 #some figure illustrating absence of small canopy trees/ shift
 
 # Abstract  {-#Abstract} 
 
-- temperate deciduous forests play a critical role in the global carbon cycle, accounting for a substantial portion of the global forest C sink
-- The dominant view imbued in Earth System Models is that, at least within the eastern US, the biome is likely to remain a C sink for the remainder of the 21st century
-- However, these models do not incorporate nuisance species -- i.e., species whose local abundance has been dramatically increased as a result of human activities and that are causing ecological harm. 
-- Nuisance species are known to increase tree mortality (non-endemic pests and pathogens) and decrease recruitment (deer, non-endemic plants) throughout the (Eastern US) temperate deciduous biome, yet we don't know net effect on current and future C cycling
-- Here, we use 15 years of detailed census data from a large forest dynamics plot with a deer exclosure to understand how nuisance species are affecting C cycling
-- we show increased biomass mortality, reduced ∆AGB (only outside deer exclosure?), reduced AGB (only outside deer exclosure?)
-- if current trends continue, forest will continue to lose C sequestration capacity/ likely to be C source in future
-- thus, C sequestration potential of temperate deciduous forests is overestimated
+Temperate deciduous forests play a critical role in the global carbon (C) cycle, accounting for a substantial portion of the global forest C sink. The dominant view imbued in Earth System Models is that, at least within the eastern United States, the biome is likely to remain a C sink throughout the 21st century. However, these models do not incorporate nuisance species -- *i.e.*, species whose local abundance has increased as a result of human activities and that are causing ecological harm. Nuisance species are known to increase tree mortality (*e.g.*, non-endemic pests and pathogens) and decrease recruitment (*e.g.*, deer and non-endemic plants) throughout the temperate deciduous biome, yet the net effect on current and future C cycling is unknown. Here, we use 15 years of detailed census data from a large (25.6 ha) forest dynamics plot in a Mid-Atlantic temperate forest, including a 4-ha deer exclosure, to understand how nuisance species are affecting C cycling. We show increased biomass mortality, a net reduction in aboveground C storage, and decreased abundance of canopy tree species in the understory. Under current trends this forest will continue to lose C sequestration capacity, indicating that the C sequestration of temperate deciduous forests is likely overestimated.
 
 **Keywords**:  
 
