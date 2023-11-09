@@ -16,15 +16,19 @@ quadrats <- read_sf("doc/maps/20m_grid/20m_grid.shp")
 ggplot() + geom_sf(data = quadrats)
 
 ##load cencus data
-cencus2013 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem2.csv")
 cencus2023 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem4.csv")
+cencus2018 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem3.csv")
+cencus2013 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem2.csv")
+cencus2008 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem1.csv")
 
 #read in species table
 spTable <- read.csv("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/species_lists/Tree%20ecology/SCBI_ForestGEO_sp_ecology.csv")
 
 #merge cencus data with sp table LOSING ROWS OF UNKNOWN SP, FIX
-cencus2023 <- merge(cencus2023, spTable, by.y = "spcode", by.x = "species", all.x = T)
-cencus2013 <- merge(cencus2013, spTable,  by.y = "spcode", by.x = "sp", all.x = T)
+cencus2023 <- merge(cencus2023, spTable, by.x = "species", by.y = "spcode", all.x = T)
+cencus2018 <- merge(cencus2018, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
+cencus2013 <- merge(cencus2013, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
+cencus2008 <- merge(cencus2008, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
 
 ####view sp not included in species table
 ###setdiff(cencus2013$sp, spTable$spcode)
@@ -37,54 +41,112 @@ cencus2013 <- merge(cencus2013, spTable,  by.y = "spcode", by.x = "sp", all.x = 
 cencus2023$is_canopy <- ifelse(cencus2023$canopy_position == 'canopy', 1, #this makes canopy trees = 1 and non-canopy trees = 0
                                      ifelse(cencus2023$canopy_position == 'canopy, emergent', 1, 0))
 
+cencus2018$is_canopy <- ifelse(cencus2018$canopy_position == 'canopy', 1, 
+                               ifelse(cencus2018$canopy_position == 'canopy, emergent', 1, 0))
+
 cencus2013$is_canopy <- ifelse(cencus2013$canopy_position == 'canopy', 1, 
-                                     ifelse(cencus2013$canopy_position == 'canopy, emergent', 1, 0))
+                               ifelse(cencus2013$canopy_position == 'canopy, emergent', 1, 0))
+
+cencus2008$is_canopy <- ifelse(cencus2008$canopy_position == 'canopy', 1, 
+                                     ifelse(cencus2008$canopy_position == 'canopy, emergent', 1, 0))
 
 #convert new column to numeric for map
 cencus2023$is_canopy <- as.numeric(cencus2023$is_canopy)
+cencus2018$is_canopy <- as.numeric(cencus2018$is_canopy)
 cencus2013$is_canopy <- as.numeric(cencus2013$is_canopy)
+cencus2008$is_canopy <- as.numeric(cencus2008$is_canopy)
 
 ####check new attribute
 ###check <- select(cencus2023, species, canopy_position, is_canopy, quadrat)
-###check <- select(cencus2013, sp, canopy_position, is_canopy)
+###check <- select(cencus2008, sp, canopy_position, is_canopy)
 
 #subset census by trees under 12.7 cm
-cencus2023 <- subset(cencus2023, dbh_current <= 127) #dbh_current is in mm
-cencus2013 <- subset(cencus2013, dbh <= 127)
+understory2023 <- subset(cencus2023, dbh_current <= 127) #dbh_current is in mm
+understory2018 <- subset(cencus2018, dbh <= 127)
+understory2013 <- subset(cencus2013, dbh <= 127)
+understory2008 <- subset(cencus2008, dbh <= 127)
 
 ####check subset
 ###check <- select(cencus2023, spcode, canopy_position, dbh_current)
 ###check <- select(cencus2013, spcode, canopy_position, dbh)
 
 #count story by quad
-quad2023 <- cencus2023 %>%
+quad2023 <- understory2023 %>%
   group_by(quadrat) %>%
   summarize(
-    canopy_count = sum(is_canopy == 1),
-    non_canopy_count = sum(is_canopy == 0)
+    canopy_count2023 = sum(is_canopy == 1, na.rm = T),
+    non_canopy_count2023 = sum(is_canopy == 0, na.rm = T)
   ) %>%
-  mutate(canopy_prop = canopy_count / ( canopy_count + non_canopy_count))
+  mutate(canopy_prop2023 = canopy_count2023 / ( canopy_count2023 + non_canopy_count2023))
 
-quad2013 <- cencus2013 %>%
+quad2018 <- understory2018 %>%
   group_by(quadrat) %>%
   summarize(
-    canopy_count = sum(is_canopy = 1),
-    non_canopy_count = sum(is_canopy = 0)
+    canopy_count2018 = sum(is_canopy == 1, na.rm = T),
+    non_canopy_count2018 = sum(is_canopy == 0,  na.rm = T)
   ) %>%
-  mutate(canopy_prop = canopy_count / ( canopy_count + non_canopy_count))
+  mutate(canopy_prop2018 = canopy_count2018 / ( canopy_count2018 + non_canopy_count2018))
+
+quad2013 <- understory2013 %>%
+  group_by(quadrat) %>%
+  summarize(
+    canopy_count2013 = sum(is_canopy == 1, na.rm = T),
+    non_canopy_count2013 = sum(is_canopy == 0,  na.rm = T)
+  ) %>%
+  mutate(canopy_prop2013 = canopy_count2013 / ( canopy_count2013 + non_canopy_count2013))
+
+quad2008 <- understory2008 %>%
+  group_by(quadrat) %>%
+  summarize(
+    canopy_count2008 = sum(is_canopy == 1, na.rm = T),
+    non_canopy_count2008 = sum(is_canopy == 0,  na.rm = T)
+  ) %>%
+  mutate(canopy_prop2008 = canopy_count2008 / ( canopy_count2008 + non_canopy_count2008))
 
 #expand 2023 map to all finished columns, letting unfinshed quads be NA AND join tables
 proportion_difference <- quad2013 %>%
-  left_join(quad2023, by = "quadrat", suffix = c("2013", "2023")) 
+  left_join(quad2023, by = "quadrat")  %>% 
+  left_join(quad2018, by = "quadrat") %>% 
+  left_join(quad2008, by = "quadrat") %>% 
+  mutate(prop_difference_1323 = (canopy_prop2023 - canopy_prop2013) *100, #calculate difference of canopy proportion for 10 year change
+         prop_difference_0823 = (canopy_prop2023 - canopy_prop2008) *100,) #calculate difference of canopy proportion for 15 year change
 
-#calculate difference of canopy proportion from 2013 to 2023
-proportion_difference$prop_difference <- (proportion_difference$canopy_prop2023 - proportion_difference$canopy_prop2013)
+####calculate difference of canopy proportion from 2013 to 2023
+###proportion_difference$prop_difference <- ((proportion_difference$canopy_prop2023 - proportion_difference$canopy_prop2008)*100)
 
 #create shapefile to merge quadrat data and percent change 
 displayChange <- merge(quadrats, proportion_difference, by.x = "PLOT", by.y = "quadrat") 
 
-ggplot() +
-  geom_sf(data = displayChange, aes(fill = prop_difference)) +
-  scale_fill_gradient(low = "red",  high = "white",  name = "Percent Change") +
-  labs(title = "Change of Canopy Recruits in ForestGEO SCBI")
+####create colors for diverging color ramp
+###colors <- c("red", "white", "blue")
 
+#set threashold
+uth <- 50 #upper threshold
+lth <- -50 #lower threshold
+
+#plot 10 year change using ggplot
+
+ggplot() +
+  geom_sf(data = displayChange[displayChange$prop_difference_1323 <= lth,], fill = "darkblue") +
+  geom_sf(data = displayChange[displayChange$prop_difference_1323 >= uth,], fill = "darkred") +
+  geom_sf(data = displayChange[displayChange$prop_difference_1323 < uth & displayChange$prop_difference_1323 > lth, ], aes(fill = prop_difference_1323)) +
+  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0,  name = "Percent Change", limits = c(lth, uth)) +
+  geom_sf(data = st_centroid(displayChange[displayChange$prop_difference_1323 <= lth | displayChange$prop_difference_1323 >= uth,]), col = "white") +
+  labs(title = "Change of Canopy Recruits of 10 Years :)") 
+
+#plot 15 year change using ggplot
+
+ggplot() +
+  geom_sf(data = displayChange[displayChange$prop_difference_0823 <= lth,], fill = "darkblue") +
+  geom_sf(data = displayChange[displayChange$prop_difference_0823 >= uth,], fill = "darkred") +
+  geom_sf(data = displayChange[displayChange$prop_difference_0823 < uth & displayChange$prop_difference_0823 > lth, ], aes(fill = prop_difference_0823)) +
+  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0,  name = "Percent Change", limits = c(lth, uth)) +
+  geom_sf(data = st_centroid(displayChange[displayChange$prop_difference_0823 <= lth | displayChange$prop_difference_0823 >= uth,]), col = "white") +
+  labs(title = "Change of Canopy Recruits of 15 Years :)")  +
+  geom_sf( show.legend = TRUE)
+  
+
+ggsave("15yrschange.png", width = 5, height = 7, units = "in", dpi = 300)
+
+##############################################################################################################################################
+                                                
