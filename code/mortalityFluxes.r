@@ -38,6 +38,8 @@ Census2023 <- merge(Census2023, sp.table, by.x ="sp", by.y = "spcode")
 
 # creating complete quadrats object including only the quadrats completed in 2023 census, and creating hectaresMeasured to convert the completed quadrats from square meters into hectares
 completeQuadrats <- unique(Census2023$quadrat)##stores complete quadrats as a vector, now we can use subset
+#completeQuadrats <- unique(Census2008$quadrat)##stores complete quadrats as a vector, now we can use subset
+#^ this is to check that when we do the whole plot the numbers make sense
 hectaresMeasured <- length(completeQuadrats)*20*20/10000 #fixed number size of our plot, 25.6, dividing 20/20/1000 puts m^2 in hectares
 
 #subset each previous census to only the quadrats completed in current census
@@ -69,6 +71,10 @@ all(Census2008$StemTag==Census2013$StemTag) #if true data sets are ordered the s
 idx1 <- Census2008$status%in%"A" & Census2013$status%in%"D"
 mortality08to13 <- Census2008[idx1, ] #indexes 2008 census to be just the trees that died 08 to 13, note we have to index the prior census (2008) because the dead trees in 2013 will have dbh=0 so no biomass
 
+mortalityBySpecies1 <- mortality08to13%>% #grouping  by species to calculate species specific mortality
+  group_by(sp)%>% #group by species
+  summarise(biomass=sum(AGB_2008)) #create new column called biomass in this new object
+
 kgLost1 <- sum(mortality08to13$AGB_2008, na.rm = TRUE) #gives the biomass in Kg lost in this interval
 biomassLossPerHectare1 <- kgLost1/1000/hectaresMeasured/5 #gives biomass Loss per hectare per year in this first interval, units: Mg/hectare/year (dividing by 1000 puts Kg to Mg)
 
@@ -78,6 +84,11 @@ biomassLossPerHectare1 <- kgLost1/1000/hectaresMeasured/5 #gives biomass Loss pe
 idx2 <- Census2013$status%in%"A" & Census2018$status%in%"D"
 
 mortality13to18 <- Census2013[idx2, ]
+
+mortalityBySpecies2 <- mortality13to18%>%
+  group_by(sp)%>% 
+  summarise(biomass=sum(AGB_2013))
+
 kgLost2 <- sum(mortality13to18$AGB_2013, na.rm = TRUE)
 biomassLossPerHectare2 <- kgLost2/1000/hectaresMeasured/5
 
@@ -91,7 +102,11 @@ Census2023$status_2023 <- Census2023$status_current #this is kind of unnecessary
 merged2018_2023 <- merge(Census2018, Census2023, by="uid") #merging by unique id, I think x is Census2018 and y is Census 2023
 
 #now we can filter or subset this merged data frame
-mortality18to23 <- subset(merged2018_2023, status%in% "A" & status_2023%in% c("DC", "DN", "DT")) #subset that was alive in 2018 and dead in 2023
+mortality18to23 <- subset(merged2018_2023, status%in% "A" & status_2023%in% c("DC", "DN", "DT", "DS")) #subset that was alive in 2018 and dead in 2023
+
+mortalityBySpecies3 <- mortality18to23%>%
+  group_by(sp.x)%>% #used sp.x because this is the merged data frame
+  summarise(biomass=sum(AGB_2018))
 
 kgLost3 <- sum(mortality18to23$AGB_2018, na.rm = TRUE)
 biomassLossPerHectare3 <- kgLost3/1000/hectaresMeasured/5
