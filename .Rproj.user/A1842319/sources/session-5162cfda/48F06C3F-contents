@@ -16,10 +16,10 @@ quadrats <- read_sf("doc/20m_grid/20m_grid.shp")
 ggplot() + geom_sf(data = quadrats)
 
 ##load cencus data
-cencus2023 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem4.csv")
-cencus2018 <- read.csv("doc/old cencus data/scbi.stem3.csv")
-cencus2013 <- read.csv("doc/old cencus data/scbi.stem2.csv")
-cencus2008 <- read.csv("doc/old cencus data/scbi.stem1.csv")
+cencus2023 <- read.csv("doc/cencus data/scbi.stem4.csv")
+cencus2018 <- read.csv("doc/cencus data/old cencus data/scbi.stem3.csv")
+cencus2013 <- read.csv("doc/cencus data/old cencus data/scbi.stem2.csv")
+cencus2008 <- read.csv("doc/cencus data/old cencus data/scbi.stem1.csv")
 
 #read in species table
 spTable <- read.csv("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/species_lists/Tree%20ecology/SCBI_ForestGEO_sp_ecology.csv")

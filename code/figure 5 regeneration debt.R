@@ -11,7 +11,7 @@ library(ggplot2)
 library(sf)
 
 # quadrat map
-quadrats <- read_sf("doc/maps/20m_grid/20m_grid.shp")
+quadrats <- read_sf("/doc/maps/20m_grid/20m_grid.shp")  
 
 ggplot() + geom_sf(data = quadrats)
 
@@ -117,36 +117,54 @@ proportion_difference <- quad2013 %>%
 #create shapefile to merge quadrat data and percent change 
 displayChange <- merge(quadrats, proportion_difference, by.x = "PLOT", by.y = "quadrat") 
 
-####create colors for diverging color ramp
-###colors <- c("red", "white", "blue")
 
-#set threashold
-uth <- 50 #upper threshold
-lth <- -50 #lower threshold
+###############################################################################################################################################
+                                                  #maps with min and max thresholds
+#######create colors for diverging color ramp
+######colors <- c("red", "white", "blue")
+###
+####set threashold
+###uth <- 50 #upper threshold
+###lth <- -50 #lower threshold
+###
+####plot 10 year change using ggplot
+###
+###ggplot() +
+###  geom_sf(data = displayChange[displayChange$prop_difference_1323 <= lth,], fill = "darkblue") +
+###  geom_sf(data = displayChange[displayChange$prop_difference_1323 >= uth,], fill = "darkred") +
+###  geom_sf(data = displayChange[displayChange$prop_difference_1323 < uth & displayChange$prop_difference_1323 > lth, ], aes(fill = prop_difference_1323)) +
+###  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0,  name = "Percent Change", limits = c(lth, uth)) +
+###  geom_sf(data = st_centroid(displayChange[displayChange$prop_difference_1323 <= lth | displayChange$prop_difference_1323 >= uth,]), col = "white") +
+###  labs(title = "Change of Canopy Recruits of 10 Years :)") 
+###
+####plot 15 year change using ggplot
+###
+###ggplot() +
+###  geom_sf(data = displayChange[displayChange$prop_difference_0823 <= lth,], fill = "darkblue") +
+###  geom_sf(data = displayChange[displayChange$prop_difference_0823 >= uth,], fill = "darkred") +
+###  geom_sf(data = displayChange[displayChange$prop_difference_0823 < uth & displayChange$prop_difference_0823 > lth, ], aes(fill = prop_difference_0823)) +
+###  geom_sf( show.legend = TRUE) + 
+###  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0,  name = "Percent Change", limits = c(lth, uth)) +
+###  geom_sf(data = st_centroid(displayChange[displayChange$prop_difference_0823 <= lth | displayChange$prop_difference_0823 >= uth,]), col = "white", show.legend = TRUE) +
+###  labs(title = "Change of Canopy Recruits of 15 Years :)")
 
-#plot 10 year change using ggplot
+###############################################################################################################################################
 
+#cut breaks in prop_difference for 15 years
+displayChange$prop_difference_0823_cuts <- cut(displayChange$prop_difference_0823, c(-100, -75, -50, -25, 0, 25, 50, 75, 100))
+
+#create column for filtering quads with little to no stems in understory
+displayChange$noStem <- displayChange$canopy_count2023 + displayChange$non_canopy_count2023
+
+#create plot based on assigned breaks
 ggplot() +
-  geom_sf(data = displayChange[displayChange$prop_difference_1323 <= lth,], fill = "darkblue") +
-  geom_sf(data = displayChange[displayChange$prop_difference_1323 >= uth,], fill = "darkred") +
-  geom_sf(data = displayChange[displayChange$prop_difference_1323 < uth & displayChange$prop_difference_1323 > lth, ], aes(fill = prop_difference_1323)) +
-  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0,  name = "Percent Change", limits = c(lth, uth)) +
-  geom_sf(data = st_centroid(displayChange[displayChange$prop_difference_1323 <= lth | displayChange$prop_difference_1323 >= uth,]), col = "white") +
-  labs(title = "Change of Canopy Recruits of 10 Years :)") 
-
-#plot 15 year change using ggplot
-
-ggplot() +
-  geom_sf(data = displayChange[displayChange$prop_difference_0823 <= lth,], fill = "darkblue") +
-  geom_sf(data = displayChange[displayChange$prop_difference_0823 >= uth,], fill = "darkred") +
-  geom_sf(data = displayChange[displayChange$prop_difference_0823 < uth & displayChange$prop_difference_0823 > lth, ], aes(fill = prop_difference_0823)) +
-  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0,  name = "Percent Change", limits = c(lth, uth)) +
-  geom_sf(data = st_centroid(displayChange[displayChange$prop_difference_0823 <= lth | displayChange$prop_difference_0823 >= uth,]), col = "white") +
-  labs(title = "Change of Canopy Recruits of 15 Years :)")  +
-  geom_sf( show.legend = TRUE)
+  geom_sf(data = displayChange, aes(fill = prop_difference_0823_cuts)) +
+  geom_sf(data = subset.data.frame(displayChange, noStem <= 7) , fill = "black") + 
+  scale_fill_brewer(name = "Percent Change", breaks = c(-100, -75, -50, -25, 0, 25, 50, 75, 100),  palette = "RdBu") +
+  labs(title = "Change of Canopy Recruits in ForestGEO SCBI") 
   
 
-ggsave("15yrschange.png", width = 5, height = 7, units = "in", dpi = 300)
+ ggsave("15yrschange.png", width = 5, height = 7, units = "in", dpi = 300)
 
 ##############################################################################################################################################
                                                 
