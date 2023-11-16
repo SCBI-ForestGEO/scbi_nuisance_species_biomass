@@ -15,60 +15,60 @@ quadrats <- read_sf("/doc/maps/20m_grid/20m_grid.shp")
 
 ggplot() + geom_sf(data = quadrats)
 
-##load cencus data
-cencus2023 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem4.csv")
-cencus2018 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem3.csv")
-cencus2013 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem2.csv")
-cencus2008 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem1.csv")
+##load census data
+census2023 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem4.csv")
+census2018 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem3.csv")
+census2013 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem2.csv")
+census2008 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem1.csv")
 
 #read in species table
 spTable <- read.csv("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/species_lists/Tree%20ecology/SCBI_ForestGEO_sp_ecology.csv")
 
-#merge cencus data with sp table LOSING ROWS OF UNKNOWN SP, FIX
-cencus2023 <- merge(cencus2023, spTable, by.x = "species", by.y = "spcode", all.x = T)
-cencus2018 <- merge(cencus2018, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
-cencus2013 <- merge(cencus2013, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
-cencus2008 <- merge(cencus2008, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
+#merge census data with sp table LOSING ROWS OF UNKNOWN SP, FIX
+census2023 <- merge(census2023, spTable, by.x = "species", by.y = "spcode", all.x = T)
+census2018 <- merge(census2018, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
+census2013 <- merge(census2013, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
+census2008 <- merge(census2008, spTable,  by.x = "sp", by.y = "spcode", all.x = T)
 
 ####view sp not included in species table
-###setdiff(cencus2013$sp, spTable$spcode)
+###setdiff(census2013$sp, spTable$spcode)
 ###
 ####create missing sp table and input canopy information
-###missing_sp <- data.frame(spcode = setdiff(cencus2013$sp, spTable$spcode), canopy_position = c("1","1","0","1", "1","0","1","1", "0"))
-###cencus2023[is.na(cencus2023$canopy_position), ]
+###missing_sp <- data.frame(spcode = setdiff(census2013$sp, spTable$spcode), canopy_position = c("1","1","0","1", "1","0","1","1", "0"))
+###census2023[is.na(census2023$canopy_position), ]
 
 #create canopy trees column
-cencus2023$is_canopy <- ifelse(cencus2023$canopy_position == 'canopy', 1, #this makes canopy trees = 1 and non-canopy trees = 0
-                                     ifelse(cencus2023$canopy_position == 'canopy, emergent', 1, 0))
+census2023$is_canopy <- ifelse(census2023$canopy_position == 'canopy', 1, #this makes canopy trees = 1 and non-canopy trees = 0
+                                     ifelse(census2023$canopy_position == 'canopy, emergent', 1, 0))
 
-cencus2018$is_canopy <- ifelse(cencus2018$canopy_position == 'canopy', 1, 
-                               ifelse(cencus2018$canopy_position == 'canopy, emergent', 1, 0))
+census2018$is_canopy <- ifelse(census2018$canopy_position == 'canopy', 1, 
+                               ifelse(census2018$canopy_position == 'canopy, emergent', 1, 0))
 
-cencus2013$is_canopy <- ifelse(cencus2013$canopy_position == 'canopy', 1, 
-                               ifelse(cencus2013$canopy_position == 'canopy, emergent', 1, 0))
+census2013$is_canopy <- ifelse(census2013$canopy_position == 'canopy', 1, 
+                               ifelse(census2013$canopy_position == 'canopy, emergent', 1, 0))
 
-cencus2008$is_canopy <- ifelse(cencus2008$canopy_position == 'canopy', 1, 
-                                     ifelse(cencus2008$canopy_position == 'canopy, emergent', 1, 0))
+census2008$is_canopy <- ifelse(census2008$canopy_position == 'canopy', 1, 
+                                     ifelse(census2008$canopy_position == 'canopy, emergent', 1, 0))
 
 #convert new column to numeric for map
-cencus2023$is_canopy <- as.numeric(cencus2023$is_canopy)
-cencus2018$is_canopy <- as.numeric(cencus2018$is_canopy)
-cencus2013$is_canopy <- as.numeric(cencus2013$is_canopy)
-cencus2008$is_canopy <- as.numeric(cencus2008$is_canopy)
+census2023$is_canopy <- as.numeric(census2023$is_canopy)
+census2018$is_canopy <- as.numeric(census2018$is_canopy)
+census2013$is_canopy <- as.numeric(census2013$is_canopy)
+census2008$is_canopy <- as.numeric(census2008$is_canopy)
 
 ####check new attribute
-###check <- select(cencus2023, species, canopy_position, is_canopy, quadrat)
-###check <- select(cencus2008, sp, canopy_position, is_canopy)
+###check <- select(census2023, species, canopy_position, is_canopy, quadrat)
+###check <- select(census2008, sp, canopy_position, is_canopy)
 
 #subset census by trees under 12.7 cm
-understory2023 <- subset(cencus2023, dbh_current <= 127) #dbh_current is in mm
-understory2018 <- subset(cencus2018, dbh <= 127)
-understory2013 <- subset(cencus2013, dbh <= 127)
-understory2008 <- subset(cencus2008, dbh <= 127)
+understory2023 <- subset(census2023, dbh_current <= 127) #dbh_current is in mm
+understory2018 <- subset(census2018, dbh <= 127)
+understory2013 <- subset(census2013, dbh <= 127)
+understory2008 <- subset(census2008, dbh <= 127)
 
 ####check subset
-###check <- select(cencus2023, spcode, canopy_position, dbh_current)
-###check <- select(cencus2013, spcode, canopy_position, dbh)
+###check <- select(census2023, spcode, canopy_position, dbh_current)
+###check <- select(census2013, spcode, canopy_position, dbh)
 
 #count story by quad
 quad2023 <- understory2023 %>%
