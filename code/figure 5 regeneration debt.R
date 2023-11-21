@@ -15,14 +15,7 @@ quadrats <- read_sf("doc/20m_grid/20m_grid.shp")
 
 ggplot() + geom_sf(data = quadrats)
 
-<<<<<<< Updated upstream
 ##load census data
-census2023 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem4.csv")
-census2018 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem3.csv")
-census2013 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem2.csv")
-census2008 <- read.csv("C:/Users/elmgi/Downloads/scbi.stem1.csv")
-=======
-##load cencus data
 census2023 <- read.csv("doc/census data/scbi.stem4.csv")
 census2018 <- read.csv("doc/census data/old census data/scbi.stem3.csv")
 census2013 <- read.csv("doc/census data/old census data/scbi.stem2.csv")

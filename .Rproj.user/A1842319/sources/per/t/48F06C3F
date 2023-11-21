@@ -3,7 +3,7 @@
     "path": "~/R/15yrsChange/code/figure 5 regeneration debt.R",
     "project_path": "code/figure 5 regeneration debt.R",
     "type": "r_source",
-    "hash": "1649028068",
+    "hash": "1566510391",
     "contents": "",
     "dirty": false,
     "created": 1700168821257.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "5,0",
-        "scrollLine": "0"
+        "cursorPosition": "17,0",
+        "scrollLine": "4"
     },
     "folds": "",
-    "lastKnownWriteTime": 1700586889,
+    "lastKnownWriteTime": 1700605381,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1700586889897,
+    "last_content_update": 1700605381235,
     "read_only": false,
     "read_only_alternatives": []
 }
