@@ -161,8 +161,9 @@ displayChange$noStem <- displayChange$canopy_count2023 + displayChange$non_canop
 ggplot() +
   geom_sf(data = displayChange, aes(fill = prop_difference_0823_cuts)) +
   geom_sf(data = subset.data.frame(displayChange, noStem <= 7) , fill = "black") + 
-  scale_fill_brewer(name = "Percent Change", breaks = c(-100, -75, -50, -25, 0, 25, 50, 75, 100),  palette = "RdBu") +
-  labs(title = "Change of Canopy Recruits in ForestGEO SCBI") 
+  scale_fill_brewer(name = "Percent Change",  palette = "RdBu") +
+  labs(title = "Change of Canopy Recruits in ForestGEO SCBI")
+
   
 
  ggsave("15yrschange.png", width = 5, height = 7, units = "in", dpi = 300)
