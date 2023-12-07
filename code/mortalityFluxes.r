@@ -13,7 +13,7 @@ library(allodb)
 #download save and then load it in with the path, 1 is 2008, 2 is 2013, 3 is 2018
 #change blob to raw, alternatively you can download and save the raw data and then load in the filepath
 
-Census2023<- read.csv("C:/Users/irisa/Documents/GitHub/2023census/processed_data/scbi.stem4.csv")#loading in current census data
+Census2023<- read.csv("C:/Users/irisa/Documents/GitHub/2023census/processed_data/scbi.stem4.csv")#loading in current census data, note this is from my local computer
 
 Census2008 <- load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem1.rdata"))
 
@@ -68,7 +68,7 @@ Census2023$AGB_2023 <- get_biomass(dbh=as.numeric(Census2023$dbh_current)/10, ge
 all(Census2008$tag==Census2013$tag) ## function all checks if everything is true in this statement
 all(Census2008$StemTag==Census2013$StemTag) #if true data sets are ordered the same way
 
-idx1 <- Census2008$status%in%"A" & Census2013$status%in%"D"
+idx1 <- Census2008$status%in%"A" & Census2013$status%in%c("D", "G")
 mortality08to13 <- Census2008[idx1, ] #indexes 2008 census to be just the trees that died 08 to 13, note we have to index the prior census (2008) because the dead trees in 2013 will have dbh=0 so no biomass
 
 mortalityBySpecies1 <- mortality08to13%>% #grouping  by species to calculate species specific mortality
@@ -81,7 +81,7 @@ biomassLossPerHectare1 <- kgLost1/1000/hectaresMeasured/5 #gives biomass Loss pe
 ##Calculating biomass loss for interval 2: 2013 to 2018
 
 
-idx2 <- Census2013$status%in%"A" & Census2018$status%in%"D"
+idx2 <- Census2013$status%in%"A" & Census2018$status%in%c("D", "G")
 
 mortality13to18 <- Census2013[idx2, ]
 
