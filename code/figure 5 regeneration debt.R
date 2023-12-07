@@ -20,7 +20,7 @@ census2023 <- read.csv("doc/census data/scbi.stem4.csv")
 census2018 <- read.csv("doc/census data/old census data/scbi.stem3.csv")
 census2013 <- read.csv("doc/census data/old census data/scbi.stem2.csv")
 census2008 <- read.csv("doc/census data/old census data/scbi.stem1.csv")
->>>>>>> Stashed changes
+
 
 #read in species table
 spTable <- read.csv("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/species_lists/Tree%20ecology/SCBI_ForestGEO_sp_ecology.csv")
@@ -161,10 +161,8 @@ displayChange$noStem <- displayChange$canopy_count2023 + displayChange$non_canop
 ggplot() +
   geom_sf(data = displayChange, aes(fill = prop_difference_0823_cuts)) +
   geom_sf(data = subset.data.frame(displayChange, noStem <= 7) , fill = "black") + 
-  scale_fill_brewer(name = "Percent Change",  palette = "RdBu") +
+  scale_fill_brewer(name = "Percent Change",  palette = "RdBu") +                            
   labs(title = "Change of Canopy Recruits in ForestGEO SCBI")
-
-  
 
  ggsave("15yrschange.png", width = 5, height = 7, units = "in", dpi = 300)
 
