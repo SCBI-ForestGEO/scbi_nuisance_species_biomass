@@ -164,7 +164,7 @@ ggplot() +
   scale_fill_brewer(name = "Percent Change",  palette = "RdBu") +                            
   labs(title = "Change of Canopy Recruits in ForestGEO SCBI")
 
- ggsave("15yrschange.png", width = 5, height = 7, units = "in", dpi = 300)
+ #ggsave("figure 5.png", width = 5, height = 7, units = "in", dpi = 300, path = "doc/")
 
 ##############################################################################################################################################
                                                 
