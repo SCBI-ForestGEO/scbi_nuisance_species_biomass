@@ -12,19 +12,21 @@ library(allodb)#allometry package
 
 getwd()#check which working directory you are in
 
-#setwd('C:/Users/irisa/Documents/GitHub/2023census')#I feel like this won't work
+#setwd('C:/Users/irisa/Documents/GitHub')#this is uniqe to my local computer
+# GitHub/2023census/processed_data/scbi.stem4.csv"  #this will be the same on all computers
 
 # Iris filepath:  C:/Users/irisa/Documents/GitHub/2023census
 
 ### Loading in all census data (2023 data is not finalized yet)
 
-Census2023<- read.csv("C:/Users/irisa/Documents/GitHub/2023census/processed_data/scbi.stem4.csv")#loading in current census data, note this is from my local computer
+Census2023<- read.csv("C:/Users/irisa/Documents/GitHub/2023census/processed_data/scbi.stem4.csv")#loading in current census data, note this is from my local computer, you will have to change the filepath
 
 Census2008 <- load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem1.rdata"))
 
 Census2013 <- load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem2.rdata"))
 
 Census2018 <-load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem3.rdata"))
+
 
 #renaming data
 Census2008 <- scbi.stem1
@@ -80,7 +82,9 @@ mortality08to13 <- Census2008[idx1, ] #indexes 2008 census to be just the trees 
 mortalityBySpecies1 <- mortality08to13%>% #grouping  by species to calculate species specific mortality
   group_by(sp)%>% #group by species
   summarise(biomass=sum(AGB_2008))%>% #create new column called biomass in this new object
-  add_column(Interval= "2008 to 2013")
+  add_column(Interval= "2008 to 2013")%>%
+  add_column(biomassLossPerHectareSpecies =mortalityBySpecies1$biomass/hectaresMeasured )
+
 
 kgLost1 <- sum(mortality08to13$AGB_2008, na.rm = TRUE) #gives the biomass in Kg lost in this interval
 biomassLossPerHectare1 <- kgLost1/1000/hectaresMeasured/5 #gives biomass Loss per hectare per year in this first interval, units: Mg/hectare/year (dividing by 1000 puts Kg to Mg)
@@ -94,10 +98,16 @@ mortality13to18 <- Census2013[idx2, ]
 mortalityBySpecies2 <- mortality13to18%>%
   group_by(sp)%>% 
   summarise(biomass=sum(AGB_2013))%>%
-  add_column(Interval= "2013 to 2018")
+  add_column(Interval= "2013 to 2018")%>%
+  add_column(biomassLossPerHectareSpecies =mortalityBySpecies2$biomass/hectaresMeasured )
 
 kgLost2 <- sum(mortality13to18$AGB_2013, na.rm = TRUE)
 biomassLossPerHectare2 <- kgLost2/1000/hectaresMeasured/5
+
+##binding the first2 mortality by species together, will add on the third interval below
+
+combinedMortalitySpecies1 <- rbind(mortalityBySpecies1, mortalityBySpecies2)
+
 
 ##Calculating biomass loss for interval 3: 2018 to 2023
 
@@ -114,10 +124,29 @@ mortality18to23 <- subset(merged2018_2023, status%in% "A" & status_2023%in% c("D
 mortalityBySpecies3 <- mortality18to23%>%
   group_by(sp.x)%>% #used sp.x because this is the merged data frame
   summarise(biomass=sum(AGB_2018))%>%
-  add_column(Interval= "2018 to 2023")
+  add_column(Interval= "2018 to 2023")%>%
+  add_column(biomassLossPerHectareSpecies =mortalityBySpecies3$biomass/hectaresMeasured )
+
+mortalityBySpecies3%>%
+  rename(sp= sp.x)
+
+mortalityBySpecies4<- mortalityBySpecies3 %>% 
+  rename(
+    sp = sp.x
+  ) #renaming column from sp.x to sp so it can bind with others
 
 kgLost3 <- sum(mortality18to23$AGB_2018, na.rm = TRUE)
 biomassLossPerHectare3 <- kgLost3/1000/hectaresMeasured/5
+
+##binding all the mortality by species data
+
+combinedMortalitySpeciesFinal <- rbind(combinedMortalitySpecies1, mortalityBySpecies4)
+
+#now a plot needs to be made with each line as a species, NOTE- double check the units of biomass
+##next steo with this plot is to break it out by species so each species is its own line
+ggplot(data=combinedMortalitySpeciesFinal, aes(x=Interval, y=biomassLossPerHectareSpecies))+
+  geom_point()
+
 
 ##making the mortalityFluxData
 Flux <- c("AWM")
