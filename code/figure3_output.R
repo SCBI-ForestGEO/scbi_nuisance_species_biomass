@@ -3,9 +3,9 @@ library(ggplot2)
 ##set your own wd##
 setwd("/Users/krystalbagnaschi/Documents/15yrsChange/")
 
-awrtable <- read.csv("doc/biomassRecruitedData.csv")
-awmtable <- read.csv("doc/mortalityFluxData.csv")
-awptable <- read.csv("doc/woodGrowthFlux.csv")
+awrtable <- read.csv("doc/figure3_biomassRecruited.csv")
+awmtable <- read.csv("doc/figure3_mortalityFlux.csv")
+awptable <- read.csv("doc/woodyGrowthFlux.csv")
 
 
 ##colnames(awrtable) <- c(colnames(awrtable)[1:4],"Value")
@@ -18,4 +18,4 @@ biomassfluxtable <- rbind(awrtable, awmtable, awptable)
 ggplot(biomassfluxtable, aes(x=Interval, y=Value, group=Flux, col=Flux)) +
   geom_line()
 
-ggsave("figure3.png", width = 5, height = 7, units = "in", dpi = 300, path = "doc")
+ggsave("figure3.png", width = 7, height = 7, units = "in", dpi = 300, path = "doc")

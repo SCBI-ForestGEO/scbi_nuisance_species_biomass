@@ -136,8 +136,8 @@ Census_2023_Finished$Calculated_ABG_2023 <- get_biomass(dbh = as.numeric(Census_
   flx3 <- Woody_growth_2023_mg_ha_yr
   
   all_fluxes <- c(flx1, flx2, flx3)
-  woodyGrowthFlux <- data.frame(Flux = flux, Year = year, Value = all_fluxes, Interval = interval)
+  figure3_woodyGrowthFlux <- data.frame(Flux = flux, Year = year, Value = all_fluxes, Interval = interval)
   
-  write.csv(woodyGrowthFlux, "doc/woodGrowthFlux.csv")
+  write.csv(figure3_woodyGrowthFlux, "doc/figure3_woodGrowthFlux.csv")
   
   

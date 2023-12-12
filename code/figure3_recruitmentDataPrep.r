@@ -6,7 +6,7 @@ library(tidyverse)
 library(ggplot2)
 library(allodb)
 
-census<- read.csv("data/census data/scbi.stem4.csv")#loading in current census data
+census<- read.csv("data/census_data/scbi.stem4.csv")#loading in current census data
 
 load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem1.rdata"))
 load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem2.rdata"))
@@ -69,9 +69,9 @@ Interval <- c("2008to2013", "2013to2018", "2018tp2023")
 Flux <- c("AWR")
 Value <- c(biomassRecruited1, biomassRecruited2, biomassRecruited3)
 
-biomassRecruitedData <- data.frame(Flux, Year, Interval,Value )
+figure3_biomassRecruited <- data.frame(Flux, Year, Interval,Value )
 
-write.csv(biomassRecruitedData, "doc/biomassRecruitedData.csv", row.names=TRUE)
+write.csv(figure3_biomassRecruited, "doc/figure3_biomassRecruited.csv", row.names=TRUE)
 
 ######################################################################################################################################
 #end data prep

@@ -79,8 +79,6 @@ all(Census2008$StemTag==Census2013$StemTag) #if true data sets are ordered the s
 idx1 <- Census2008$status%in%"A" & Census2013$status%in%c("D", "G")
 mortality08to13 <- Census2008[idx1, ] #indexes 2008 census to be just the trees that died 08 to 13, note we have to index the prior census (2008) because the dead trees in 2013 will have dbh=0 so no biomass
 
-rm(mortalityBySpecies1)
-
 mortalityBySpecies1 <- mortality08to13 %>% #grouping  by species to calculate species specific mortality
   group_by(sp) %>% #group by species
   summarise(biomass=sum(AGB_2008)) %>% #create new column called biomass in this new object
@@ -156,10 +154,10 @@ Year <- c(2013, 2018, 2023)
 Interval <- c("2008to2013", "2013to2018", "2018to2023" )
 Value <- c((biomassLossPerHectare1)*-1, (biomassLossPerHectare2)*-1,(biomassLossPerHectare3)*-1) #added negatives because it is mortality (biomass LOSS)
 
-mortalityFluxData <- data.frame(Flux, Year, Interval, Value) #creating the data frame
+figure3_mortalityFlux <- data.frame(Flux, Year, Interval, Value) #creating the data frame
 
 #writing data frame as csv, exports to my local machine
-write.csv(mortalityFluxData, "doc/mortalityFluxData.csv" , row.names=TRUE)
+write.csv(figure3_mortalityFlux, "doc/figure3_mortalityFlux.csv" , row.names=TRUE)
 
 ## bind ro make long data
 
