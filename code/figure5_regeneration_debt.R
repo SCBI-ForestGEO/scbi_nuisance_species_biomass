@@ -16,10 +16,10 @@ quadrats <- read_sf("data/20m_grid/20m_grid.shp")
 ggplot() + geom_sf(data = quadrats)
 
 ##load census data
-census2023 <- read.csv("data/census data/scbi.stem4.csv")
-census2018 <- read.csv("data/census data/old census data/scbi.stem3.csv")
-census2013 <- read.csv("data/census data/old census data/scbi.stem2.csv")
-census2008 <- read.csv("data/census data/old census data/scbi.stem1.csv")
+census2023 <- read.csv("data/census_data/scbi.stem4.csv")
+census2018 <- read.csv("data/census_data/old census data/scbi.stem3.csv")
+census2013 <- read.csv("data/census_data/old census data/scbi.stem2.csv")
+census2008 <- read.csv("data/census_data/old census data/scbi.stem1.csv")
 
 
 #read in species table
