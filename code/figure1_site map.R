@@ -22,3 +22,5 @@ siteMap <- leaflet() %>%
   addProviderTiles(providers$Esri.WorldImagery, group = "background")
 
 siteMap
+
+#ggsave("figure1.png", width = 5, height = 7, units = "in", dpi = 300, path = "doc")

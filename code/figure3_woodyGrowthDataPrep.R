@@ -27,7 +27,7 @@ Census_2013_Species <- merge(Census_2013, Species_table, by ="sp")
 Census_2018_Species <- merge(Census_2018, Species_table, by ="sp")
 
 #Read in data from 2023
-Census_2023<- read.csv("data/census data/scbi.stem4.csv")
+Census_2023<- read.csv("data/census_data/scbi.stem4.csv")
 #Combine the 2023 census data and species list
 Census_2023_Species <- merge(Census_2023, Species_table, by ="sp")
 
@@ -136,8 +136,8 @@ Census_2023_Finished$Calculated_ABG_2023 <- get_biomass(dbh = as.numeric(Census_
   flx3 <- Woody_growth_2023_mg_ha_yr
   
   all_fluxes <- c(flx1, flx2, flx3)
-  Woody_growth_df <- data.frame(Flux = flux, Year = year, Value = all_fluxes)
+  woodyGrowthFlux <- data.frame(Flux = flux, Year = year, Value = all_fluxes, Interval = interval)
   
-  write.csv(Woody_growth_df, file = "doc/woody_growth_df.csv")
+  write.csv(woodyGrowthFlux, "doc/woodGrowthFlux.csv")
   
   

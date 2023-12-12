@@ -1,15 +1,15 @@
 ##recruitment census to census
-##started october 26, 2018
+##output biomassRecruitedData.csv
+##started october 26, 2023
 
 library(tidyverse)
 library(ggplot2)
 library(allodb)
 
-census<- read.csv("C:/Users/irisa/Documents/GitHub/2023census/processed_data/scbi.stem4.csv")#loading in current census data
+census<- read.csv("data/census data/scbi.stem4.csv")#loading in current census data
 
 load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem1.rdata"))
-Census2013 <- load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem2.rdata"))
-
+load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem2.rdata"))
 load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem3.rdata"))
 
 Census2008 <- scbi.stem1
@@ -55,7 +55,8 @@ biomassRecruited2 <- sum(recruitment13to18$allodbAGB, na.rm = TRUE)/1000/hectare
 recruit3 <- subset(census, table== "recruits")
 recruitment18to23 <- merge(recruit3, sp.table, by.x ="sp", by.y = "spcode")
 
-recruitment18to23$allodbAGB<- get_biomass(dbh=as.numeric(recruitment18to23$dbh_current)/10, genus= recruitment18to23$genus, species = recruitment18to23$species.y, coords =latlong)
+recruitment18to23$allodbAGB<- get_biomass(dbh=as.numeric(recruitment18to23$dbh_current)/10, genus= recruitment18to23$genus, 
+                                          species = recruitment18to23$species.y, coords =latlong)
 
 biomassKg3 <- sum(recruitment18to23$allodbAGB, na.rm = TRUE)
 biomassRecruited3 <- sum(recruitment18to23$allodbAGB, na.rm = TRUE)/1000/hectaresMeasured/5
@@ -70,12 +71,15 @@ Value <- c(biomassRecruited1, biomassRecruited2, biomassRecruited3)
 
 biomassRecruitedData <- data.frame(Flux, Year, Interval,Value )
 
-write.csv(biomassRecruitedData, "C:/Users/irisa/Documents/Smithsonian/15yearsChange//biomassRecruitedData.csv", row.names=TRUE)
+write.csv(biomassRecruitedData, "doc/biomassRecruitedData.csv", row.names=TRUE)
+
+######################################################################################################################################
+#end data prep
 
 
-biomassRecruitedGraph <- data.frame(Year, biomassRecruited, changeyear=c(2013, 2018, 2023))
+biomassRecruitedGraph <- data.frame(Year, biomassRecruitedData, changeyear=c(2013, 2018, 2023))
 
-ggplot(data = biomassRecruitedGraph, aes(x=Year, y=biomassRecruitedTotal))+
+ggplot(data = biomassRecruitedGraph, aes(x=Year, y=Value)) +
   geom_point()
 
 ##number of recruits in 2023 so far
