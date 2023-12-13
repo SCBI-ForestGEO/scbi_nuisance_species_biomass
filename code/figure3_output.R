@@ -5,7 +5,7 @@ setwd("/Users/krystalbagnaschi/Documents/15yrsChange/")
 
 awrtable <- read.csv("doc/figure3_biomassRecruited.csv")
 awmtable <- read.csv("doc/figure3_mortalityFlux.csv")
-awptable <- read.csv("doc/woodyGrowthFlux.csv")
+awptable <- read.csv("doc/figure3_woodGrowthFlux.csv")
 
 
 ##colnames(awrtable) <- c(colnames(awrtable)[1:4],"Value")

@@ -33,6 +33,7 @@ Census_2023_Species <- merge(Census_2023, Species_table, by ="sp")
 
 #Define finished quadrats
 Finished_quadrats <- unique(Census_2023_Species$quadrat)
+
 ##Use this line if you're interested in the biomass for the whole plot = Finished_quadrats <- unique(Census_2018$quadrat)
 subset(Census_2023_Species, Census_2023_Species$quadrat %in% Finished_quadrats)
 Census_2023_Finished <- subset(Census_2023_Species, Census_2023_Species$quadrat %in% Finished_quadrats)

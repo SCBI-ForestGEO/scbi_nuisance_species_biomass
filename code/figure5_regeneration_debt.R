@@ -10,7 +10,7 @@ library(dplyr)
 library(ggplot2)
 library(sf)
 
-#quadrat map
+#load in quadrat map
 quadrats <- read_sf("data/20m_grid/20m_grid.shp")  
 
 ggplot() + geom_sf(data = quadrats)
