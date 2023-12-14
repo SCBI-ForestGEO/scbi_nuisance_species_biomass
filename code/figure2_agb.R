@@ -7,6 +7,7 @@ rm(list = ls())
 
 #load in libraries
 library(allodb)
+library(ggplot2)
 
 #Read in data from past censuses and the species table
 load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.stem1.rdata"))
@@ -19,9 +20,7 @@ census2008 <- scbi.stem1
 census2013 <- scbi.stem2
 census2018 <- scbi.stem3
 speciesTable <- scbi.spptable
-
-#Read in data from 2023
-census2023<- read.csv("data/census_data/scbi.stem4.csv")
+census2023 <- read.csv(url("https://raw.githubusercontent.com/SCBI-ForestGEO/2023census/main/processed_data/scbi.stem4.csv"))
 
 #Combine the census data and species list
 spCensus2008 <- merge(census2008, speciesTable, by ="sp")
@@ -58,16 +57,30 @@ Census_2018_Finished <- subset(spCensus2018, spCensus2018$quadrat %in% Finished_
 #biomass_census <- get_biomass(dbh = as.numeric(Census_Year_Complete$dbh)/10, genus = Census_Year_Complete$Genus, species = Census_Year_Complete$Species, coords = latlong)
 
 spCensus2008$Calculated_ABG <- get_biomass(dbh = as.numeric(spCensus2008$dbh)/10, genus = spCensus2008$Genus, species = spCensus2008$Species, coords = latlong)
-Census_2013_Finished$Calculated_ABG <- get_biomass(dbh = as.numeric(Census_2013_Finished$dbh)/10, genus = Census_2013_Finished$Genus, species = Census_2013_Finished$Species, coords = latlong)
-Census_2018_Finished$Calculated_ABG <- get_biomass(dbh = as.numeric(Census_2018_Finished$dbh)/10, genus = Census_2018_Finished$Genus, species = Census_2018_Finished$Species, coords = latlong)
-Census_2023_Finished$Calculated_ABG <- get_biomass(dbh = as.numeric(Census_2023_Finished$dbh_current)/10, genus = Census_2023_Finished$Genus, species = Census_2023_Finished$Species, coords = latlong)
+spCensus2013$Calculated_ABG <- get_biomass(dbh = as.numeric(spCensus2013$dbh)/10, genus = spCensus2013$Genus, species = spCensus2013$Species, coords = latlong)
+spCensus2018$Calculated_ABG <- get_biomass(dbh = as.numeric(spCensus2018$dbh)/10, genus = spCensus2018$Genus, species = spCensus2018$Species, coords = latlong)
+spCensus2023$Calculated_ABG <- get_biomass(dbh = as.numeric(spCensus2023$dbh_current)/10, genus = spCensus2023$Genus, species = spCensus2023$Species, coords = latlong)
 
 
 
+
+stock2008 <- sum(spCensus2008$Calculated_ABG, na.rm = TRUE)/25.6 #sum of total 
+stock2013 <- sum(spCensus2013$Calculated_ABG, na.rm = TRUE)
+stock2018 <- sum(spCensus2018$Calculated_ABG, na.rm = TRUE)
+stock2023 <- sum(spCensus2023$Calculated_ABG, na.rm = TRUE)
 
 #creating the data frame
-stock <- c("AGB")
-year <- c(2013, 2018, 2023)
+
+year <- c(2008, 2013, 2018, 2023)
+all_stocks <- c(stock2008, stock2013, stock2018, stock2023)
+
+figure2_agb <- data.frame(y = year,  x = all_stocks)
+ 
+ggplot(figure2_agb, aes(y=all_stocks, x=year)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Carbon Stock Per Year", xlab = "Carbon Stock", ylab = "Year")
+
 
 
 
