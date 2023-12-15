@@ -28,6 +28,9 @@ spCensus2013 <- merge(census2013, speciesTable, by ="sp")
 spCensus2018 <- merge(census2018, speciesTable, by ="sp")
 spCensus2023 <- merge(census2023, speciesTable, by ="sp")
 
+#reformat spCensus2023 quadrat column as character
+spCensus2023$quadrat <- sprintf("%04d", spCensus2023$quadrat)
+
 #create latxlong for the plot
 latlong <- c(-78.1454, 38.8935)
 
@@ -40,8 +43,8 @@ Finished_quadrats <- unique(spCensus2023$quadrat)
 #Finding the physical amount of space we measured
 Hectares_measured <- length(Finished_quadrats)*20*20/10000
 
-##Use this line if you're interested in the biomass for the whole plot = Finished_quadrats <- unique(Census_2018$quadrat)
-Census_2023_Finished <- subset(spCensus2023, spCensus2023$quadrat %in% Finished_quadrats)
+###Use this line if you're interested in the biomass for the whole plot = Finished_quadrats <- unique(Census_2018$quadrat)
+##Census_2023_Finished <- subset(spCensus2023, spCensus2023$quadrat %in% Finished_quadrats)
 
 #Subset the 2008 quadrats by ones that are finished in 2023
 Census_2008_Finished <- subset(spCensus2008, spCensus2008$quadrat %in% Finished_quadrats)
@@ -52,22 +55,38 @@ Census_2013_Finished <- subset(spCensus2013, spCensus2013$quadrat %in% Finished_
 #Subset the 2018 qudrats by the ones that are finished in 2023
 Census_2018_Finished <- subset(spCensus2018, spCensus2018$quadrat %in% Finished_quadrats)
 
+#rename 2023 census to match names of others
+Census_2023_Finished <- spCensus2023
+
+#######################################################################################################################################
+#debuggging
+
+Finished_quadrats <- unique(spCensus2023$quadrat)
+finished2008 <- unique(Census_2008_Finished$quadrat)
+
+Finished_quadrats <- order(Finished_quadrats)
+finished2008 <- order(finished2008)
+missingQuad <- cbind(Finished_quadrats, finished2008) 
+
+
 #######################################################################################################################################
 
+useCensus2008 <- Census_2008_Finished
+useCensus2013 <- Census_2013_Finished
+useCensus2018 <- Census_2018_Finished
+useCensus2023 <- Census_2023_Finished
+
+#calculate total biomass of census year by each stem 
 #biomass_census <- get_biomass(dbh = as.numeric(Census_Year_Complete$dbh)/10, genus = Census_Year_Complete$Genus, species = Census_Year_Complete$Species, coords = latlong)
+useCensus2008$Calculated_ABG <- get_biomass(dbh = as.numeric(useCensus2008$dbh)/10, genus = useCensus2008$Genus, species = useCensus2008$Species, coords = latlong)
+useCensus2013$Calculated_ABG <- get_biomass(dbh = as.numeric(useCensus2013$dbh)/10, genus = useCensus2013$Genus, species = useCensus2013$Species, coords = latlong)
+useCensus2018$Calculated_ABG <- get_biomass(dbh = as.numeric(useCensus2018$dbh)/10, genus = useCensus2018$Genus, species = useCensus2018$Species, coords = latlong)
+useCensus2023$Calculated_ABG <- get_biomass(dbh = as.numeric(useCensus2023$dbh_current)/10, genus = useCensus2023$Genus, species = useCensus2023$Species, coords = latlong)
 
-spCensus2008$Calculated_ABG <- get_biomass(dbh = as.numeric(spCensus2008$dbh)/10, genus = spCensus2008$Genus, species = spCensus2008$Species, coords = latlong)
-spCensus2013$Calculated_ABG <- get_biomass(dbh = as.numeric(spCensus2013$dbh)/10, genus = spCensus2013$Genus, species = spCensus2013$Species, coords = latlong)
-spCensus2018$Calculated_ABG <- get_biomass(dbh = as.numeric(spCensus2018$dbh)/10, genus = spCensus2018$Genus, species = spCensus2018$Species, coords = latlong)
-spCensus2023$Calculated_ABG <- get_biomass(dbh = as.numeric(spCensus2023$dbh_current)/10, genus = spCensus2023$Genus, species = spCensus2023$Species, coords = latlong)
-
-
-
-
-stock2008 <- sum(spCensus2008$Calculated_ABG, na.rm = TRUE)/25.6 #sum of total 
-stock2013 <- sum(spCensus2013$Calculated_ABG, na.rm = TRUE)
-stock2018 <- sum(spCensus2018$Calculated_ABG, na.rm = TRUE)
-stock2023 <- sum(spCensus2023$Calculated_ABG, na.rm = TRUE)
+stock2008 <- sum(useCensus2008$Calculated_ABG, na.rm = TRUE)/25.6 #sum of total kg/hectare
+stock2013 <- sum(useCensus2013$Calculated_ABG, na.rm = TRUE)/25.6
+stock2018 <- sum(useCensus2018$Calculated_ABG, na.rm = TRUE)/25.6
+stock2023 <- sum(useCensus2023$Calculated_ABG, na.rm = TRUE)/25.6
 
 #creating the data frame
 
@@ -79,15 +98,7 @@ figure2_agb <- data.frame(y = year,  x = all_stocks)
 ggplot(figure2_agb, aes(y=all_stocks, x=year)) +
   geom_line() +
   geom_point() +
-  labs(title = "Carbon Stock Per Year", xlab = "Carbon Stock", ylab = "Year")
-
-
-
-
-
-
-
-
-
+  labs(title = "Carbon Stock Per Year", y = "Carbon Stock (mg/ha)", x = "Year") +
+  theme(legend.position="top")
 
 
