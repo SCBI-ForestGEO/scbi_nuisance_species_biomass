@@ -77,7 +77,8 @@ useCensus2023$Calculated_ABG <- get_biomass(dbh = as.numeric(useCensus2023$dbh_c
 calc_quadrat_abg <- function(abg_df, year){
   outdf <- abg_df  %>% 
     group_by(quadrat)  %>% 
-    summarize(Abg_C_Mg = sum(Calculated_ABG,na.rm = T)/1000 * .47)  %>% 
+    summarize(Abg_C_Mg = sum(Calculated_ABG,na.rm = T)/1000 * .47,
+              Abg_Mg = sum(Calculated_ABG,na.rm = T)/1000)  %>% 
     left_join(grouped_quadrats  %>% select(quadrat,Group))  %>% 
     mutate(Year = year)
   return(outdf)
@@ -92,25 +93,38 @@ quadrat_abg_2023 <- calc_quadrat_abg(useCensus2023,2023)  %>%
 group_trends <- quadrat_abg_2008  %>% 
   bind_rows(quadrat_abg_2013,quadrat_abg_2018,quadrat_abg_2023)  %>% 
   group_by(Year,Group)  %>% 
-  summarize(n_quads = n(),Abg_C_Mg_Ha = sum(Abg_C_Mg) / ((400 * n_quads)/10000))  %>% 
+  summarize(n_quads = n(),Abg_C_Mg_Ha = sum(Abg_C_Mg) / ((400 * n_quads)/10000),
+            Abg_Mg_Ha = sum(Abg_Mg) / ((400 * n_quads)/10000))  %>% 
   drop_na()  %>% 
   mutate(Group = as.character(Group))
 tot_trends <- quadrat_abg_2008  %>% 
   bind_rows(quadrat_abg_2013,quadrat_abg_2018,quadrat_abg_2023)  %>% 
   group_by(Year)  %>% 
-  summarize(n_quads = n(),Abg_C_Mg_Ha = sum(Abg_C_Mg) / ((400 * n_quads)/10000))  %>% 
+  summarize(n_quads = n(),Abg_C_Mg_Ha = sum(Abg_C_Mg) / ((400 * n_quads)/10000),
+            Abg_Mg_Ha = sum(Abg_Mg) / ((400 * n_quads)/10000))  %>% 
   mutate(Group = "Whole Plot")
 
 figure2_agb <- group_trends  %>% 
   bind_rows(tot_trends)
- 
-ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Group)) +
-  geom_line() +
-  geom_point() +
+
+colz <- c("#017161","#4c90b0","darkblue","#754792")
+
+fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Group)) +
+#fig2 <- ggplot(figure2_agb, aes(y=Abg_Mg_Ha, x=Year, group = Group, col = Group)) +
+  geom_line(lwd = c(rep(1,12),rep(3,4))) +
+  geom_point(cex = c(rep(3,12),rep(5,4))) +
+  scale_x_continuous(breaks = c(2008, 2013,2018, 2023), labels = c("2008","2013","2018","2023"),
+    minor_breaks = c())+
+  scale_color_manual(name = element_blank(),labels = c("Low deer, low nuisance","High deer, low nuisance", "High deer, high nuisance", "Plot"),values = colz) + 
   labs(y = "Carbon Stock (Mg C/Ha)", x = "Year") +
   theme_bw() +
-  theme(legend.position ="bottom",
-        axis.text = element_text(size = 14),
-        axis.title = element_text(size = 18))  
+  theme(legend.position = c(.3,.2),
+        legend.text = element_text(size = 18),
+        legend.background = element_blank(),
+        axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in")),
+        axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
+        axis.title = element_text(size = 20))  
 
+ggsave(fig2,filename = "C:/Work/Smithsonian/Repos/15yrsChange/doc/display/Figure2.jpeg", units = "in",
+        height = 8, width =7, dpi = 300)
 
