@@ -1,16 +1,16 @@
-Common Name,Latin Name,Species Code,Code,n,Stump taper rate,Stem taper rate,,,,,,,,
-Table Mountain pine,Pinus pungens,PIPU,123,74,-0.0326,-0.0097,,,,,,,,
-White pine,Pinus strobus,PIST,129,170,-0.0209,-0.0107,,,,,,,,
-Virginia pine,Pinus virginiana,PIVI,132,203,-0.0268,-0.0117,,,,,,,,
-Red maple,Acer rubrum,ACRU,316,385,-0.0422,-0.0142,,,,,,,,
-Hickory,Carya spp.,"CACO, CAGL, CATO, CAOVL",400,380,-0.0518,-0.0158,,,,,,,,
-Beech,Fagus grandifolia,FAGR,531,18,-0.0529,-0.0172,,,,,,,,
-Sycamore,Platinus occidentalis,PLOC,731,97,-0.0568,-0.014,,,,,,,,
-Cherry,Prunus spp.,"PRAV, PRPE, PRSE",762,79,-0.021,-0.0098,,,,,,,,
-White oak,Quercus alba,QUAL,802,181,-0.0713,-0.0169,,,,,,,,
-Scarlet oak,Quercus coccinea,QUCO,806,57,-0.0682,-0.0153,,,,,,,,
-Southern red oak,Quercus falcata,QUFA,812,274,-0.0624,-0.0211,,,,,,,,woody
-Chestnut oak,Quercus prinus,"QUPR, QUMI",832,81,-0.0307,-0.0125,,,,,,,,
-Northern red oak,Quercus rubra,QURU,833,22,-0.0603,-0.0122,,,,,,,,
-Black oak,Quercus velutina,QUVE,837,36,-0.0762,-0.0165,,,,,,,,
-Black locust,Robinia pseudoacacia,ROPS,901,46,-0.0216,-0.01,,,,,,,,
+Common Name,Latin Name,Species Code,Code,n,Stump taper rate,Stem taper rate
+Table Mountain pine,Pinus pungens,PIPU,123,74,-0.0326,-0.0097
+White pine,Pinus strobus,PIST,129,170,-0.0209,-0.0107
+Virginia pine,Pinus virginiana,PIVI,132,203,-0.0268,-0.0117
+Red maple,Acer rubrum,ACRU,316,385,-0.0422,-0.0142
+Hickory,Carya spp.,"CACO, CAGL, CATO, CAOVL",400,380,-0.0518,-0.0158
+Beech,Fagus grandifolia,FAGR,531,18,-0.0529,-0.0172
+Sycamore,Platinus occidentalis,PLOC,731,97,-0.0568,-0.014
+Cherry,Prunus spp.,"PRAV, PRPE, PRSE",762,79,-0.021,-0.0098
+White oak,Quercus alba,QUAL,802,181,-0.0713,-0.0169
+Scarlet oak,Quercus coccinea,QUCO,806,57,-0.0682,-0.0153
+Southern red oak,Quercus falcata,QUFA,812,274,-0.0624,-0.0211
+Chestnut oak,Quercus prinus,"QUPR, QUMI",832,81,-0.0307,-0.0125
+Northern red oak,Quercus rubra,QURU,833,22,-0.0603,-0.0122
+Black oak,Quercus velutina,QUVE,837,36,-0.0762,-0.0165
+Black locust,Robinia pseudoacacia,ROPS,901,46,-0.0216,-0.01
