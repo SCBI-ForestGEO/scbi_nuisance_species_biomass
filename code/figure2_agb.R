@@ -1,4 +1,4 @@
-#figure 2 ABG (Above Ground Biomass)
+#figure 2 ABG (Aboveground Biomass)
 #output Line graph of aboveground biomass stocks
 #december 13th, 2023
 #Updated by LLM on 1/22/2024
