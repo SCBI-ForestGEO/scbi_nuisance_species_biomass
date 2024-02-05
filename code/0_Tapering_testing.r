@@ -17,9 +17,12 @@ avgStumpTaper <- weighted.mean(x = stemTaper$Stump.taper.rate, w = stemTaper$n)
 fullspcd <- stemTaper  %>% 
   mutate(spcd = str_split(str_remove(Species.Code, pattern = " "), pattern = ","))  %>%
   unnest(spcd) %>%
+  mutate(spcd = tolower(str_remove(spcd,pattern = " ")))  %>% 
   select(spcd, Stem.taper.rate, Stump.taper.rate)  %>%
   add_row(spcd  = "other", Stem.taper.rate = avgStemTaper, Stump.taper.rate = avgStumpTaper)
 
+# scbi_taper_coefficients <- fullspcd
+# save(scbi_taper_coefficients,file =  "data/taper_coefficients.rdata")
 usfs_taper <- function(dh, h, stump_taper, stem_taper) {
   dbh <- if_else(h > 1.3, dh - stem_taper * (h - 1.3),
                  if_else(h < 1.3, dh - stump_taper * (h - 1.3), NA))
@@ -34,13 +37,6 @@ bci_taper <- function(dbh, hom) { #taper from Cushman 2014
 }
 
 latlong <- c(-78.1454, 38.8935)
-Census2023  %>% 
-# filter(!(hom %in% c(1.3)) & !is.na(hom))  %>% 
- mutate(hom = if_else(hom %in% c(0) & status_current %in% c("LI"), 1.3, hom))  %>% 
- filter(hom %in% c(0))  %>% 
- pull(status_current)  %>% 
- table()
- View()
 
 multi_dbhs <- Census2023  %>% 
   left_join(scbi.spptable)  %>% 
@@ -56,7 +52,7 @@ multi_dbhs <- Census2023  %>%
     USFS_TC_AGB = allodb::get_biomass(dbh = USFS_Taper_Corrected_DBH,genus = Genus, species = Species, coords = latlong),
     BCI_TC_AGB = allodb::get_biomass(dbh = BCI_Taper_Corrected_DBH,genus = Genus, species = Species, coords = latlong))  %>%
   #select(dbh_current,Measured_DBH, USFS_Taper_Corrected_DBH,BCI_Taper_Corrected_DBH,hom)       
-  select(uncorrected_AGB, USFS_TC_AGB, BCI_TC_AGB, hom)  
+  select(uncorrected_AGB, USFS_TC_AGB, BCI_TC_AGB, hom, sp,taper_sp,Stem.taper.rate)  
 
 long_data <- multi_dbhs %>%
   pivot_longer(cols = c(USFS_TC_AGB, BCI_TC_AGB), values_to = "corrected_AGB",names_to = "taper_source")
@@ -65,8 +61,8 @@ corrected_agb_plot <- ggplot(long_data, aes(x = uncorrected_AGB, y = corrected_A
   geom_point() +
  #geom_smooth(method = "lm") +
  #geom_abline(intercept = 0, slope = 1)  +
-  xlim(0,1000) +
-  ylim(0,1000) +
+  xlim(0,8000) +
+  ylim(0,8000) +
   xlab("AGB from uncorrected Height of Measurement") +
   ylab("AGB from taper-corrected Height of Measurement") +
   theme_classic()
