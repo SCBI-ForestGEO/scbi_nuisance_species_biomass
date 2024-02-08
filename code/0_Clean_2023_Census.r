@@ -33,10 +33,10 @@ census2023_hom_corrections <- census2023  %>%
          true_sp = if_else(textflag, str_extract(tolower(notes_current), paste0("(is) (", paste(scbi.spptable$sp, collapse = "|"), ")"), group = 2), NA), #correct species that have a note about correcting species
          true_sp = tolower(if_else(!is.na(true_sp), true_sp, sp)), #combine corrected species with other species and convert to lower case code
          taper_sp = if_else(true_sp %in% scbi_taper_coefficients$spcd, true_sp, "other"),
-         hom = if_else((hom %in% c(0) | is.na(hom)) & status_current %in% c("LI"), 1.3, hom))  %>%  #correct living stems that have a HoM of 0 or NA -> 1.3m 
+         hom = if_else((is.na(hom)) & status_current %in% c("LI"), 1.3, hom))  %>%  #correct living stems that have a HoM of 0 or NA -> 1.3m 
   left_join(scbi_taper_coefficients,by = c("taper_sp" = "spcd"))  %>% 
-  mutate(dbhc_cm = if_else(!(status_current %in% c("LI")), NA,  usfs_taper(dh = dbh_current / 1000, h = hom, stump_taper = Stump.taper.rate, stem_taper = Stem.taper.rate)),
-         dbh_cm = dbh_current / 10)  
+  mutate(dbhc_mm = if_else(!(status_current %in% c("LI")), NA,  usfs_taper(dh = dbh_current / 1000, h = hom, stump_taper = Stump.taper.rate, stem_taper = Stem.taper.rate)) * 10,
+         dbh_mm = dbh_current)  
 
 
 ### reformat date columns, create flag for measurement date error,  fix multistem multiquadrat issue
@@ -66,7 +66,7 @@ census2023_corrections <- census2023_checks  %>%
   mutate(MeasureDate = if_else(dateflag, ModalMeasurementDate, MeasureDate))
 
 scbi.stem4.corrected <- census2023_corrections  %>% 
-  select(UID, sp = true_sp, quadrat = true_quadrat, dbh = dbhc_cm, hom, ExactDate = MeasureDate, DFstatus = Status)  
+  select(UID, sp = true_sp, quadrat = true_quadrat, dbh = dbhc_mm, hom, ExactDate = MeasureDate, DFstatus = Status)  
 
 save(scbi.stem4.corrected, file = "C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem4.corrected.rdata")
 
