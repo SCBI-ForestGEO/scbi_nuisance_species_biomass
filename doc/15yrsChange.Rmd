@@ -107,7 +107,7 @@ regen_failure = 5 #some figure illustrating absence of small canopy trees/ shift
 
 # Summary  {-#Abstract} 
 
-*Summary formats tend to be in a few long bullet points
+*Summary format for New Phytologist tends to be in a few long bullet points*
 
 Temperate deciduous forests play a critical role in the global carbon (C) cycle, accounting for a substantial portion of the global forest C sink. The dominant view imbued in Earth System Models is that, at least within the eastern United States, the biome is likely to remain a C sink throughout the 21st century. However, these models do not incorporate nuisance species -- *i.e.*, species whose local abundance has increased as a result of human activities and that are causing ecological harm. Nuisance species are known to increase tree mortality (*e.g.*, non-endemic pests and pathogens) and decrease recruitment (*e.g.*, deer and non-endemic plants) throughout the temperate deciduous biome, yet the net effect on current and future C cycling is unknown. Here, we use 15 years of detailed census data from a large (25.6 ha) forest dynamics plot in a Mid-Atlantic temperate forest, including a 4-ha deer exclosure, to understand how nuisance species are affecting C cycling. We show increased biomass mortality, a net reduction in aboveground C storage, and decreased abundance of canopy tree species in the understory. Under current trends this forest will continue to lose C sequestration capacity, indicating that the C sequestration of temperate deciduous forests is likely overestimated.
 
@@ -137,6 +137,21 @@ Non-endemic pests and pathogens facilitate invasin of non-endemic plants [@guo_i
 
 ## (paragraph on recruitment failure because of deer and non-endemic plants)
 
+Recruitment Failure Paragraph Outline
+
+- Nuisance species have a profound impact on regional ecosystems
+- There is a documented overabundance of white-tailed deer (*Odocoileus virginianus*) (*Publication referenced in McGravey et al. 2013*) which can be attributed to human influence (*Publication referenced in McGravey et al 2013*)
+- White-tailed deer consume seedlings and saplings, negatively impacting seedling and sapling survival and density (*Publications referenced in McGravey et al. 2013*)
+- Define or contextualize non-endemic plants (Look for a reference)
+  - Working definition: Plants that were not historically present in an area, region or ecosystem or were found at different abundances or densities
+- Non-endemic seedlings and saplings may not be consumed at similar rates as endemic plants (alluded to in *McGravey et al. 2013*) and may be able to utilize niche space in a forest faster or more efficiently (Reference)
+- Additional information on the effects of non-endemic species
+- As a result, they may be able to out compete endemic species
+- These nuisance species can contribute to recruitment failure
+  - Consider defining and contextualizing recruitment failure a little more here
+  - The effects of recruitment debt on mature tree species composition and forest structure are often not apparent for decades (*McGravey et al. 2013* - potentially move to regeneration debt paragraph)
+  
+
 - white-tailed deer (*Odocoileus virginianus* ) is important endemic nuisance species, over-abundant because of human influence
 
 @mcgarvey_effects_2013
@@ -163,7 +178,9 @@ Here, we use 15 years of detailed census data from a large forest dynamics plot 
 
 ## Study site
 
-The study was conducted at The Smithsonian Conservation Biology Institute’s (SCBI) large forest dynamics plot in Front Royal, Virginia, USA (38.8935°, -78.1454°; Bourg et al. 2013, Anderson-Teixeira et al. 2015). *A sentence about the region and that it is adjacent to the northern entrance of Shenandoah National Park.* The plot is 25.6 ha (640 x 400 m) and includes a 4-ha, 2.4 m high deer exclusion fence, which has decreased the number/decreased the presence of white-tailed deer since 1990 (McShea 2000). It consists of a mature secondary eastern deciduous forest that developed following logging and agricultural use in the mid-19th century. The species composition reflects what is typical of this forest type, with a canopy that is dominated by tulip poplar (*Liriodendron tulipifera*), oak (*Quercus spp.*), and hickory (*Carya spp.*), and the understory that is primarily composed of spicebush (*Lindera benzoin*), paw-paw (*Asimina triloba*), American hornbeam (*Carpinus caroliniana*), and witch hazel (*Hamamelis virginiana*)
+*What is the best way to describe the forest type in our study site? I've seen "mixed mature deciduous forest", "mature secondary eastern deciduous forest", and "mesic temperate deciduous forest".  I want to make sure I'm being consistent.*
+
+The study was conducted at The Smithsonian Conservation Biology Institute’s (SCBI) large forest dynamics plot in Front Royal, Virginia, USA (38.8935°, -78.1454°; Bourg et al. 2013, Anderson-Teixeira et al. 2015). *A sentence about the region and that it is adjacent to the northern entrance of Shenandoah National Park.* The plot is 25.6 ha (640 x 400 m) and includes a 4-ha, 2.4 m high deer exclusion fence, which has decreased the number/decreased the presence of white-tailed deer since 1990 (McShea 2000). It consists of a mature secondary eastern deciduous forest that developed following logging and agricultural use in the mid-19th century. *Canopy trees are 84-124 years old (Thompson and McGarvey - unpublished data referenced in McGarvey 2013 - see if you can find the published version of this data)* The species composition reflects what is typical of this forest type, with a canopy that is dominated by tulip poplar (*Liriodendron tulipifera*), oak (*Quercus spp.*), and hickory (*Carya spp.*), and the understory that is primarily composed of spicebush (*Lindera benzoin*), paw-paw (*Asimina triloba*), American hornbeam (*Carpinus caroliniana*), and witch hazel (*Hamamelis virginiana*)
 
 *Which definition of forest type is more accurate - mature, mixed deciduous forest or mature secondary eastern deciduous forest?*
 
