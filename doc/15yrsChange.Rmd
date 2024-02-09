@@ -137,21 +137,10 @@ Non-endemic pests and pathogens facilitate invasion of non-endemic plants [@guo_
 
 ## (paragraph on recruitment failure because of deer and non-endemic plants)
 
-Recruitment Failure Paragraph Outline
+Recruitment Failure Paragraph 
 
-- Over-abundant herbivores can have a profound impact on carbon cycling in temperate deciduous forests
-- There is a documented overabundance of white-tailed deer (*Odocoileus virginianus*) (*Publication referenced in McGravey et al. 2013*) which can be attributed to human influence (*Publication referenced in McGravey et al 2013*)
-- White-tailed deer consume seedlings and saplings, negatively impacting seedling and sapling survival, density and growth (*Publications referenced in McGravey et al. 2013*, *Holm et al. 2013*)
-- This can lead to decreased understory diversity, species richness and decreased abundance of dominant species in a typical forest (in this case Quercus spp.) (*Holm et al. 2013*)
-- Define or contextualize non-endemic plants (Look for a reference)
-  - Working definition: Plants that were not historically present in an area, region or ecosystem or were found at different abundances or densities
-- Deer selectively browse on palatable species, and some non-endemic species, including pawpaw, are considered non-palatable by deer (*McGravey et al. 2013*)  This can create dense stands of non-endemic species (*Knauer et al. 2023*)
-- Non-endemic species may be able to utilize niche space in a forest faster or more efficiently (Reference - considered common knowledge?)
-- As a result, they may be able to out compete endemic species
-- These nuisance species can contribute to recruitment failure
-  - Consider defining and contextualizing recruitment failure a little more here
-  - The effects of these recruitment failure on species composition and forest structure are often not apparent for decades (*McGravey et al. 2013* - potentially move to regeneration debt paragraph).  
-  
+White-tailed deer (Odocoileus virginianus) represent an endemic nuisance species prevalent in eastern deciduous forests. Their populations have substantially increased in the past 50 years (McShea et al. 1997), due in large part to human influence. (Found in McGarvey et al. 2013 – Brown et al. 2000, Côté et al. 2004, Rooney 2001).  White-tailed deer preferentially browse on woody herbaceous species in their earliest life stages (McGarvey et al. 2013), with overabundant herbivory negatively impacting seedling and sapling survival, growth and density (Found in McGarvey et al. 2013 – Dzieciolowski 1980, Gill and Beardall 2001, Healy 1997, Konig 1976, Putman et al. 1989).  Models predict that chronic overabundance will reduce understory diversity and decrease the abundance of traditionally dominant species (Holm et al. 2013).  Due to climate change and human activity, many non-endemic plant species are being introduced or number in forest ecosystems (Reference).  Deer find many of these species, including pawpaw (Asimina triloba), to be unpalatable (Found in McGarvey 2013 – Asnani 2006), and do not consume them at the same rates relative to their native counterparts (Reference), enabling them to form dense stands in forest understories (Found in Knauer et al. 2023 – Horsley and Marquis 1983; Stromayer and Warren 1997; Royo and Carson 2006).  This lack of browsing pressure, coupled with characteristics such as fast growth rate and greater adaptability to altered conditions precipitated by climate change, allow nuisance plant species to outcompete other species in the understory (Reference). The interaction of these nuisance species on the landscape contributes to a recruitment failure in forests, [*Where individuals from certain tree species do not enter the mature population - Do we need to define recruitment failure, or is that considered common knowledge?  If so, reference*).  The extent of the consequences derived from recruitment failure on species composition and forest structure is often not apparent for years (McGarvey et al. 2013) 
+
 
 - white-tailed deer (*Odocoileus virginianus* ) is important endemic nuisance species, over-abundant because of human influence
 
