@@ -188,20 +188,14 @@ Vulnerability to non-endemic insects & pathogens was defined based on the abunda
 
 ## Data collection
 
-*(Describe main census & years occurred)*
+*(Describe main census and mortality survey)*
 
-A number of surveys are regularly conducted at the site, four of which are included in our analysis.  As part of the ForestGEO network, the plot undergoes a comprehensive woody plant inventory every five years, according to the protocol outlined in Condit (1998).  This inventory, hereby referred to as the census, includes all stems greater than 1 centimeter in diameter at 1.3 meters in height (referred to as diameter at breast height or dbh).  The census records information regarding the dbh, species, status and location of each stem included in the survey.  Each plant is assigned an identifying number for sequential data collection in subsequent censuses and outfitted with a metal tag in the field. For multi-stemmed individuals, each additional stem that surpasses the 1 cm dbh threshold receives a stem number and associated tag.  The location of each individual within its respective 20 x 20 meter quadrat is recorded on a map of the plot on ArcGIS FieldMaps.  Established in 2008, there have been 4 censuses at the site, comprising 20 years of detailed forest dynamics data.
+A number of surveys are regularly conducted at the site, two of which are included in our analysis.  As part of the ForestGEO network, the plot undergoes a comprehensive woody plant inventory every five years, according to the protocol outlined in Condit (1998).  This inventory, hereby referred to as the census, includes all stems greater than 1 centimeter in diameter at 1.3 meters in height (referred to as diameter at breast height or dbh).  The census records information regarding the dbh, species, status and location of each stem included in the survey.  Each plant is assigned an identifying number for sequential data collection in subsequent censuses and outfitted with a metal tag in the field. For multi-stemmed individuals, each additional stem that surpasses the 1 cm dbh threshold receives a stem number and associated tag.  The location of each individual within its respective 20 x 20 meter quadrat is recorded on a map of the plot on ArcGIS FieldMaps.  Established in 2008, there have been 4 censuses at the site, comprising 20 years of detailed forest dynamics data. In addition to the ForestGEO census, an annual mortality survey is conducted on the site.   Through assessing individual tree health, this study illustrates trends in forest mortality and identifies factors that are associated with death.  Data is collected on the current status, canopy position, percentage of crown living and intact, and visible indicators of poor tree health, such as physical damage, potential pathogens and insect infestation.  
 
 *Is dbh considered common knowledge? Does it need to be defined?*
 
 *Check with Luca to use consistent terminology here and in the analysis portion of the methods for ID tag, stem tag, etc.*
 
-
-*(Describe mortality census and invasive plant survey)*
-
-In addition to the ForestGEO census, an annual mortality survey is conducted on the site.   Through assessing individual tree health, this study illustrates trends in forest mortality and identifies factors that are associated with death.  Data is collected on the current status, canopy position, percentage of crown living and intact, and visible indicators of poor tree health, such as physical damage, potential pathogens and insect infestation.  Furthermore, an invasive plant survey is conducted in conjunction with [the mortality survey or the census].  This study evaluates the establishment of non-endemic plant species and patterns of spatial distribution. Quadrats are visually examined for non-endemic plant species, with an estimation of the area covered by each species represented on a 1-5 numeric scale. 
-
-*Is the invasive plant survey conducted every year or every five years?*
 
 
 
