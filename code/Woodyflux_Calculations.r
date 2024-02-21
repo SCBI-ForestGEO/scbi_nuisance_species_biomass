@@ -1,13 +1,13 @@
 library(tidyverse)
 library(allodb)
 
-##### helper functions #####
+##### 0 - helper functions #####
 create_stem_UID <- function(census_df, TID_col = "tag", SID_col = "StemTag") {
   census_df[["UID"]] <- paste(census_df[[TID_col]], census_df[[SID_col]], sep = "_")
   return(census_df)
 }
 
-##### Read in data from ALL censuses and the species table #####
+##### I - Read in data from ALL censuses and the species table #####
 grouped_quadrats <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/grouped_quadrats.csv")  %>% 
   mutate(quadrat = sprintf("%04d",quadrat))
 load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem1.corrected.rdata")
@@ -28,7 +28,7 @@ scbi.stem3.corrected <- scbi.stem3.corrected  %>%
 scbi.stem4.corrected <- scbi.stem4.corrected  %>% 
   mutate(Census = 4, hom = as.character(hom), dbh = as.character(dbh))
 
-##### Combine the census data & calculate woody fluxes (AWP, AWM, AWR) #####
+##### II - Combine the census data - run this before either section III or IV #####
 all_censuses <- scbi.stem1.corrected  %>% 
   bind_rows(scbi.stem2.corrected, scbi.stem3.corrected, scbi.stem4.corrected)  %>% 
   left_join(scbi.spptable, by = c("sp" = "sp"))  %>% 
@@ -39,6 +39,8 @@ all_censuses <- scbi.stem1.corrected  %>%
   arrange(UID,Census) %>% 
   mutate(Meas_Int = difftime(ExactDate,lag(ExactDate), units = "days") / 365.242)  
 
+
+##### III - Calculate woody fluxes by quadrat #####
 AWP <- all_censuses  %>% 
   filter(DFstatus %in% c("alive"))  %>% 
   mutate(WoodyGrowth = (ABG - lag(ABG)) / as.numeric(Meas_Int))  %>% 
@@ -77,10 +79,11 @@ woody_fluxes <- AWP  %>%
 write.csv(woody_fluxes, "C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/WoodyFluxes.csv")
 
 
-##### Decomposing mortality & recruitment by species #####
+##### IV - Decomposing woody mortality & recruitment by species #####
 
+### Mortality by species ###
 AWM_sp <- all_censuses  %>% 
-  group_by(UID) %>% 
+  group_by(UID) %>%  
   arrange(UID,Census) %>% 
   mutate(FutMeasInt = lead(Meas_Int))  %>% 
   filter(DFstatus %in% c("alive") & lead(DFstatus) %in% c("dead","broken_below","stem dead"))  %>% 
@@ -91,3 +94,17 @@ AWM_sp <- all_censuses  %>%
 
 
 write.csv(AWM_sp, "C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/MortalityComposition.csv")
+
+### Recruitment by species ###
+AWR_sp <- all_censuses  %>% 
+  group_by(UID) %>%  
+  arrange(UID,Census) %>% 
+  filter(case_when(first(Census) == 4 ~ Census == 4,
+                   first(Census) != 4 ~ (DFstatus %in% c("alive") & lag(DFstatus) %in% c("prior"))))  %>% 
+  mutate(WoodyRecr = ABG / 5)  %>% 
+  ungroup()  %>% 
+  group_by(Census,sp)  %>%
+  summarize(AWR = sum(WoodyRecr,na.rm = T) / 1000 /.47)
+
+
+write.csv(AWR_sp, "C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/RecruitmentComposition.csv")
