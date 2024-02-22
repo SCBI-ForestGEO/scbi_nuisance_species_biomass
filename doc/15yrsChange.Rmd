@@ -37,9 +37,13 @@ Erin MacMonigle
 
 Caroline Troy
 
+Christopher Pate
+
 Cameron Dow
 
 Jen Jordan
+
+Lukas Magee
 
 Valentine Herrmann^1^ ( Orcid ID : 0000-0002-4519-481X)
 
@@ -123,7 +127,8 @@ The dominant view imbued in Earth System Models is that, at least within the eas
 Yet, global C models predict a wide range of future trajectories of CO~2~ sequestration [@ahlström_robustness_2012;@arora_carbon_2020]<!--check refs-->, and current global C models do not represent some influential mechanisms [e.g., @fatichi_moving_2014; @clark_continentwide_2021].
 One mechanism that is not represented in global C models is the impact of nuisance species -- i.e., endemic or non-endemic species that, as a result of human influence, have much greater abundance in an ecosystem than they did historically, resulting in undesirable ecological consequences [@refs]. 
 Similarly, the impact of nuisance species on forest carbon budgets is not considered in machine learning/niche models that seek to project future forest distribution and carbon stocks [**?** @wu_uncertainty_2023], nor in carbon offset projects [**???** @refs].
-This is problematic in that nuisance species -- including non-endemic insect pests and pathogens, non-endemic plants, and over-abundant herbivores -- are dramatically impacting carbon cycling in temperate deciduous forests around the world, as described below. 
+This is problematic in that nuisance species -- including non-endemic insect pests and pathogens, non-endemic plants, and over-abundant herbivores -- are dramatically impacting carbon cycling in temperate deciduous forests around the world, as described below.
+"Tree mortality is one of the largest uncertainities in projections of future forest dynamics" (Bugmann et al. 2019) - (*Add reference*)
 
 ## (paragraph on tree mortality from non-endemic pests and pathogens)
 
