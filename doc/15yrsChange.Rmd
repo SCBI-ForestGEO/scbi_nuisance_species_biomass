@@ -111,11 +111,14 @@ regen_failure = 5 #some figure illustrating absence of small canopy trees/ shift
 
 # Summary  {-#Abstract} 
 
-*Summary format for New Phytologist tends to be in a few long bullet points*
+
+*Summary format for New Phytologist must be under 200 words and should be organized using four bullet points to indicate: (1) the research conducted, including the rationale, (2) methods, (3) key results, and (4) the main conclusion, including the key points of discussion*
 
 Temperate deciduous forests play a critical role in the global carbon (C) cycle, accounting for a substantial portion of the global forest C sink. The dominant view imbued in Earth System Models is that, at least within the eastern United States, the biome is likely to remain a C sink throughout the 21st century. However, these models do not incorporate nuisance species -- *i.e.*, species whose local abundance has increased as a result of human activities and that are causing ecological harm. Nuisance species are known to increase tree mortality (*e.g.*, non-endemic pests and pathogens) and decrease recruitment (*e.g.*, deer and non-endemic plants) throughout the temperate deciduous biome, yet the net effect on current and future C cycling is unknown. Here, we use 15 years of detailed census data from a large (25.6 ha) forest dynamics plot in a Mid-Atlantic temperate forest, including a 4-ha deer exclosure, to understand how nuisance species are affecting C cycling. We show increased biomass mortality, a net reduction in aboveground C storage, and decreased abundance of canopy tree species in the understory. Under current trends this forest will continue to lose C sequestration capacity, indicating that the C sequestration of temperate deciduous forests is likely overestimated.
 
 **Keywords**:  
+
+*New Phytologist allows 5-8 keywords. Short phrases are acceptable*
 
 \newpage
 
@@ -130,16 +133,11 @@ Similarly, the impact of nuisance species on forest carbon budgets is not consid
 This is problematic in that nuisance species -- including non-endemic insect pests and pathogens, non-endemic plants, and over-abundant herbivores -- are dramatically impacting carbon cycling in temperate deciduous forests around the world, as described below.
 "Tree mortality is one of the largest uncertainities in projections of future forest dynamics" (Bugmann et al. 2019) - (*Add reference*)
 
-## (paragraph on tree mortality from non-endemic pests and pathogens)
+## (Canopy trees and nonindigenous pests and pathogens)
 
-Two Paragraphs 
+Nuisance pests and pathogens have had a protracted and enduring impact on forests, often modifying forest productivity, nutrient cycling, successional trajectories and geomorphic processes (Lovett et al. 2016, Fischer et al. 2013, Herms and McCullough 2014, Fei et al. 2014).  The presence of nonindigenous forest insects and diseases, which have been historically introduced to new ecosystems through intercontinental trade, will continue to proliferate with increased globalization and human movement (Fischer et al. 2013, Aukema et al. 2010). Many of the prominent pests and pathogens in temperate deciduous forests have devastating effects on canopy speciation and structure.  Once abundant in temperate deciduous forests throughout North America, the American Chestnut (*Castanea dentata*) and the Ash genera (*Fraxinus spp.*) have been decimated by pests and pathogens, with stand-clearing disturbances occuring within a few years after initial infestation (Anderson 2020, Klooster et al. 2013, Need a source for Ash abundance and length of time between infestation and mortality for Chestnuts). These previously dominant canopy species are now confined to the understory as non-reproductive individuals (Elliot and Swank 2008, Anagnostakis 1987, Need a source for Ash).  In other species, such as the Eastern Hemlock (*Tsuga canadensis*), the existence of pests and pathogens induces close to total population mortality, with risk for regional extirpation (Ellison et al. 2018).  The loss of mature canopy species to introduced nuisance species contributes to global change driven biomass losses, with estimates that nonindigenous pest and pathogens account for an additional 5.53 TgC per year (Fei et al. 2013).  A significant percentage of temperate forests remain at risk for future pest and pathogens (Fei et al. 2013). 
 
-1. The global implications of pests and pathogens
-2. History of pests and pathogens in eastern deciduous forests
-  1. Chestnut blight
-  2. Dutch elm disease
-  3. Hemlock Wooly Adelgid
-  4. Emerald Ash-borer
+
 
 
 Non-endemic pests and pathogens have been important driver of mortality [@anderson-teixeira_longterm_2021].
