@@ -1,3 +1,5 @@
+
+
 library(tidyverse)
 library(allodb)
 
@@ -6,6 +8,7 @@ create_stem_UID <- function(census_df, TID_col = "tag", SID_col = "StemTag") {
   census_df[["UID"]] <- paste(census_df[[TID_col]], census_df[[SID_col]], sep = "_")
   return(census_df)
 }
+# Can skip to III and read-in all_censuses #
 
 ##### I - Read in data from ALL censuses and the species table #####
 grouped_quadrats <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/grouped_quadrats.csv")  %>% 
@@ -39,7 +42,9 @@ all_censuses <- scbi.stem1.corrected  %>%
   arrange(UID,Census) %>% 
   mutate(Meas_Int = difftime(ExactDate,lag(ExactDate), units = "days") / 365.242)  
 
+#save(all_censuses, file = "C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/all_censuses_agb.rdata")
 
+load(file = "C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/all_censuses_agb.rdata")
 ##### III - Calculate woody fluxes by quadrat #####
 AWP <- all_censuses  %>% 
   filter(DFstatus %in% c("alive"))  %>% 
@@ -79,7 +84,7 @@ woody_fluxes <- AWP  %>%
 write.csv(woody_fluxes, "C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/WoodyFluxes.csv")
 
 
-##### IV - Decomposing woody mortality & recruitment by species #####
+##### IV - Decomposing census mortality & recruitment by species #####
 
 ### Mortality by species ###
 AWM_sp <- all_censuses  %>% 
@@ -92,8 +97,6 @@ AWM_sp <- all_censuses  %>%
   group_by(Census,sp)  %>%
   summarize(AWM = sum(WoodyMort,na.rm = T) / 1000 /.47)
 
-
-write.csv(AWM_sp, "C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/MortalityComposition.csv")
 
 ### Recruitment by species ###
 AWR_sp <- all_censuses  %>% 
@@ -108,3 +111,52 @@ AWR_sp <- all_censuses  %>%
 
 
 write.csv(AWR_sp, "C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/RecruitmentComposition.csv")
+
+
+
+##### V - Calculate mortality by species with annual mortality survey #####
+
+load("C:/Work/Smithsonian/Repos/SCBImortality/data/allmort.rdata")
+
+prevmortdata <- allmort %>%
+  create_stem_UID()  %>% 
+  filter(survey_year %in% 2022)  %>% 
+  select(UID,survey_year,last_main_census_agb_Mg,ExactDate,current_year_status)  %>% 
+  filter(grepl("A",current_year_status)) 
+
+stem_ids <- prevmortdata %>% 
+  pull(UID)  %>% 
+  unique()
+  
+mortcensus_2023 <- all_censuses  %>% 
+  filter(Census == 4 & UID %in% stem_ids) %>% 
+  filter(DFstatus %in% "stem dead") %>% 
+  left_join(prevmortdata, by = c("UID" = "UID"),suffix = c("2023","2022"))  %>% 
+  mutate(survey_year = 2023, 
+         timeint_days = difftime(ExactDate2023,ExactDate2022, units = "days"),
+         timeint = as.numeric(timeint_days) / 365.25,
+         agb_yr = (last_main_census_agb_Mg) / timeint)  %>% 
+  ungroup()  %>% 
+  select(UID,survey_year,sp,agb_yr) 
+
+annmort_no2023 <- allmort  %>% 
+    create_stem_UID()  %>% 
+    group_by(UID)   %>% 
+    arrange(UID,survey_year)  %>% 
+    filter(!is.na(last_main_census_dbh) & last_main_census_dbh >= 10)  %>% 
+    filter(!is.na(current_year_status) & grepl("A",previous_year_status))  %>% 
+    mutate(timeint = timeint_days / 365.25, 
+           agb = last_main_census_agb_Mg,
+           agb_yr = last_main_census_agb_Mg / timeint,
+           dead = if_else(grepl("A",previous_year_status) & grepl("D",current_year_status), T, F))  %>% 
+    filter(dead)  %>% 
+    ungroup()  %>% 
+    select(survey_year,sp,agb_yr)  
+
+AWM_sp <- annmort_no2023  %>% 
+  bind_rows(mortcensus_2023) %>% 
+  group_by(survey_year, sp)  %>% 
+
+write.csv(AWM_sp, "C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/MortalityComposition.csv")
+
+
