@@ -68,12 +68,12 @@ AWR <- all_censuses  %>%
   group_by(UID)  %>% 
   arrange(UID, Census)  %>% 
   filter(case_when(first(Census) == 4 ~ Census == 4,
-                   first(Census) != 4 ~ (DFstatus %in% c("alive") & lag(DFstatus) %in% c("prior"))))  %>% 
+                   first(Census) != 4 ~ (DFstatus %in% c("alive") & lag(DFstatus) %in% c("prior"))))  %>%  
+  filter(as.numeric(dbh) <= 60)  %>%
   mutate(WoodyRecr = ABG / 5)  %>% 
   ungroup()  %>% 
   group_by(quadrat,Census)  %>% 
   summarize(AWR = sum(WoodyRecr, na.rm = T) / 1000 / .04 * .47)
-  
 
 woody_fluxes <- AWP  %>% 
   left_join(AWM, by = c("quadrat" = "quadrat", "Census" = "Census"))  %>% 
@@ -104,6 +104,7 @@ AWR_sp <- all_censuses  %>%
   arrange(UID,Census) %>% 
   filter(case_when(first(Census) == 4 ~ Census == 4,
                    first(Census) != 4 ~ (DFstatus %in% c("alive") & lag(DFstatus) %in% c("prior"))))  %>% 
+  filter(as.numeric(dbh) <= 60)  %>%
   mutate(WoodyRecr = ABG / 5)  %>% 
   ungroup()  %>% 
   group_by(Census,sp)  %>%

@@ -15,6 +15,7 @@ canopyposition <- spTable  %>%
 
 recruitment_by_sp <- recruit  %>% 
   left_join(canopyposition)  %>% 
+  mutate(sp = if_else(sp %in% c("caco","cagl","caovl","cato"), "Hickory spp.",sp))  %>% 
   group_by(sp, Census, canopy_position)  %>% 
   summarise(AWR = sum(AWR) / 25.6)
 
@@ -28,34 +29,47 @@ recr_top_10 <- recruitment_by_sp  %>%
 
 plt_recr_slice <- recruitment_by_sp  %>% 
   mutate(plot_sp = case_when(sp %in% recr_top_10$sp ~ sp,
-                             !(sp %in% recr_top_10$sp) & canopy_position == "canopy" ~ "Other Canopy sp.",
-                             !(sp %in% recr_top_10$sp) & canopy_position == "understory" ~ "Other Understory sp.")) %>%
+                             !(sp %in% recr_top_10$sp) & canopy_position == "canopy" ~ "Other canopy sp.",
+                             !(sp %in% recr_top_10$sp) & canopy_position == "understory" ~ "Other understory sp.")) %>%
   group_by(plot_sp, Census, canopy_position)  %>% 
   summarize(AWR = sum(AWR))  %>%  
   drop_na()  %>% 
-  mutate(Cenus = factor(Census))#,
-#         plot_sp = factor(plot_sp,levels = c(recr_top_10$sp,  )))
+  mutate(Census = factor(Census),
+         canopy_position = factor(canopy_position))
 
+f1 <- plt_recr_slice  %>% 
+  group_by(plot_sp,canopy_position)  %>% 
+  summarize(AWR = sum(AWR))  %>% 
+  filter(canopy_position %in% "canopy")  %>% 
+  arrange(desc(AWR))  %>% 
+  filter(plot_sp != "Other canopy sp.")  %>% 
+  pull(plot_sp)  %>% 
+  c(.,"Other canopy sp.")
 
-    
-#fig5 <-
- ggplot(plt_recr_slice, aes(x = plot_sp, y = AWR,fill = as.ordered(Census), group = Census)) + 
-  facet_grid(~canopy_position, scales = "free_x") + 
-  geom_bar(position = "dodge",stat = "identity", col= "black") + 
-  theme_bw() + 
-  ylab(expression("Aboveground Woody Recruitment"~(Mg~C~Ha^-1~Yr^-1))) +
-  xlab("Species") + 
-  guides(alpha = "none", fill = guide_legend(override.aes = list(size = 12))) +
-  #scale_fill_manual(values = c(alpha("#94dce9",.1),alpha("#316bb8",.5),"#000050"), labels = c("2008 - 2013","2013 - 2018","2018 - 2023"), name = "") + 
-  scale_fill_manual(values = c("grey20","grey50",'grey80'), labels = c("2008 - 2013","2013 - 2018","2018 - 2023"), name = "") + 
-  #viridis::scale_fill_viridis(discrete = TRUE) +
-  theme(axis.text = element_text(size = 14),
-        axis.title = element_text(size = 16),
-        panel.grid.major.x = element_blank(),
-        legend.position = c(.8,.9),
-        legend.text = element_text(size = 20),
-        legend.background = element_blank()
-        )
+f2 <-  plt_recr_slice  %>% 
+  group_by(plot_sp,canopy_position)  %>% 
+  summarize(AWR = sum(AWR))  %>% 
+  filter(canopy_position %in% "understory")  %>% 
+  arrange(desc(AWR))  %>% 
+  filter(plot_sp != "Other understory sp.")  %>% 
+  pull(plot_sp)  %>% 
+  c(.,"Other understory sp.")
+
+fig5 <- ggplot(plt_recr_slice, aes(x = factor(plot_sp, levels = c(f1,f2)), y = AWR,fill = as.ordered(Census), group = Census)) + 
+      facet_grid(~canopy_position, scales = "free_x") + 
+      geom_bar(position = "dodge",stat = "identity", col= "black") + 
+      theme_bw() + 
+      ylab(expression(atop("Aboveground Woody Recruitment", (Mg~C~Ha^-1~Yr^-1)))) +
+      xlab("Species") + 
+      guides(alpha = "none", fill = guide_legend(override.aes = list(size = 8))) +
+      scale_fill_manual(values = c("grey20","grey50",'grey80'), labels = c("2008 - 2013","2013 - 2018","2018 - 2023"), name = "") + 
+      theme(axis.text = element_text(size = 14, angle = 45, hjust = 1),
+            axis.title = element_text(size = 16),
+            panel.grid.major.x = element_blank(),
+            legend.position = c(.15,.9),
+            legend.text = element_text(size = 14),
+            legend.background = element_blank()
+            )
 
  ggsave(fig5,filename = "C:/Work/Smithsonian/Repos/15yrsChange/doc/display/Figure5.jpeg", units = "in", height = 6, width = 8, dpi = 300)
 
