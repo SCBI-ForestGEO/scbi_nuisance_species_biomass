@@ -224,6 +224,16 @@ apply the metric of @miller_overabundant_2023 to determine imminent failure/ pro
 
 # Results 
 
+## Paragraph discussing broad trend of biomass stock decrease (Figure 2) & net change in biomass & differences among regions in the plot 
+
+## Paragraph discussing constituent fluxes of net biomass change - across the whole plot & within regions
+
+## Species compostion of mortality flux
+
+## Species compositon of recruitment flux
+
+## Regeneration & mortality mismatch
+
 # Discussion 
 
 @holtmann_carbon_2021
