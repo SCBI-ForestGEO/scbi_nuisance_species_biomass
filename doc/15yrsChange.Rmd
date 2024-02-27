@@ -225,6 +225,7 @@ apply the metric of @miller_overabundant_2023 to determine imminent failure/ pro
 # Results 
 
 ## Paragraph discussing broad trend of biomass stock decrease (Figure 2) & net change in biomass & differences among regions in the plot 
+For the first time at the Front Royal ForestGEO site, C stocks have decreased since the last census (Figure 2). From 2018 to 2023, whole-plot C stocks have decreased from **"X to X"** Mg C/ha. There are different trends for the different regions of the plot. Both low nuisance regions show similar decreases in C stocks going from **"X to X"** and **"X to X"** Mg C/ha respectively. The magnitude of the decrease in the high der high nuisance area from 2018 to 2023 is greater, going from **"X to X"** Mg C/ha. C stock decrease **is related to/ is explained by** aboveground net woody production. In the first two census intervals, 2008 to 2013 and 2013 to 2018, there were positive C fluxes **VALUES?** and for the 2018 to 2023 interval there was a negative C flux of **VALUE Mg C/ha/year** (Figure 3a).
 
 ## Paragraph discussing constituent fluxes of net biomass change - across the whole plot & within regions
 
