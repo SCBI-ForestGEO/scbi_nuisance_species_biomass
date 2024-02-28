@@ -39,13 +39,19 @@ fig3_woodyfluxes <- group_trends  %>%
                               Census == 4 ~ "2018-\n2023")
   )
 
-#colz <- c("#017161","#4c90b0","darkblue","#754792")
-colz <- c("#aa5274","#8578a7","#3A6F9E","#b8d89b")
-#colz <- c("#750000","#C7622B","#E7BC40", "#7e937f")
-#colz <- c("#b30000","#326634","#637eb6", "#000000")
+#install.packages("dichromat")
+#library(dichromat)
+
+#colz <- c("#017161","#4c90b0","darkblue","#754792")     #Colorblind friendly
+colz <- c("#aa5274","#8578a7","#3A6F9E","#b8d89b")       #Not very color blind friendly (though still readable)
+#colz <- c("#750000","#C7622B","#E7BC40", "#7e937f")     #Colorblind friendly 
+#colz <- c("#b30000","#326634","#637eb6", "#000000")     #Not very colorblind friendly (though still readable)
+
+#dichromat(colz, type = c("deutan", "protan", "tritan")) # - checks if a color palette is colorblind friendly
 
 
 ###linetype <- c("2", "3", "3", "1")
+
 
 flux_names <- as_labeller(c("AWM" = "Aboveground Woody Mortality",
                             "AWP" = "Aboveground Woody Productivity",
