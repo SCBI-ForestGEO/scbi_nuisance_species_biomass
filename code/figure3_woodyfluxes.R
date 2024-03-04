@@ -53,8 +53,8 @@ fig3 <- ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, gr
   geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
   geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), lwd = 1.2, lty = 3) +
   geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), pch = 25, cex = 3, fill = "#750000") +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("2")), pch = 25, cex = 3, fill = "#C7622B") +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("3")), pch = 24, cex = 3, fill = "#E7BC40") +
+  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("2")), pch = 22, cex = 3, fill = "#C7622B") +
+  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#E7BC40") +
   geom_point (data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
   geom_hline(data = fig3_woodyfluxes  %>% filter(Flux %in% c("NetFlux")),aes(yintercept = 0), lty = "dashed") +
   scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), values = colz) +
