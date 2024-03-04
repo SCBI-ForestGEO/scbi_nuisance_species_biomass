@@ -1,9 +1,9 @@
 library(tidyverse) 
 
-woodyfluxes <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/WoodyFluxes.csv") %>%
+woodyfluxes <- read.csv("data/processed_data/WoodyFluxes.csv") %>%
   mutate(quadrat = sprintf("%04d", quadrat))  %>% 
   select(-X) 
-grouped_quadrats <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/grouped_quadrats.csv") %>%
+grouped_quadrats <- read.csv("data/grouped_quadrats.csv") %>%
   mutate(quadrat = sprintf("%04d", quadrat))  %>% 
   select(-X)
 
@@ -47,7 +47,7 @@ flux_names <- as_labeller(c("AWM" = "Aboveground Woody Mortality",
                             "AWR" = "Aboveground Woody Recruitment",
                             "NetFlux" = "Net Biomass Change"))
 
-ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, group = Group, col = Group)) +
+fig3 <- ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, group = Group, col = Group)) +
   facet_wrap(~Flux, scales = "free_y", labeller = flux_names) +
   geom_line(data = fig3_woodyfluxes  %>% filter(Group %in% c("Whole Plot")), lwd = 1.5, lty = 1) + 
   geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
@@ -68,61 +68,7 @@ ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, group = Gr
         axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
         axis.title = element_text(size = 20)) 
 
-ggsave(fig3,filename = "C:/Work/Smithsonian/Repos/15yrsChange/doc/display/Figure3.jpeg", units = "in",
+ggsave(fig3,filename = "doc/display/Figure3.jpeg", units = "in",
        height = 8, width = 10, dpi = 300)
 
-
-
-##Step function (version 1 - with deer intensity)
-
-ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, group = Group, col = Group)) +
-  facet_wrap(~Flux, scales = "free_y", labeller = flux_names) +
-  geom_step(data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), lwd = 1.5, lty = 1) +
-  #geom_line(data = fig3_woodyfluxes  %>% filter(Group %in% c("Whole Plot")), lwd = 1.5, lty = 1) + 
-  geom_step(data = fig3_woodyfluxes %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
-  #geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
-  geom_step(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), lwd = 1.2, lty = 3) +
-  #geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), lwd = 1.2, lty = 3) +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), pch = 25, cex = 3, fill = "#750000") +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("2")), pch = 25, cex = 3, fill = "#C7622B") +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("3")), pch = 24, cex = 3, fill = "#E7BC40") +
-  geom_point (data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
-  geom_hline(data = fig3_woodyfluxes  %>% filter(Flux %in% c("NetFlux")),aes(yintercept = 0), lty = "dashed") +
-  scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), values = colz) +
-  labs(y = expression("Carbon Flux"~(Mg~C~Ha^-1~Yr^-1)), x = "Census") +
-  theme_bw() +
-  theme(legend.position = "top",
-        legend.text = element_text(size = 14),
-        legend.background = element_blank(),
-        strip.text = element_text(size = 12),
-        axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in"), angle = 45, hjust = 1),
-        axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
-        axis.title = element_text(size = 20)) 
-
-
-##Step function (version 2 - without deer intensity)
-
-ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, group = Group, col = Group)) +
-  facet_wrap(~Flux, scales = "free_y", labeller = flux_names) +
-  geom_step(data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), lwd = 1.5) +
-  #geom_line(data = fig3_woodyfluxes  %>% filter(Group %in% c("Whole Plot")), lwd = 1.5, lty = 1) + 
-  geom_step(data = fig3_woodyfluxes %>% filter(Group %in% c("2", "3")), lwd = 1.2) +
-  #geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
-  geom_step(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), lwd = 1.2) +
-  #geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), lwd = 1.2, lty = 3) +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), pch = 25, cex = 3, fill = "#750000") +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("2")), pch = 25, cex = 3, fill = "#C7622B") +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("3")), pch = 24, cex = 3, fill = "#E7BC40") +
-  geom_point (data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
-  geom_hline(data = fig3_woodyfluxes  %>% filter(Flux %in% c("NetFlux")),aes(yintercept = 0), lty = "dashed") +
-  scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), values = colz) +
-  labs(y = expression("Carbon Flux"~(Mg~C~Ha^-1~Yr^-1)), x = "Census") +
-  theme_bw() +
-  theme(legend.position = "top",
-        legend.text = element_text(size = 14),
-        legend.background = element_blank(),
-        strip.text = element_text(size = 12),
-        axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in"), angle = 45, hjust = 1),
-        axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
-        axis.title = element_text(size = 20)) 
 
