@@ -8,6 +8,9 @@ grouped_quadrats <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/grouped
 load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/all_censuses_agb.rdata")
 deer_exclosure <- st_read("C:/Work/Smithsonian/Repos/SCBI-ForestGEO-Data/spatial_data/shapefiles/deer_exclosure_2011.shp")
 quadrat_shp <- read_sf("data/20m_grid/20m_grid.shp")  
+grouped_quadrats <- read.csv("data/grouped_quadrats.csv") %>%
+  mutate(quadrat = sprintf("%04d", quadrat))  %>% 
+  select(-X)
 spTable <- read.csv("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/species_lists/Tree%20ecology/SCBI_ForestGEO_sp_ecology.csv")
 
 missing <- data.frame(sp = c("acsp","casp","crsp","frsp","prsp","ulsp"), canopy_position = "canopy")
@@ -68,8 +71,8 @@ understory_slopes <-  understory_trends %>%
   
 ##### Plotting #####
 fillcols <- c("#b7c3e0", "#f3f2f2", "#ffc080","#85a4eb", "#e2dede", "#fd9e3f","#004494", "#a6a6a6", "#cc4c00")
-bivariate_color_scale <- tibble(canopy = rep(3:1, 3),
-                                understory = rep(c(1,2,3), each = 3),
+bivariate_color_scale <- tibble(understory = rep(3:1, 3),
+                                canopy = rep(1:3, each = 3),
                                 fill = fillcols)
 
 # bivariate_color_scale <- tibble(
@@ -108,20 +111,21 @@ map <- ggplot(data = plotdf) +
 #    geom_sf(data = deer_exclosure, colour = "black", fill = NA,lwd = 1.5) +
     scale_fill_identity() +
     # geom_sf(data = deer_exclosure, colour = "black", fill = NA,lwd = 1.5) +
-    theme_classic()
+    theme_classic() +
+    theme(plot.margin = unit(c(0,0,0,0), "cm"))
 
 
 legend <- ggplot() +
   geom_tile(
     data = bivariate_color_scale,
     mapping = aes(
-      x = factor(canopy),
-      y = factor(understory),
+      y = factor(canopy),
+      x = factor(understory),
       fill = fill)
   ) +
   scale_fill_identity() +
-  labs(x = "Canopy biomass ⟶️",
-       y = "Understory biomass ⟶️") +
+  labs(y = "Canopy biomass ⟶️",
+       x = "Understory biomass \n of canopy sp. ⟶️") +
   scale_x_discrete(labels  = c("1" = "Decreasing","2" = "Stable","3" = "Increasing")) +
   scale_y_discrete(labels  = c("1" = "Decreasing","2" = "Stable", "3" = "Increasing")) +
   theme_classic() +
@@ -133,11 +137,45 @@ legend <- ggplot() +
   # quadratic tiles
   coord_fixed()
 
+group_counts <- plotdf  %>% 
+  left_join(grouped_quadrats)  %>% 
+  st_drop_geometry()  %>% 
+  group_by(canopy, understory, Group)   %>%
+  count()   %>% 
+  drop_na()  %>% 
+  ungroup()  %>% 
+  group_by(Group)  %>% 
+  mutate(pct_area = n / sum(n) * 100,
+         plot_group = factor(paste0(understory,canopy)),
+         Group = as.character(Group)) 
+wplot_counts <- plotdf  %>% 
+  left_join(grouped_quadrats)  %>% 
+  st_drop_geometry()  %>% 
+  group_by(canopy, understory)   %>%
+  count()   %>% 
+  ungroup()  %>% 
+  mutate(pct_area = n / sum(n) * 100,
+         plot_group = factor(paste0(understory,canopy)),
+         Group = "Whole Plot")
 
+barp_df <- group_counts  %>% 
+  bind_rows(wplot_counts)  %>% 
+  left_join(bivariate_color_scale)
+
+barp <- ggplot(barp_df, aes(x = as.character(Group), y = pct_area,group = plot_group ,fill = fill)) +
+  geom_bar(stat = "identity") +
+  geom_vline(xintercept = 3.5) +
+  theme_classic() +
+  scale_fill_identity() +
+  ylab("% Area") +
+  scale_x_discrete(labels  = c("1" = "Low deer,\nlow vulnerable species","2" = "High deer,\n low vulnerable species","3" = "High deer,\n high vulnerable species")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.x = element_blank())
 fig6 <- cowplot::ggdraw() +
   cowplot::draw_plot(map, 0, 0, 1, 1) +
-  cowplot::draw_plot(legend, 0.001, 0.075, 0.3, 0.3)
-
+  cowplot::draw_plot(legend, 0.001,0.6, 0.25, 0.3) +
+  cowplot::draw_plot(barp, 0.0001,  0.0001, .3,.6)
+fig6
 
 ggsave(fig6,filename = "C:/Work/Smithsonian/Repos/15yrsChange/doc/display/Figure6.jpeg", units = "in", height = 6, width = 8, dpi = 300)
 
