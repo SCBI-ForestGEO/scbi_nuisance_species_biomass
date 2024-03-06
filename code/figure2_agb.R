@@ -1,15 +1,17 @@
 #figure 2 ABG (Aboveground Biomass)
 #output Line graph of aboveground biomass stocks
+
+#install.packages('allodb')
 library(allodb)
-library(ggplot2)
+library(dyplr)
 
 #Read in data from all censuses and the species table
-grouped_quadrats <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/grouped_quadrats.csv")  %>% 
+grouped_quadrats <- read.csv("data/grouped_quadrats.csv") %>% 
   mutate(quadrat = sprintf("%04d", quadrat))
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem1.corrected.rdata")
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem2.corrected.rdata")
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem3.corrected.rdata")
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem4.corrected.rdata")
+load("data/census_data/scbi.stem1.corrected.rdata")
+load("data/census_data/scbi.stem2.corrected.rdata")
+load("data/census_data/scbi.stem3.corrected.rdata")
+load("data/census_data/scbi.stem4.corrected.rdata")
 load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.spptable.rdata"))
 
 #Rename the data
@@ -73,7 +75,7 @@ tot_trends <- quadrat_abg_2008  %>%
 figure2_agb <- group_trends  %>% 
   bind_rows(tot_trends)
 
-colz <- c("#017161","#4c90b0","darkblue","#754792")
+colz <- c("#750000","#C7622B", "#E7BC40","#7e937f")
 
 fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Group)) +
 #fig2 <- ggplot(figure2_agb, aes(y=Abg_Mg_Ha, x=Year, group = Group, col = Group)) +
@@ -91,6 +93,6 @@ fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Grou
         axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
         axis.title = element_text(size = 20))  
 
-ggsave(fig2,filename = "C:/Work/Smithsonian/Repos/15yrsChange/doc/display/Figure2.jpeg", units = "in",
+ggsave(fig2,filename = "doc/display/Figure2.jpeg", units = "in",
         height = 8, width =7, dpi = 300)
 
