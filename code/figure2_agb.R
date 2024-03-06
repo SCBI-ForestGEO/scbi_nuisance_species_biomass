@@ -3,7 +3,7 @@
 
 #install.packages('allodb')
 library(allodb)
-library(dyplr)
+library(tidyverse)
 
 #Read in data from all censuses and the species table
 grouped_quadrats <- read.csv("data/grouped_quadrats.csv") %>% 
@@ -79,8 +79,13 @@ colz <- c("#750000","#C7622B", "#E7BC40","#7e937f")
 
 fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Group)) +
 #fig2 <- ggplot(figure2_agb, aes(y=Abg_Mg_Ha, x=Year, group = Group, col = Group)) +
-  geom_line(lwd = c(rep(1,12),rep(3,4))) +
-  geom_point(cex = c(rep(3,12),rep(5,4))) +
+  geom_line(data = figure2_agb  %>% filter(Group %in% c("Whole Plot")), lwd = 1.5, lty = 1) + 
+  geom_line(data = figure2_agb %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
+  geom_line(data = figure2_agb %>% filter(Group %in% c("1")), lwd = 1.2, lty = 3) +
+  geom_point(data = figure2_agb %>% filter(Group %in% c("1")), pch = 25, cex = 3, fill = "#750000") +
+  geom_point(data = figure2_agb %>% filter(Group %in% c("2")), pch = 22, cex = 3, fill = "#C7622B") +
+  geom_point(data = figure2_agb %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#E7BC40") +
+  geom_point (data = figure2_agb %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
   scale_x_continuous(breaks = c(2008, 2013,2018, 2023), labels = c("2008","2013","2018","2023"),
     minor_breaks = c())+
   scale_color_manual(name = element_blank(),labels = c("Low deer, low nuisance","High deer, low nuisance", "High deer, high nuisance", "Plot"),values = colz) + 

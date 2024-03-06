@@ -1,6 +1,7 @@
+#install.packages("patchwork")
 library(tidyverse)
 library(patchwork)
-allmort_awm <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/MortalityComposition.csv")
+allmort_awm <- read.csv("data/processed_data/MortalityComposition.csv")
 
 ##### I - Identify top species (by mortality flux) & reformat data for plotting #####
 top_sp <- allmort_awm  %>% 
@@ -24,13 +25,21 @@ mort_plot_df <- allmort_awm  %>%
   summarize(mort_woody = sum(abgmort))  %>% 
   mutate(plotspecies = factor(plotspecies, levels = c(top_sp$sp, "Other")))
 
+mort_plot_df$plotspecies <- gsub('fram', 'Fraxinus americana', mort_plot_df$plotspecies)
+mort_plot_df$plotspecies <- gsub('Hickory spp.', 'Carya spp.', mort_plot_df$plotspecies)
+mort_plot_df$plotspecies <- gsub('litu', 'Liriodendron tulipifera', mort_plot_df$plotspecies)
+mort_plot_df$plotspecies <- gsub('qual', 'Quercus alba', mort_plot_df$plotspecies)
+mort_plot_df$plotspecies <- gsub('qupr', 'Quercus prinus', mort_plot_df$plotspecies)
+mort_plot_df$plotspecies <- gsub('quru', 'Quercus rubra', mort_plot_df$plotspecies)
+mort_plot_df$plotspecies <- gsub('quve', 'Quercus velutina', mort_plot_df$plotspecies)
+
 ##### II - Plot mortality by species #####
 
 barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.ordered(survey_year))) +
-  facet_grid(~plotspecies) +
+  facet_grid(~plotspecies, labeller = label_parsed()) +
   geom_bar(stat = "identity" , position = "dodge", col = "grey20") + 
   theme_bw() +
-#  scale_fill_viridis_d()  +
+  #scale_fill_viridis_d()  +
   scale_fill_grey() +
   ylab(expression("Aboveground Woody Mortality"~(Mg~C~Ha^-1~Yr^-1))) +
   theme(axis.text.x = element_text(size = 14, angle = 45, hjust = 1),
@@ -39,13 +48,17 @@ barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.orde
         axis.title.x = element_blank(),
         panel.spacing.x = unit(0, "lines"),
         #strip.background = element_blank(),
-        #strip.text = element_blank(),
+        strip.text = element_text(size = 8, face = "italic"),
+
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         legend.position = "none")
 
 
-ggsave(barp,filename = "C:/Work/Smithsonian/Repos/15yrsChange/doc/display/Figure4.jpeg", units = "in",
+print(barp)
+
+
+ggsave(barp,filename = "doc/display/Figure4.jpeg", units = "in",
         height = 6, width = 10, dpi = 300)
 
 
