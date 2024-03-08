@@ -2,15 +2,15 @@ library(tidyverse)
 library(patchwork)
 
 ##### I - Plot recruitment by species #####
-recruit <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/RecruitmentComposition_annual.csv")
+recruit <- read.csv("data/processed_data/RecruitmentComposition_annual.csv")
 spTable <- read.csv("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/species_lists/Tree%20ecology/SCBI_ForestGEO_sp_ecology.csv")
-grouped_quadrats <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/grouped_quadrats.csv")  %>% 
+grouped_quadrats <- read.csv("data/grouped_quadrats.csv")  %>% 
   mutate(quadrat = sprintf("%04d",quadrat))
 
 
 missing <- data.frame(sp = c("acsp","casp","crsp","frsp","prsp","ulsp"), canopy_position = "canopy")
 
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/all_censuses_agb.rdata")
+load("data/census_data/all_censuses_agb.rdata")
 
 canopyposition <- spTable  %>% 
   select(spcode,canopy_position, life_form)  %>% 
@@ -89,7 +89,7 @@ fig5 <- ggplot(plotdf, aes(x = factor(plot_sp, levels = c(f1,f2)), y = n_stems,f
       ylab(expression(atop("# of Recruits", (Ha^-1~Yr^-1)))) +
       xlab("Species") + 
       guides(alpha = "none", fill = guide_legend(override.aes = list(size = 8))) +
-      scale_fill_manual(values = c("#750000","#C7622B","#E7BC40","#7e937f"), labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), name = "") + 
+      scale_fill_manual(values = c("#E7BC40","#C7622B","#750000","#7e937f"), labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), name = "") + 
       theme(axis.text = element_text(size = 14, angle = 45, hjust = 1),
             axis.title = element_text(size = 16),
             panel.grid.major.x = element_blank(),
@@ -98,6 +98,7 @@ fig5 <- ggplot(plotdf, aes(x = factor(plot_sp, levels = c(f1,f2)), y = n_stems,f
             legend.background = element_blank()
             )
 
+print(fig5)
 
- ggsave(fig5,filename = "C:/Work/Smithsonian/Repos/15yrsChange/doc/display/Figure5.jpeg", units = "in", height = 8, width = 12, dpi = 300)
+ggsave(fig5,filename = "doc/display/Figure5.jpeg", units = "in", height = 8, width = 12, dpi = 300)
 

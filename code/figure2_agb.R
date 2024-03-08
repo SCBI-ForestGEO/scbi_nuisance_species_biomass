@@ -75,16 +75,16 @@ tot_trends <- quadrat_abg_2008  %>%
 figure2_agb <- group_trends  %>% 
   bind_rows(tot_trends)
 
-colz <- c("#750000","#C7622B", "#E7BC40","#7e937f")
+colz <- c("#E7BC40","#C7622B", "#750000","#7e937f")
 
 fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Group)) +
 #fig2 <- ggplot(figure2_agb, aes(y=Abg_Mg_Ha, x=Year, group = Group, col = Group)) +
   geom_line(data = figure2_agb  %>% filter(Group %in% c("Whole Plot")), lwd = 1.5, lty = 1) + 
   geom_line(data = figure2_agb %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
   geom_line(data = figure2_agb %>% filter(Group %in% c("1")), lwd = 1.2, lty = 3) +
-  geom_point(data = figure2_agb %>% filter(Group %in% c("1")), pch = 25, cex = 3, fill = "#750000") +
-  geom_point(data = figure2_agb %>% filter(Group %in% c("2")), pch = 22, cex = 3, fill = "#C7622B") +
-  geom_point(data = figure2_agb %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#E7BC40") +
+  geom_point(data = figure2_agb %>% filter(Group %in% c("1")), pch = 25, cex = 3, fill = "#E7BC40") +
+  geom_point(data = figure2_agb %>% filter(Group %in% c("2")), pch = 25, cex = 3, fill = "#C7622B") +
+  geom_point(data = figure2_agb %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#750000") +
   geom_point (data = figure2_agb %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
   scale_x_continuous(breaks = c(2008, 2013,2018, 2023), labels = c("2008","2013","2018","2023"),
     minor_breaks = c())+

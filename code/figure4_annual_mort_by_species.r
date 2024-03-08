@@ -36,7 +36,7 @@ mort_plot_df$plotspecies <- gsub('quve', 'Quercus velutina', mort_plot_df$plotsp
 ##### II - Plot mortality by species #####
 
 barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.ordered(survey_year))) +
-  facet_grid(~plotspecies, labeller = label_parsed()) +
+  facet_grid(~plotspecies) +
   geom_bar(stat = "identity" , position = "dodge", col = "grey20") + 
   theme_bw() +
   #scale_fill_viridis_d()  +
