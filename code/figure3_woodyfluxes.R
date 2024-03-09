@@ -1,4 +1,5 @@
 library(tidyverse) 
+library(ggplot2)
 
 woodyfluxes <- read.csv("data/processed_data/WoodyFluxes.csv") %>%
   mutate(quadrat = sprintf("%04d", quadrat))  %>% 
@@ -57,7 +58,7 @@ fig3 <- ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, gr
   geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#750000") +
   geom_point (data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
   geom_hline(data = fig3_woodyfluxes  %>% filter(Flux %in% c("NetFlux")),aes(yintercept = 0), lty = "dashed") +
-  scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), values = colz) +
+  scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), values = colz, guide = guide_legend(nrow = 2)) +
   labs(y = expression("Carbon Flux"~(Mg~C~Ha^-1~Yr^-1)), x = "Census") +
   theme_bw() +
   theme(legend.position = "top",

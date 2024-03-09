@@ -33,10 +33,16 @@ mort_plot_df$plotspecies <- gsub('qupr', 'Quercus prinus', mort_plot_df$plotspec
 mort_plot_df$plotspecies <- gsub('quru', 'Quercus rubra', mort_plot_df$plotspecies)
 mort_plot_df$plotspecies <- gsub('quve', 'Quercus velutina', mort_plot_df$plotspecies)
 
+facet_order <- c("Fraxinus americana", "Quercus velutina", "Quercus rubra", "Carya spp.", 
+                 "Quercus prinus", "Quercus alba", "Liriodendron tulipifera", "Other")
+
+facet_years <- c(2013, 2018, 2023)
+
 ##### II - Plot mortality by species #####
 
 barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.ordered(survey_year))) +
-  facet_grid(~plotspecies) +
+  facet_grid(~ factor(plotspecies, levels = facet_order)) +
+  scale_x_continuous(breaks = facet_years) +
   geom_bar(stat = "identity" , position = "dodge", col = "grey20") + 
   theme_bw() +
   #scale_fill_viridis_d()  +
@@ -48,12 +54,12 @@ barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.orde
         axis.title.x = element_blank(),
         panel.spacing.x = unit(0, "lines"),
         #strip.background = element_blank(),
-        strip.text = element_text(size = 8, face = "italic"),
-
+        strip.text = element_text(size = 8, 
+                                  face = "italic"), 
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
-        legend.position = "none")
-
+        legend.position = "none") 
+  
 
 print(barp)
 
