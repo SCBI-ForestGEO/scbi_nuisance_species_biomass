@@ -88,7 +88,7 @@ fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Grou
   geom_point (data = figure2_agb %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
   scale_x_continuous(breaks = c(2008, 2013,2018, 2023), labels = c("2008","2013","2018","2023"),
     minor_breaks = c())+
-  scale_color_manual(name = element_blank(),labels = c("Low deer, low nuisance","High deer, low nuisance", "High deer, high nuisance", "Plot"),values = colz) + 
+  scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"),values = colz) + 
   labs(y = "Carbon Stock (Mg C/Ha)", x = "Year") +
   theme_bw() +
   theme(legend.position = c(.3,.2),
