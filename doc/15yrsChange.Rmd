@@ -27,33 +27,33 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Luca L. Morreale^1,2^*
 
-Rachel Hoffman
+Rachel Hoffman^1^
 
-Krystal Bagnaschi
+Krystal Bagnaschi^1^
 
-Iris Kennedy
+Iris Kennedy^1^
 
-Erin MacMonigle
+Erin MacMonigle^1^
 
-Caroline Troy
+Caroline Troy^1^
 
-Cameron Dow
+Cameron Dow^1,3^
 
 Valentine Herrmann^1^ ( Orcid ID : 0000-0002-4519-481X)
 
-Jen Jordan
+Jennifer Jordan^1,4^
 
-Lukas Magee
+Lukas Magee^1,5^
 
-David Mitre
+David Mitre^2^
 
-Christopher Pate
+Christopher Pate^1^
 
-Jess Shue
+Jessica Shue^6^
 
-Norman A. Bourg
+Norman A. Bourg^1^
 
-William J. McShea
+William J. McShea^1^
 
 Kristina J. Anderson-Teixeira^1,2^ ( Orcid ID : 0000-0001-8461-9713)
 
@@ -64,9 +64,19 @@ Kristina J. Anderson-Teixeira^1,2^ ( Orcid ID : 0000-0001-8461-9713)
 
 **Author Affiliations:**
 
-1. Conservation Ecology Center; Smithsonian's National Zoo & Conservation Biology Institute; Front Royal, Virginia 22630, USA
+1. Conservation Ecology Center, Smithsonian's National Zoo & Conservation Biology Institute, Front Royal, Virginia 22630, USA
 
 2. Forest Global Earth Observatory, Smithsonian Tropical Research Institute, Apartado Postal 0843-03092, Panama City, Panama
+
+3. Department of Biology, West Virginia University, Morgantown, West Virginia 26506, USA
+
+4. Department of _____, George Mason University, Fairfax, Virginia 22030, USA
+
+5. School of Forest, Fisheries and Geomatics Sciences, University of Florida, Gainesville, Florida 32603, USA
+
+6. Forest Global Earth Observatory, Smithsonian Environmental Research Center, Edgewater, Maryland 21037, USA
+
+
 
 
 *corresponding author: MorrealeLL@si.edu;
