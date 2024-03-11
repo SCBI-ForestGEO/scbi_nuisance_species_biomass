@@ -15,7 +15,7 @@ load("data/census_data/all_censuses_agb.rdata")
 canopyposition <- spTable  %>% 
   select(spcode,canopy_position, life_form)  %>% 
   mutate(canopy_position_new = case_when(spcode %in% "acne" ~ "understory",
-                                         life_form %in% c("tree") ~ canopy,
+                                         life_form %in% c("tree") ~ "canopy",
                                         .default = "understory"))  %>%  
   select(sp = spcode, canopy_position = canopy_position_new)  %>% 
   bind_rows(missing)
@@ -71,13 +71,13 @@ f2 <-  wp_recr  %>%
   group_by(plot_sp,canopy_position)  %>% 
   summarize(n_stems = sum(n_stems))  %>% 
   filter(canopy_position %in% "understory")  %>% 
-  arrange(desc(AWR))  %>% 
+  arrange(desc(n_stems))  %>% 
   filter(plot_sp != "Other understory sp.")  %>% 
   pull(plot_sp)  %>% 
   c(.,"Other understory sp.")
 
-plotdf <- plt_recr_slice  %>%   
-  bind_rows(wp_recr)
+plotdf <- plt_recr_slice  #%>%   
+#  bind_rows(wp_recr)
 
 
 
@@ -89,7 +89,7 @@ fig5 <- ggplot(plotdf, aes(x = factor(plot_sp, levels = c(f1,f2)), y = n_stems,f
       ylab(expression(atop("# of Recruits", (Ha^-1~Yr^-1)))) +
       xlab("Species") + 
       guides(alpha = "none", fill = guide_legend(override.aes = list(size = 8))) +
-      scale_fill_manual(values = c("#E7BC40","#C7622B","#750000","#7e937f"), labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), name = "") + 
+      scale_fill_manual(values = c("#E7BC40","#C7622B","#750000","#7e937f"), labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), name = "") +  
       theme(axis.text = element_text(size = 14, angle = 45, hjust = 1),
             axis.title = element_text(size = 16),
             panel.grid.major.x = element_blank(),
