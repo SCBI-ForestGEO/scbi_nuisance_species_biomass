@@ -70,9 +70,9 @@ understory_biomass <- understory_abg  %>%
   
 ##### Plotting #####
 #fillcols <- c("#b7c3e0", "#f3f2f2", "#ffc080","#85a4eb", "#e2dede", "#fd9e3f","#004494", "#a6a6a6", "#cc4c00")
-fillcols <- c("#85a4eb","#004494", "#e2dede", "#a6a6a6","#fd9e3f", "#cc4c00")
-bivariate_color_scale <- tibble(understory = rep(2:1, 3),
-                                canopy = rep(1:3, each = 2),
+fillcols <- c( "#85a4eb", "#800303","#004494","#fd5c5c")
+bivariate_color_scale <- tibble(understory = rep(2:1, 2),
+                                canopy = rep(1:2, each = 2),
                                 fill = fillcols)
 
 # bivariate_color_scale <- tibble(
@@ -98,9 +98,8 @@ plotdf <- quadrat_shp  %>%
   left_join(canopy_slopes)  %>% 
   left_join(understory_biomass)  %>% 
   mutate(WoodyAGB = if_else(is.na(WoodyAGB),0,WoodyAGB))  %>% 
-  mutate(canopy = case_when(canopy_trend >= 3 ~ 3,
-                              canopy_trend < 3 & canopy_trend > -3 ~ 2,
-                              canopy_trend <= -3 ~ 1),
+  mutate(canopy = case_when(canopy_trend >= 0 ~ 2,
+                            canopy_trend < 0 ~ 1),
          understory = case_when(WoodyAGB >= .02 ~ 2,
                                 WoodyAGB < .02 ~ 1 ))  %>% 
   left_join(bivariate_color_scale) 
@@ -131,7 +130,7 @@ legend <- ggplot() +
   labs(y = "Canopy biomass ⟶️",
        x = "Understory biomass \n of canopy sp. ⟶️") +
   scale_x_discrete(labels  = c("1" = "Low","2" = "High")) +
-  scale_y_discrete(labels  = c("1" = "Decreasing","2" = "Stable", "3" = "Increasing")) +
+  scale_y_discrete(labels  = c("1" = "Decreasing","2" = "Increasing")) +
   theme_classic() +
   # make font small enough
   theme(
@@ -172,7 +171,7 @@ barp_df2 <- barp_df  %>%
 
 barp <- ggplot(barp_df) +
   geom_bar(stat = "identity",aes(x = as.character(Group), y = pct_area,group = plot_group ,fill = fill)) +
-  geom_bar(data = barp_df2, stat = "identity", aes( x = as.character(Group), y = pct_area,group = factor(understory)), col = "white", fill = "transparent", lwd = 1.2) +
+#  geom_bar(data = barp_df2, stat = "identity", aes( x = as.character(Group), y = pct_area,group = factor(understory)), col = "white", fill = "transparent", lwd = 1.2) +
   geom_vline(xintercept = 3.5) +
   theme_classic() +
   scale_fill_identity() +
@@ -185,6 +184,8 @@ fig6 <- cowplot::ggdraw() +
   cowplot::draw_plot(map, 0, 0, 1, 1) +
   cowplot::draw_plot(legend, x = 0.15, y = 0.6, width = 0.25, height = 0.3) +
   cowplot::draw_plot(barp, x = .10,  y = 0.0001,width =  .35, height = 0.6)
+
+
 fig6
 
 

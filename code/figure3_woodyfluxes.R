@@ -74,3 +74,9 @@ ggsave(fig3,filename = "doc/display/Figure3.jpeg", units = "in",
        height = 8, width = 10, dpi = 300)
 
 
+### save results for text ###
+fig3_textresults  <- fig3_woodyfluxes  %>% 
+  select(Group, Census, Flux, MgC_Yr_Ha, cens_int)
+
+save(fig3_textresults, file = "doc/results-text/Figure3_textdata.Rdata")
+

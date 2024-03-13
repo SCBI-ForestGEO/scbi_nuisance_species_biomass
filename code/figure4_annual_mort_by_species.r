@@ -97,3 +97,7 @@ ggsave(barp,filename = "doc/display/Figure4.jpeg", units = "in",
 #   theme(plot.tag = element_text(size = rel(2), angle = 90),
 #         plot.tag.position = "left")
 
+##### IV - Save text results #####
+figure4_textresults <- mort_plot_df
+
+save(figure4_textresults,file = "doc/results-text/Figure4_textdata.Rdata")

@@ -101,3 +101,7 @@ fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Grou
 ggsave(fig2,filename = "doc/display/Figure2.jpeg", units = "in",
         height = 8, width =7, dpi = 300)
 
+
+### Save text results for manuscript ###
+
+save(figure2_agb,file = "doc/results-text/Figure2_textdata.Rdata")

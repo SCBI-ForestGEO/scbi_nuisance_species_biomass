@@ -16,8 +16,8 @@ canopyposition <- spTable  %>%
   select(spcode,canopy_position, life_form)  %>% 
   mutate(canopy_position_new = case_when(spcode %in% "acne" ~ "understory",
                                          life_form %in% c("tree") ~ "canopy",
-                                        .default = "understory"))  %>%  
-  select(sp = spcode, canopy_position = canopy_position_new)  %>% 
+                                         .default = "understory"))  %>%
+  select(sp = spcode, canopy_position = canopy_position_new)  %>%
   bind_rows(missing)
 
 recruitment_by_sp <- recruit  %>% 
@@ -98,7 +98,10 @@ fig5 <- ggplot(plotdf, aes(x = factor(plot_sp, levels = c(f1,f2)), y = n_stems,f
             legend.background = element_blank()
             )
 
-print(fig5)
-
+fig5
 ggsave(fig5,filename = "doc/display/Figure5.jpeg", units = "in", height = 8, width = 12, dpi = 300)
 
+##### IV - Save text results #####
+figure5_textresults <- plotdf
+
+save(figure5_textresults,file = "doc/results-text/Figure5_textdata.Rdata")
