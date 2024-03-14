@@ -41,7 +41,7 @@ Cameron Dow^1,3^
 
 Valentine Herrmann^1^ ( Orcid ID : 0000-0002-4519-481X)
 
-Jennifer Jordan^1,4^
+Jennifer Jordan^1,4^ ( Orcid ID : 0000-0001-5521-360X)
 
 Lukas Magee^1,5^
 
@@ -70,7 +70,7 @@ Kristina J. Anderson-Teixeira^1,2^ ( Orcid ID : 0000-0001-8461-9713)
 
 3. Department of Biology, West Virginia University, Morgantown, West Virginia 26506, USA
 
-4. Department of _____, George Mason University, Fairfax, Virginia 22030, USA
+4. Department of Environmental Science and Public Policy, George Mason University, Fairfax, Virginia 22030, USA
 
 5. School of Forest, Fisheries and Geomatics Sciences, University of Florida, Gainesville, Florida 32603, USA
 
