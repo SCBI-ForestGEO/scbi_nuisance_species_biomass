@@ -83,6 +83,7 @@ plotdf <- plt_recr_slice
 ##plotdf <- plt_recr_slice  #%>%   
 #  bind_rows(wp_recr)
 
+###Attempt at changing species code to species name in ggplot###
 
 spTable_latinNames <- spTable %>%
   mutate(scientific_name = paste(genus, species, sep = " ")) 
@@ -101,7 +102,7 @@ plotdf %>%
 plotdf %>%
   mutate (plot_sp = scientific_name)
 
-
+################################################################
 
 fig5 <- ggplot(plotdf, aes(x = factor(plot_sp, levels = c(f1,f2)), y = n_stems,fill = as.ordered(Group), group = Group)) + 
       facet_wrap(~canopy_position, labeller = labeller(canopy_position = c("canopy" = "Canopy", "understory" = "Understory")), scales = "free") + 
