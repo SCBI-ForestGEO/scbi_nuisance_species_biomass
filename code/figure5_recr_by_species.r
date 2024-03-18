@@ -1,3 +1,4 @@
+install.packages("tidyverse")
 library(tidyverse) 
 library(patchwork)
 
@@ -23,6 +24,7 @@ canopyposition <- spTable  %>%
 recruitment_by_sp <- recruit  %>% 
   left_join(canopyposition)  %>% 
   mutate(sp = if_else(sp %in% c("caco","cagl","caovl","cato"), "Hickory spp.",sp))  %>% 
+  #mutate(sp = if_else(sp %in% c("qual", "quco", "qufa", "qumi", "qupr", "quru", "quve"), "Oak spp.", sp)) %>%
   group_by(quadrat,sp, canopy_position)  %>% 
   summarise(AWR_yr_ha = sum(AWR_yr) / .04, n_stems_yr_ha = sum(n_stems_yr) / .04)
 
@@ -76,30 +78,52 @@ f2 <-  wp_recr  %>%
   pull(plot_sp)  %>% 
   c(.,"Other understory sp.")
 
-plotdf <- plt_recr_slice  #%>%   
+plotdf <- plt_recr_slice
+
+##plotdf <- plt_recr_slice  #%>%   
 #  bind_rows(wp_recr)
 
+
+spTable_latinNames <- spTable %>%
+  mutate(scientific_name = paste(genus, species, sep = " ")) 
+
+plotdf$scientific_name <- if_else(plotdf$plot_sp %in% spTable_latinNames$spcode, 
+                                  spTable_latinNames$scientific_name[match(plotdf$plot_sp, spTable_latinNames$spcode)], NA)
+
+plotdf %>% 
+  mutate(scientific_name = case_when(
+        plot_sp == "Hickory spp." ~ "Carya spp.",
+        plot_sp == "Other canopy sp." ~ "Other canopy sp.",
+        plot_sp == "Other understory sp." ~ "Other understory sp.", 
+        TRUE ~ scientific_name
+  ) )
+
+plotdf %>%
+  mutate (plot_sp = scientific_name)
 
 
 
 fig5 <- ggplot(plotdf, aes(x = factor(plot_sp, levels = c(f1,f2)), y = n_stems,fill = as.ordered(Group), group = Group)) + 
-      facet_wrap(~canopy_position, scales = "free") + 
+      facet_wrap(~canopy_position, labeller = labeller(canopy_position = c("canopy" = "Canopy", "understory" = "Understory")), scales = "free") + 
       geom_bar(position = "dodge",stat = "identity", col= "black") + 
       theme_bw() + 
-      ylab(expression(atop("# of Recruits", (Ha^-1~Yr^-1)))) +
+      ylab(expression(atop("Recruitment", (n~Ha^-1~Yr^-1)))) +
       xlab("Species") + 
       guides(alpha = "none", fill = guide_legend(override.aes = list(size = 8))) +
       scale_fill_manual(values = c("#E7BC40","#C7622B","#750000","#7e937f"), labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), name = "") +  
       theme(axis.text = element_text(size = 14, angle = 45, hjust = 1),
             axis.title = element_text(size = 16),
             panel.grid.major.x = element_blank(),
+            strip.text = element_text(size = 14, 
+                                      face ="bold"),
             legend.position = c(.2,.9),
             legend.text = element_text(size = 14),
             legend.background = element_blank()
             )
 
+
 fig5
-ggsave(fig5,filename = "doc/display/Figure5.jpeg", units = "in", height = 8, width = 12, dpi = 300)
+ggsave(fig5,filename = "doc/display/Figure5_withOakGenera.jpeg", units = "in", height = 8, width = 12, dpi = 300)
 
 ##### IV - Save text results #####
 figure5_textresults <- plotdf

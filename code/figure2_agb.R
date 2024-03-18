@@ -1,7 +1,7 @@
 #figure 2 ABG (Aboveground Biomass)
 #output Line graph of aboveground biomass stocks
 
-#install.packages('allodb')
+install.packages('allodb')
 library(allodb)
 library(tidyverse)
 
@@ -89,9 +89,9 @@ fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Grou
   scale_x_continuous(breaks = c(2008, 2013,2018, 2023), labels = c("2008","2013","2018","2023"),
     minor_breaks = c())+
   scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"),values = colz) + 
-  labs(y = "Carbon Stock (Mg C/Ha)", x = "Year") +
+  labs(y = "Aboveground Biomass (Mg C/ha)", x = "Year") +
   theme_bw() +
-  theme(legend.position = c(.3,.2),
+  theme(legend.position = c(.38,.175),
         legend.text = element_text(size = 18),
         legend.background = element_blank(),
         axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in")),
