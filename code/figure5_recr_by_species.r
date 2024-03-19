@@ -1,4 +1,4 @@
-install.packages("tidyverse")
+#figure 5 Recruitment by Species
 library(tidyverse) 
 library(patchwork)
 
@@ -24,7 +24,7 @@ canopyposition <- spTable  %>%
 recruitment_by_sp <- recruit  %>% 
   left_join(canopyposition)  %>% 
   mutate(sp = if_else(sp %in% c("caco","cagl","caovl","cato"), "Hickory spp.",sp))  %>% 
-  #mutate(sp = if_else(sp %in% c("qual", "quco", "qufa", "qumi", "qupr", "quru", "quve"), "Oak spp.", sp)) %>%
+  mutate(sp = if_else(sp %in% c("qual", "quco", "qufa", "qumi", "qupr", "quru", "quve"), "Oak spp.", sp)) %>%
   group_by(quadrat,sp, canopy_position)  %>% 
   summarise(AWR_yr_ha = sum(AWR_yr) / .04, n_stems_yr_ha = sum(n_stems_yr) / .04)
 
@@ -91,16 +91,17 @@ spTable_latinNames <- spTable %>%
 plotdf$scientific_name <- if_else(plotdf$plot_sp %in% spTable_latinNames$spcode, 
                                   spTable_latinNames$scientific_name[match(plotdf$plot_sp, spTable_latinNames$spcode)], NA)
 
-plotdf %>% 
-  mutate(scientific_name = case_when(
-        plot_sp == "Hickory spp." ~ "Carya spp.",
-        plot_sp == "Other canopy sp." ~ "Other canopy sp.",
-        plot_sp == "Other understory sp." ~ "Other understory sp.", 
-        TRUE ~ scientific_name
-  ) )
+# plotdf %>%
+  # mutate(scientific_name = case_when(
+  # plot_sp == "Hickory spp." ~ "Carya spp.",
+  # plot_sp == "Oak spp." ~ "Quercus spp."
+  # plot_sp == "Other canopy sp." ~ "Other canopy sp.",
+  # plot_sp == "Other understory sp." ~ "Other understory sp.",
+  # FALSE ~ scientific_name
+ # ) )
 
-plotdf %>%
-  mutate (plot_sp = scientific_name)
+plotdf_final <- plotdf %>% 
+  mutate(scientific_name = if_else(is.na(scientific_name), plot_sp, scientific_name))
 
 ################################################################
 
@@ -111,6 +112,7 @@ fig5 <- ggplot(plotdf, aes(x = factor(plot_sp, levels = c(f1,f2)), y = n_stems,f
       ylab(expression(atop("Recruitment", (n~Ha^-1~Yr^-1)))) +
       xlab("Species") + 
       guides(alpha = "none", fill = guide_legend(override.aes = list(size = 8))) +
+      #scale_x_discrete(labels=scientific_name) +
       scale_fill_manual(values = c("#E7BC40","#C7622B","#750000","#7e937f"), labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), name = "") +  
       theme(axis.text = element_text(size = 14, angle = 45, hjust = 1),
             axis.title = element_text(size = 16),

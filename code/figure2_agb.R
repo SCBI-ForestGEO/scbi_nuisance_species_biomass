@@ -77,64 +77,22 @@ figure2_agb <- group_trends  %>%
 
 ########## Attempt at fixing overlapping legend ################################
 
-figure2_agb_lwd <- figure2_agb %>%
-  mutate(line_width = case_when(
-    Group == "Whole Plot" ~ 1.5,
-    Group == "1" ~ 1.2,
-    Group == "2" ~ 1.2,
-    Group == "3" ~ 1.2))
-
-figure2_agb_lty <- figure2_agb_lwd %>%
-  mutate(line_type = case_when(
-    Group == "Whole Plot" ~ "solid", 
-    Group == "1" ~ "dotted", 
-    Group == "2" ~ "longdash",
-    Group == "3" ~ "longdash"))
-
-figure2_agb_pch <- figure2_agb_lty %>%
-  mutate(point_type = case_when(
-    Group == "Whole Plot" ~ "circle", 
-    Group == "1" ~ "triangle", 
-    Group == "2" ~ "triangle",
-    Group == "3" ~ "square"))
-
-figure2_agb_cex <- figure2_agb_pch %>%
-  mutate(point_size = case_when(
-    Group == "Whole Plot" ~ 3,
-    Group == "1" ~ 3,
-    Group == "2" ~ 3,
-    Group == "3" ~ 3))
-
-figure2_agb_fill <- figure2_agb_cex %>%
-  mutate(point_fill = case_when(
-    Group == "Whole Plot" ~ "#7e937f",
-    Group == "1" ~ "#E7BC40",
-    Group == "2" ~ "#C7622B",
-    Group == "3" ~ "#750000"))
-  
-figure2_agb <- figure2_agb_fill
-
 colz <- c("#E7BC40","#C7622B", "#750000","#7e937f")
 
 fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, 
-                                group = Group, col = Group,
-                                linewidth = line_width,
-                                linetype = line_type,
-                                shape = point_type, 
-                                fill = point_fill)) +
-  geom_line() +
-  geom_point() +
+                                group = Group, col = Group)) + 
+  geom_line(aes(linetype = Group, linewidth = Group)) + 
+  geom_point(aes(shape = Group, size = Group)) +
   scale_x_continuous(breaks = c(2008, 2013,2018, 2023), labels = c("2008","2013","2018","2023"),
                      minor_breaks = c())+
   scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species",
                                                        "High deer, low vulnerable species", 
                                                        "High deer, high vulnerable species", 
                                                        "Plot"),values = colz) +
-  scale_linetype_manual(values = unique(figure2_agb$line_type)) +
-  scale_size_continuous(range = c(1.2, 1.5)) +
-  scale_shape_manual(values = unique(figure2_agb$point_type)) +
-  scale_fill_manual(values = unique(figure2_agb$point_fill)) +
-  #scale_linetype_manual(values = unique(df$linetype_column))
+  scale_linetype_manual(values = c("dotted", "longdash", "longdash", "solid"), guide = "none") +
+  scale_linewidth_manual(values = c(1.2, 1.2, 1.2, 1.5), guide = "none") + 
+  scale_size_manual(values = c(3, 3, 3, 3), guide = "none") +
+  scale_shape_manual(values = c("triangle", "triangle", "square", "circle"), guide = "none") +
   labs(y = "Aboveground Biomass (Mg C/ha)", x = "Year") +
   theme_bw() +
   theme(legend.position = c(.38,.175),
@@ -142,7 +100,8 @@ fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year,
         legend.background = element_blank(),
         axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in")),
         axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
-        axis.title = element_text(size = 20))  
+        axis.title = element_text(size = 20))
+
 fig2
 
 ################################################################################
