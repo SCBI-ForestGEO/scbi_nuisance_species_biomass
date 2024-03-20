@@ -47,8 +47,8 @@ barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.orde
   theme_bw() +
   #scale_fill_viridis_d()  +
   scale_fill_grey() +
-  ylab(expression("Aboveground Woody Mortality"~(Mg~C~Ha^-1~Yr^-1))) +
-  theme(axis.text.x = element_text(size = 14, angle = 45, hjust = 1),
+  ylab(expression("Aboveground Woody Mortality"~(Mg~C~ha^-1~yr^-1))) +
+  theme(axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
         axis.text.y = element_text(size = 14),
         axis.title = element_text(size = 16),
         axis.title.x = element_blank(),
@@ -61,9 +61,7 @@ barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.orde
         legend.position = "none") 
   
 
-print(barp)
-
-
+barp
 ggsave(barp,filename = "doc/display/Figure4.jpeg", units = "in",
         height = 6, width = 10, dpi = 300)
 
