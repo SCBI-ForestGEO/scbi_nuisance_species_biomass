@@ -78,18 +78,16 @@ f2 <-  wp_recr  %>%
   pull(plot_sp)  %>% 
   c(.,"Other understory sp.")
 
-plotdf <- plt_recr_slice
-
-##plotdf <- plt_recr_slice  #%>%   
-#  bind_rows(wp_recr)
+plotdf <- plt_recr_slice #%>%   
+  #bind_rows(wp_recr)
 
 ###Attempt at changing species code to species name in ggplot###
 
-spTable_latinNames <- spTable %>%
-  mutate(scientific_name = paste(genus, species, sep = " ")) 
+#spTable_latinNames <- spTable %>%
+  #mutate(scientific_name = paste(genus, species, sep = " ")) 
 
-plotdf$scientific_name <- if_else(plotdf$plot_sp %in% spTable_latinNames$spcode, 
-                                  spTable_latinNames$scientific_name[match(plotdf$plot_sp, spTable_latinNames$spcode)], NA)
+#plotdf$scientific_name <- if_else(plotdf$plot_sp %in% spTable_latinNames$spcode, 
+                                  #spTable_latinNames$scientific_name[match(plotdf$plot_sp, spTable_latinNames$spcode)], NA)
 
 # plotdf %>%
   # mutate(scientific_name = case_when(
@@ -100,8 +98,8 @@ plotdf$scientific_name <- if_else(plotdf$plot_sp %in% spTable_latinNames$spcode,
   # FALSE ~ scientific_name
  # ) )
 
-plotdf_final <- plotdf %>% 
-  mutate(scientific_name = if_else(is.na(scientific_name), plot_sp, scientific_name))
+#plotdf_final <- plotdf %>% 
+  #mutate(scientific_name = if_else(is.na(scientific_name), plot_sp, scientific_name))
 
 ################################################################
 
@@ -126,7 +124,7 @@ fig5 <- ggplot(plotdf, aes(x = factor(plot_sp, levels = c(f1,f2)), y = n_stems,f
 
 
 fig5
-ggsave(fig5,filename = "doc/display/Figure5_withOakGenera.jpeg", units = "in", height = 8, width = 12, dpi = 300)
+ggsave(fig5,filename = "doc/display/Figure5.jpeg", units = "in", height = 8, width = 12, dpi = 300)
 
 ##### IV - Save text results #####
 figure5_textresults <- plotdf

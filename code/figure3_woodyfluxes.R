@@ -53,13 +53,13 @@ fig3 <- ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, gr
   geom_line(data = fig3_woodyfluxes  %>% filter(Group %in% c("Whole Plot")), lwd = 1.5, lty = 1) + 
   geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
   geom_line(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), lwd = 1.2, lty = 3) +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), pch = 25, cex = 3, fill = "#E7BC40") +
-  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("2")), pch = 25, cex = 3, fill = "#C7622B") +
+  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("1")), pch = 17, cex = 3, fill = "#E7BC40") +
+  geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("2")), pch = 17, cex = 3, fill = "#C7622B") +
   geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#750000") +
   geom_point (data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
   geom_hline(data = fig3_woodyfluxes  %>% filter(Flux %in% c("NetFlux")),aes(yintercept = 0), lty = "dashed") +
-  scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"), values = colz, guide = guide_legend(nrow = 2)) +
-  labs(y = expression("Carbon Flux"~(Mg~C~Ha^-1~Yr^-1)), x = "Census") +
+  scale_color_manual(name = element_blank(),labels = c("Low deer, low canopy vulnerability","High deer, low canopy vulnerability", "High deer, canopy vulnerability", "Whole Plot"), values = colz, guide = guide_legend(nrow = 2)) +
+  labs(y = expression("Carbon Flux"~(Mg~C~ha^-1~yr^-1)), x = "Census") +
   theme_bw() +
   theme(legend.position = "top",
         legend.text = element_text(size = 14),
@@ -68,6 +68,8 @@ fig3 <- ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, gr
         axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in"), angle = 45, hjust = 1),
         axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
         axis.title = element_text(size = 20)) 
+
+fig3
 
 
 ggsave(fig3,filename = "doc/display/Figure3.jpeg", units = "in",
