@@ -94,10 +94,8 @@ article type:  -->
 
 ```{r eval = TRUE, echo=FALSE, warning=FALSE, results='hide'}
 # DISPLAY ITEMS
-## I do not see any guidance as to the number of display items allowed in MEE.
 
 #Tables
-## example = 1 
 
 #Figures
 map_and_photos = 1
@@ -115,6 +113,37 @@ regen_failure = 6 #2-panel - map & barplot illustrating areas losing canopy spec
 
 
 ```
+
+```{r eval = TRUE, echo = FALSE, warning = FALSE, results = 'hide'}
+library(tidyverse)
+### Numbers for text
+##load in text data
+load("results-text/Figure2_textdata.Rdata")
+load("results-text/Figure3_textdata.Rdata")
+load("results-text/Figure4_textdata.Rdata")
+load("results-text/Figure5_textdata.Rdata")
+
+##Figure 2
+
+#whole plot
+wp_ABG_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "Whole Plot")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+wp_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "Whole Plot")  %>%  pull(Abg_C_Mg_Ha) %>% round(digits = 1)
+
+#high deer, high canopy vulnerability
+hdhn_ABG_2013 <- figure2_agb  %>% filter(Year == "2013" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+hdhn_ABG_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+hdhn_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+
+#low canopy vulnerability
+ldlv_ABG_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+ldlv_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+hdlv_ABG_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1) 
+hdlv_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+
+
+
+```
+
 
 \newpage
 
@@ -187,7 +216,7 @@ In addition to the estimation of AWR biomass flux, we analyzed the effects of nu
 
 # Results 
 
-For the first time since the establishment of  the SCBI ForestGEO site, whole-plot aboveground C stocks decreased (Figure 2). From 2018 to 2023, whole-plot C stocks have decreased from **"X to X"** Mg C/ha. Both low-nuisance regions show similar decreases in C stocks going from **"X to X"** and **"X to X"** Mg C/ha, respectively. In the high deer high nuisance regions C stocks have decreased for the past two censuses, with a higher magnitude decrease of **"X to X"** Mg C/ha from 2018 to 2023. C stock decrease **is related to/ is explained by** above ground net biomass change. In the first two census intervals, 2008 to 2013 and 2013 to 2018, there were positive C fluxes, but for the 2018 to 2023 interval there was a negative C flux of **VALUE** Mg C/ha/year (Figure 3a).
+For the first time since the establishment of  the SCBI ForestGEO site, whole-plot aboveground C stocks decreased (Figure 2). From 2018 to 2023, whole-plot C stocks have decreased from `r wp_ABG_2018` to `r wp_ABG_2023` Mg C ha^-1^. In regions with  high deer density and high canopy vulnerability AGB decreased significantly over the past two censuses, from `r hdhn_ABG_2013` Mg C ha^-1^ in 2013, to `r hdhn_ABG_2018` Mg C ha^-1^ in 2018, and `r hdhn_ABG_2023` Mg C ha^-1^ in 2023. Areas with low density of vulnerable canopy species experienced minor decreases in AGB; C stocks inside and outside of the deer exclosure decreased from **"X to X"**  and **"X to X"** Mg C ha^-1^, respectively.  C stock decrease **is related to/ is explained by** above ground net biomass change. In the first two census intervals, 2008 to 2013 and 2013 to 2018, there were positive C fluxes, but for the 2018 to 2023 interval there was a negative C flux of **VALUE** Mg C/ha/year (Figure 3a).
 
 ![**_Figure `r biomass_trends`. Aboveground biomass at the SCBI ForestGEO plot since 2008 establishment._** Values are shown for the plot as a whole and for habitats differentiated by intensity of deer browsing and 2008 abundance of canopy tree species vulnerable to non-indigenous pests and pathogens.](display/Figure2.jpeg)
 

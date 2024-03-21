@@ -1,6 +1,7 @@
 #install.packages("patchwork")
 library(tidyverse)
 library(patchwork)
+library(ggtext)
 allmort_awm <- read.csv("data/processed_data/MortalityComposition.csv")
 
 ##### I - Identify top species (by mortality flux) & reformat data for plotting #####
@@ -43,10 +44,13 @@ facet_years <- c(2013, 2023)
 #}
 
 ##### II - Plot mortality by species #####
+plotdf <- mort_plot_df  %>% 
+  mutate(plotspecies = factor(plotspecies, levels = facet_order))
+facet_labels <- if_else(!grepl("Other",facet_order), paste0("*",facet_order,"*"),facet_order)
+names(facet_labels) <- facet_order
 
-barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.ordered(survey_year))) +
-  facet_grid(~ factor(plotspecies, levels = facet_order)) +
-             #labeller = as_labeller(custom_labels)
+barp <- ggplot(plotdf, aes(x = survey_year, y = mort_woody, fill = as.ordered(survey_year))) +
+  facet_grid(~ plotspecies, labeller =  labeller(plotspecies = facet_labels )) +
   scale_x_continuous(breaks = facet_years) +
   geom_bar(stat = "identity" , position = "dodge", col = "grey20") + 
   theme_bw() +
@@ -59,8 +63,7 @@ barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.orde
         axis.title.x = element_blank(),
         panel.spacing.x = unit(0, "lines"),
         #strip.background = element_blank(),
-        strip.text = element_text(size = 9.5, 
-                                  face = "italic"), 
+        strip.text = element_markdown(size = 9.5), 
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         legend.position = "none") 
