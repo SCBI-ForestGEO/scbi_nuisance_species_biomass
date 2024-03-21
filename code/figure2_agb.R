@@ -93,20 +93,19 @@ fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year,
   scale_linewidth_manual(values = c(1.2, 1.2, 1.2, 1.5), guide = "none") + 
   scale_size_manual(values = c(3, 3, 3, 3), guide = "none") +
   scale_shape_manual(values = c("triangle", "triangle", "square", "circle"), guide = "none") +
-  labs(y = expression("Aboveground Biomass" ~ (Mg~C~'/'~ha^-1)), x = "Year") +
+  labs(y = expression("Aboveground Biomass" ~ (Mg~C~ha^-1)), x = "Year") +
   theme_bw() +
   theme(legend.position = c(.38,.175),
-        legend.text = element_text(size = 18),
+        legend.text = element_text(size = 12),
         legend.background = element_blank(),
-        axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in")),
-        axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
-        axis.title = element_text(size = 20))
+        axis.text.x = element_text(size = 13, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in")),
+        axis.text.y = element_text(size = 13, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
+        axis.title = element_text(size = 15))
 
 fig2
 
 ################################################################################
 
-# fig2 <- ggplot(figure2_agb, aes(y=Abg_C_Mg_Ha, x=Year, group = Group, col = Group)) +
 #   geom_line(data = figure2_agb  %>% filter(Group %in% c("Whole Plot")), lwd = 1.5, lty = 1) + 
 #   geom_line(data = figure2_agb %>% filter(Group %in% c("2", "3")), lwd = 1.2, lty = 5) + 
 #   geom_line(data = figure2_agb %>% filter(Group %in% c("1")), lwd = 1.2, lty = 3) +
@@ -114,22 +113,10 @@ fig2
 #   geom_point(data = figure2_agb %>% filter(Group %in% c("2")), pch = 25, cex = 3, fill = "#C7622B") +
 #   geom_point(data = figure2_agb %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#750000") +
 #   geom_point (data = figure2_agb %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
-#   scale_x_continuous(breaks = c(2008, 2013,2018, 2023), labels = c("2008","2013","2018","2023"),
-#     minor_breaks = c())+
-#   scale_color_manual(name = element_blank(),labels = c("Low deer, low vulnerable species","High deer, low vulnerable species", "High deer, high vulnerable species", "Plot"),values = colz) + 
-#   labs(y = "Aboveground Biomass (Mg C/ha)", x = "Year") +
-#   theme_bw() +
-#   theme(legend.position = c(.38,.175),
-#         legend.text = element_text(size = 18),
-#         legend.background = element_blank(),
-#         axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in")),
-#         axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
-#         axis.title = element_text(size = 20))  
-# 
-# fig2
+
 
 ggsave(fig2,filename = "doc/display/Figure2.jpeg", units = "in",
-        height = 8, width =7, dpi = 300)
+        height = 5.75, width = 5, dpi = 300)
 
 
 ### Save text results for manuscript ###
