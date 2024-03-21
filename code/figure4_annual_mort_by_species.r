@@ -5,7 +5,7 @@ allmort_awm <- read.csv("data/processed_data/MortalityComposition.csv")
 
 ##### I - Identify top species (by mortality flux) & reformat data for plotting #####
 top_sp <- allmort_awm  %>% 
-  mutate(sp = if_else(sp %in% c("caco","cagl","caovl","cato"), "Hickory spp.",sp))  %>% 
+  #mutate(sp = if_else(sp %in% c("caco","cagl","caovl","cato"), "Hickory spp.",sp))  %>% 
   ungroup()  %>% 
   group_by(sp)  %>% 
   mutate(abgmort = if_else(is.na(abgmort),0, abgmort))  %>% 
@@ -33,15 +33,20 @@ mort_plot_df$plotspecies <- gsub('qupr', 'Quercus prinus', mort_plot_df$plotspec
 mort_plot_df$plotspecies <- gsub('quru', 'Quercus rubra', mort_plot_df$plotspecies)
 mort_plot_df$plotspecies <- gsub('quve', 'Quercus velutina', mort_plot_df$plotspecies)
 
-facet_order <- c("Fraxinus americana", "Quercus velutina", "Quercus rubra", "Carya spp.", 
+facet_order <- c("Fraxinus americana", "Quercus velutina", "Quercus rubra", 
                  "Quercus prinus", "Quercus alba", "Liriodendron tulipifera", "Other")
 
-facet_years <- c(2013, 2018, 2023)
+facet_years <- c(2013, 2023)
+
+#custom_labels <- function(plotspecies, facet_order) {
+  #if_else(facet_order == "Other", as.character("Other"), paste0("*", facet_order, "*"))
+#}
 
 ##### II - Plot mortality by species #####
 
 barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.ordered(survey_year))) +
   facet_grid(~ factor(plotspecies, levels = facet_order)) +
+             #labeller = as_labeller(custom_labels)
   scale_x_continuous(breaks = facet_years) +
   geom_bar(stat = "identity" , position = "dodge", col = "grey20") + 
   theme_bw() +
@@ -54,7 +59,7 @@ barp <- ggplot(mort_plot_df, aes(x = survey_year, y = mort_woody, fill = as.orde
         axis.title.x = element_blank(),
         panel.spacing.x = unit(0, "lines"),
         #strip.background = element_blank(),
-        strip.text = element_text(size = 8, 
+        strip.text = element_text(size = 9.5, 
                                   face = "italic"), 
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),

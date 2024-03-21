@@ -41,10 +41,9 @@ fig3_woodyfluxes <- group_trends  %>%
   )
 
 
-
 colz <- c("#E7BC40","#C7622B", "#750000","#7e937f")
 flux_names <- as_labeller(c("AWM" = "Aboveground Woody Mortality",
-                            "AWP" = "Aboveground Woody Productivity",
+                            "AWP" = "Aboveground Woody Growth",
                             "AWR" = "Aboveground Woody Recruitment",
                             "NetFlux" = "Net Biomass Change"))
 
@@ -58,7 +57,7 @@ fig3 <- ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, gr
   geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#750000") +
   geom_point (data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
   geom_hline(data = fig3_woodyfluxes  %>% filter(Flux %in% c("NetFlux")),aes(yintercept = 0), lty = "dashed") +
-  scale_color_manual(name = element_blank(),labels = c("Low deer, low canopy vulnerability","High deer, low canopy vulnerability", "High deer, canopy vulnerability", "Whole Plot"), values = colz, guide = guide_legend(nrow = 2)) +
+  scale_color_manual(name = element_blank(),labels = c("Low deer, low canopy vulnerability","High deer, low canopy vulnerability", "High deer, high canopy vulnerability", "Whole Plot"), values = colz, guide = guide_legend(nrow = 2)) +
   labs(y = expression("Carbon Flux"~(Mg~C~ha^-1~yr^-1)), x = "Census") +
   theme_bw() +
   theme(legend.position = "top",
