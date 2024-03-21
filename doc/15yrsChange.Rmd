@@ -208,7 +208,7 @@ Certain species dominated aboveground woody recruitment, with understory species
 
 ## Regeneration & mortality mismatch
 
-![**Figure `r regen_failure`.**](display/Figure6.jpeg)
+![**_Figure `r regen_failure`._**](display/Figure6.jpeg)
 
 # Discussion 
 

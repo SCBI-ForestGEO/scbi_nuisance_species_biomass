@@ -6,7 +6,7 @@ library(allodb)
 grouped_quadrats <- read.csv("data/grouped_quadrats.csv")  %>% 
   mutate(quadrat = sprintf("%04d",quadrat))
 load("data/census_data/all_censuses_agb.rdata")
-deer_exclosure <- st_read("C:/Work/Smithsonian/Repos/SCBI-ForestGEO-Data/spatial_data/shapefiles/deer_exclosure_2011.shp")
+deer_exclosure <- st_read("data/20m_grid/deer_exclosure_2011.shp")
 quadrat_shp <- read_sf("data/20m_grid/20m_grid.shp")  
 spTable <- read.csv("https://raw.githubusercontent.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/master/species_lists/Tree%20ecology/SCBI_ForestGEO_sp_ecology.csv")
 
