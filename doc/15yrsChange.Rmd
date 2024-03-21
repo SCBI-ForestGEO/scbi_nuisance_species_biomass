@@ -134,16 +134,119 @@ hdhn_ABG_2013 <- figure2_agb  %>% filter(Year == "2013" & Group == "3")  %>%  pu
 hdhn_ABG_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
 hdhn_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
 
-#low canopy vulnerability
+#high deer, low canopy vulnerability
+hdlv_AGB_2013 <- figure2_agb %>% filter(Year == "2013" & Group == "2") %>% pull(Abg_C_Mg_Ha) %>%
+round(digits = 1)
+hdlv_AGB_2018 <- figure2_agb %>% filter(Year == "2018" & Group == "2") %>% pull(Abg_C_Mg_Ha) %>%
+round(digits = 1)
+hdlv_AGB_2023 <- figure2_agb %>% filter(Year == "2023" & Group == "2") %>% pull(Abg_C_Mg_Ha) %>%
+round(digits = 1)
+
+#low deer, low canopy vulnerability
 ldlv_ABG_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
 ldlv_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
 hdlv_ABG_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1) 
 hdlv_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
 
 
+##Figure 3
 
+#Net Biomass Change 
+#Group 1
+nbc_group1_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "1" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+nbc_group1_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "1" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+nbc_group1_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "1" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Group 2
+nbc_group2_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "2" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+nbc_group2_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "2" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+nbc_group2_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "2" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Group 3 
+nbc_group3_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "3" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+nbc_group3_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "3" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+nbc_group3_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Whole Plot
+nbc_wholePlot_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+nbc_wholePlot_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+nbc_wholePlot_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "Whole Plot" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+
+#Aboveground Woody Growth 
+#Group 1
+awg_group1_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "1" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awg_group1_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "1" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awg_group1_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "1" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Group 2
+awg_group2_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "2" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awg_group2_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "2" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awg_group2_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "2" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Group 3
+awg_group3_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "3" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awg_group3_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "3" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awg_group3_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Whole Plot
+awg_wholePlot_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awg_wholePlot_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awg_wholePlot_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "Whole Plot" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+
+#Aboveground Woody Mortality 
+#Group 1
+awm_group1_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "1" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awm_group1_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "1" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awm_group1_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "1" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Group 2
+awm_group2_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "2" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awm_group2_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "2" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awm_group2_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "2" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Group 3
+awm_group3_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "3" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awm_group3_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "3" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awm_group3_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Whole Plot
+awm_wholePlot_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awm_wholePlot_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awm_wholePlot_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "Whole Plot" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+
+#Aboveground Woody Recruitment
+#Group 1
+awr_group1_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awr_group1_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awr_group1_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Group 2
+awr_group2_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awr_group2_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awr_group2_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Group 3
+awr_group3_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awr_group3_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awr_group3_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+#Whole Plot
+awr_wholePlot_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awr_wholePlot_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+awr_wholePlot_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
+
+
+##Figure 4
+
+#Averages
+
+#5 Year Averages for top three species
+
+#Peak for each species
 ```
-
 
 \newpage
 
