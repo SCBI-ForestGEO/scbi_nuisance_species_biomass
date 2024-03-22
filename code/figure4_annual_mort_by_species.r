@@ -13,7 +13,6 @@ top_sp <- allmort_awm  %>%
   summarize(abgmort = sum(abgmort))  %>% 
   arrange(desc(abgmort))  %>% 
   slice_head(n = 7)
-  
 
 allspyr <- allmort_awm  %>% 
   expand(sp,survey_year)
