@@ -1,10 +1,10 @@
 library(tidyverse)
 ### Numbers for text
 ##load in text data
-load("doc/results-text/Figure2_textdata.Rdata")
-load("doc/results-text/Figure3_textdata.Rdata")
-load("doc/results-text/Figure4_textdata.Rdata")
-load("doc/results-text/Figure5_textdata.Rdata")
+load("results-text/Figure2_textdata.Rdata")
+load("results-text/Figure3_textdata.Rdata")
+load("results-text/Figure4_textdata.Rdata")
+load("results-text/Figure5_textdata.Rdata")
 
 ##Figure 2
 
@@ -126,7 +126,6 @@ awr_wholePlot_2023 <- fig3_textresults %>% filter(Census == "4" & Group == "3" &
 
 #Averages
 
-<<<<<<< Updated upstream
 avg_fram <- figure4_textresults %>% filter(plotspecies == "Fraxinus americana") %>% 
   pull(mort_woody) %>% sum()/11
 avg_quve <- figure4_textresults %>% filter(plotspecies == "Quercus velutina") %>% 
@@ -173,8 +172,6 @@ qual_peak <- figure4_textresults %>% filter(plotspecies == "Quercus alba") %>% p
 litu_peak <- figure4_textresults %>% filter(plotspecies == "Liriodendron tulipifera") %>% pull(mort_woody) %>% max()
 
 other_peak <- figure4_textresults %>% filter(plotspecies == "Other") %>% pull(mort_woody) %>% max()
-=======
->>>>>>> Stashed changes
 
 ##Figure 5
 

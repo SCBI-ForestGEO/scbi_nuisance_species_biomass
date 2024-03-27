@@ -13,10 +13,6 @@ csl: new-phytologist.csl
 
 
 ---
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 
 \raggedright
 
@@ -38,6 +34,8 @@ Erin MacMonigle^1^
 Caroline Troy^1^
 
 Cameron Dow^1,3^
+
+Erika Gonzalez-Akre^1^
 
 Valentine Herrmann^1^ ( Orcid ID : 0000-0002-4519-481X)
 
@@ -85,12 +83,6 @@ Kristina J. Anderson-Teixeira^1,2^ ( Orcid ID : 0000-0001-8461-9713)
 
 for submission to Anthromes joint special collection in New Phytologist/ Plants, People, Planet: https://www.newphytologist.org/news/view/332 
 
-<!--JOURNAL
-
-Target journal:
-Instructions for authors:
-article type:  -->
-
 
 ```{r eval = TRUE, echo=FALSE, warning=FALSE, results='hide'}
 # DISPLAY ITEMS
@@ -114,7 +106,7 @@ regen_failure = 6 #2-panel - map & barplot illustrating areas losing canopy spec
 
 ```
 
-```{r eval = TRUE, echo = FALSE, warning = FALSE, results = 'hide'}
+```{r eval = TRUE, echo = FALSE, warning = FALSE, results = 'hide', message = FALSE}
 source("results-text-files.R")
 ```
 
@@ -175,12 +167,7 @@ In addition to the estimation of AWR biomass flux, we analyzed the effects of nu
 
 # Results 
 
-For the first time since the establishment of  the SCBI ForestGEO plot, whole-plot aboveground C stocks decreased over the 2018-2023 census interval (Figure 2) . From 2018 to 2023, whole-plot C stocks have decreased from `r wp_AGB_2018` to `r wp_AGB_2023` Mg C ha^-1^. Prior to this census interval, biomass 
-
-In regions with  high deer density and high canopy vulnerability AGB decreased significantly over the past two censuses, from `r hdhn_AGB_2013` Mg C ha^-1^ in 2013, to `r hdhn_AGB_2018` Mg C ha^-1^ in 2018, and `r hdhn_AGB_2023` Mg C ha^-1^ in 2023. Areas with low density of vulnerable canopy species experienced small losses of AGB between 2018 and 2023; inside and outside of the deer exclosure, biomass decreased from `r hdlv_AGB_2018` to `r hdlv_AGB_2023` Mg C ha^-1^  and `r ldlv_AGB_2018` to `r ldlv_AGB_2023` Mg C ha^-1^, respectively. 
-
-
-C stock decrease **is related to/ is explained by** above ground net biomass change. In the first two census intervals, 2008 to 2013 and 2013 to 2018, there were positive C fluxes, but for the 2018 to 2023 interval there was a negative C flux of **VALUE** Mg C/ha/year (Figure 3a).
+For the first time since the establishment of  the SCBI ForestGEO plot, whole-plot aboveground C stocks decreased over the 2018-2023 census interval (Figure 2) . From 2018 to 2023,ABG decreased from `r wp_AGB_2018` to `r wp_AGB_2023` Mg C ha^-1^. Prior to this, ABG had steadily increased at a rate of `r mean(awg_wholePlot_2013,awg_wholePlot_2018)` Mg C ha^-1^ yr ^-1^ between 2008 and 2018 (Figure 3a). In regions with  high deer density and high canopy vulnerability AGB decreased significantly over the past two censuses: from `r hdhn_AGB_2013` Mg C ha^-1^ in 2013, to `r hdhn_AGB_2018` Mg C ha^-1^ in 2018, and `r hdhn_AGB_2023` Mg C ha^-1^ in 2023. Areas with low density of vulnerable canopy species experienced small losses of AGB between 2018 and 2023; inside and outside of the deer exclosure, biomass decreased from `r hdlv_AGB_2018` to `r hdlv_AGB_2023` Mg C ha^-1^  and `r ldlv_AGB_2018` to `r ldlv_AGB_2023` Mg C ha^-1^, respectively. 
 
 ![**_Figure `r biomass_trends`. Aboveground biomass at the SCBI ForestGEO plot since 2008 establishment._** Values are shown for the plot as a whole and for habitats differentiated by intensity of deer browsing and 2008 abundance of canopy tree species vulnerable to non-indigenous pests and pathogens.](display/Figure2.jpeg)
 
