@@ -9,13 +9,13 @@ load("doc/results-text/Figure5_textdata.Rdata")
 ##Figure 2
 
 #whole plot
-wp_ABG_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "Whole Plot")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-wp_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "Whole Plot")  %>%  pull(Abg_C_Mg_Ha) %>% round(digits = 1)
+wp_AGB_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "Whole Plot")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+wp_AGB_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "Whole Plot")  %>%  pull(Abg_C_Mg_Ha) %>% round(digits = 1)
 
 #high deer, high canopy vulnerability
-hdhn_ABG_2013 <- figure2_agb  %>% filter(Year == "2013" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-hdhn_ABG_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-hdhn_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+hdhn_AGB_2013 <- figure2_agb  %>% filter(Year == "2013" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+hdhn_AGB_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+hdhn_AGB_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
 
 #high deer, low canopy vulnerability
 hdlv_AGB_2013 <- figure2_agb %>% filter(Year == "2013" & Group == "2") %>% pull(Abg_C_Mg_Ha) %>%
@@ -26,10 +26,10 @@ hdlv_AGB_2023 <- figure2_agb %>% filter(Year == "2023" & Group == "2") %>% pull(
 round(digits = 1)
 
 #low deer, low canopy vulnerability
-ldlv_ABG_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-ldlv_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-hdlv_ABG_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1) 
-hdlv_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+ldlv_AGB_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+ldlv_AGB_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
+hdlv_AGB_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1) 
+hdlv_AGB_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
 
 
 ##Figure 3
@@ -126,6 +126,7 @@ awr_wholePlot_2023 <- fig3_textresults %>% filter(Census == "4" & Group == "3" &
 
 #Averages
 
+<<<<<<< Updated upstream
 avg_fram <- figure4_textresults %>% filter(plotspecies == "Fraxinus americana") %>% 
   pull(mort_woody) %>% sum()/11
 avg_quve <- figure4_textresults %>% filter(plotspecies == "Quercus velutina") %>% 
@@ -172,6 +173,8 @@ qual_peak <- figure4_textresults %>% filter(plotspecies == "Quercus alba") %>% p
 litu_peak <- figure4_textresults %>% filter(plotspecies == "Liriodendron tulipifera") %>% pull(mort_woody) %>% max()
 
 other_peak <- figure4_textresults %>% filter(plotspecies == "Other") %>% pull(mort_woody) %>% max()
+=======
+>>>>>>> Stashed changes
 
 ##Figure 5
 
