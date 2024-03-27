@@ -115,217 +115,7 @@ regen_failure = 6 #2-panel - map & barplot illustrating areas losing canopy spec
 ```
 
 ```{r eval = TRUE, echo = FALSE, warning = FALSE, results = 'hide'}
-library(tidyverse)
-### Numbers for text
-##load in text data
-load("results-text/Figure2_textdata.Rdata")
-load("results-text/Figure3_textdata.Rdata")
-load("results-text/Figure4_textdata.Rdata")
-load("results-text/Figure5_textdata.Rdata")
-
-##Figure 2
-
-#whole plot
-wp_ABG_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "Whole Plot")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-wp_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "Whole Plot")  %>%  pull(Abg_C_Mg_Ha) %>% round(digits = 1)
-
-#high deer, high canopy vulnerability
-hdhn_ABG_2013 <- figure2_agb  %>% filter(Year == "2013" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-hdhn_ABG_2018 <- figure2_agb  %>% filter(Year == "2018" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-hdhn_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "3")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-
-#high deer, low canopy vulnerability
-hdlv_AGB_2013 <- figure2_agb %>% filter(Year == "2013" & Group == "2") %>% pull(Abg_C_Mg_Ha) %>%
-round(digits = 1)
-hdlv_AGB_2018 <- figure2_agb %>% filter(Year == "2018" & Group == "2") %>% pull(Abg_C_Mg_Ha) %>%
-round(digits = 1)
-hdlv_AGB_2023 <- figure2_agb %>% filter(Year == "2023" & Group == "2") %>% pull(Abg_C_Mg_Ha) %>%
-round(digits = 1)
-
-#low deer, low canopy vulnerability
-ldlv_ABG_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-ldlv_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "1")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-hdlv_ABG_2018 <-  figure2_agb  %>% filter(Year == "2018" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1) 
-hdlv_ABG_2023 <- figure2_agb  %>% filter(Year == "2023" & Group == "2")  %>%  pull(Abg_C_Mg_Ha)  %>% round(digits = 1)
-
-
-##Figure 3
-
-#Net Biomass Change 
-#Group 1
-nbc_group1_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "1" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-nbc_group1_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "1" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-nbc_group1_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "1" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Group 2
-nbc_group2_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "2" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-nbc_group2_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "2" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-nbc_group2_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "2" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Group 3 
-nbc_group3_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "3" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-nbc_group3_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "3" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-nbc_group3_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Whole Plot
-nbc_wholePlot_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-nbc_wholePlot_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-nbc_wholePlot_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "Whole Plot" & Flux == "NetFlux") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-
-#Aboveground Woody Growth 
-#Group 1
-awg_group1_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "1" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awg_group1_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "1" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awg_group1_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "1" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Group 2
-awg_group2_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "2" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awg_group2_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "2" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awg_group2_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "2" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Group 3
-awg_group3_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "3" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awg_group3_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "3" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awg_group3_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Whole Plot
-awg_wholePlot_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awg_wholePlot_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awg_wholePlot_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "Whole Plot" & Flux == "AWP") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-
-#Aboveground Woody Mortality 
-#Group 1
-awm_group1_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "1" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awm_group1_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "1" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awm_group1_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "1" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Group 2
-awm_group2_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "2" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awm_group2_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "2" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awm_group2_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "2" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Group 3
-awm_group3_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "3" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awm_group3_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "3" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awm_group3_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Whole Plot
-awm_wholePlot_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awm_wholePlot_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awm_wholePlot_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "Whole Plot" & Flux == "AWM") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-
-#Aboveground Woody Recruitment
-#Group 1
-awr_group1_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awr_group1_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awr_group1_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Group 2
-awr_group2_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awr_group2_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awr_group2_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Group 3
-awr_group3_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awr_group3_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awr_group3_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-#Whole Plot
-awr_wholePlot_2013 <- fig3_woodyfluxes %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awr_wholePlot_2018 <- fig3_woodyfluxes %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-awr_wholePlot_2023 <- fig3_woodyfluxes %>% filter(Census == "4" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
-
-##Figure 4
-
-#Averages
-
-avg_fram <- allmort_awm %>% filter(sp == "fram") %>% pull(abgmort) %>% 
-  mean(na.rm = TRUE)
-avg_quve <- allmort_awm %>% filter(sp == "quve") %>% pull(abgmort) %>% 
-  mean(na.rm = TRUE)
-avg_quru <- allmort_awm %>% filter(sp == "quru") %>% pull(abgmort) %>%
-  mean(na.rm = TRUE)
-avg_qupr <- allmort_awm %>% filter(sp == "qupr") %>% pull(abgmort) %>% 
-  mean(na.rm = TRUE)
-avg_qual <- allmort_awm %>% filter(sp == "qual") %>% pull(abgmort) %>% 
-  mean(na.rm = TRUE)
-avg_litu <- allmort_awm %>% filter(sp == "litu") %>% pull(abgmort) %>% 
-  mean(na.rm = TRUE)
-avg_other <- allmort_awm %>%  mutate(plot_species = if_else(sp %in% top_sp$sp,sp, "Other")) %>% filter(plot_species == "Other") %>% pull(abgmort) %>% mean(na.rm = TRUE)
-
-
-#5 Year Averages for top three species -- Currently calculated with survey_years 2014-2023
-
-avg_fram_first5 <- allmort_awm %>% filter(sp == "fram" & (survey_year == "2014" | survey_year == "2015" | survey_year == "2016" | survey_year == "2017" | survey_year == "2018")) %>% pull(abgmort) %>% mean(na.rm = TRUE)
-
-avg_fram_second5 <- allmort_awm %>% filter(sp == "fram" & (survey_year == "2019" | survey_year == "2020" | survey_year == "2021" | survey_year == "2022" | survey_year == "2023")) %>% pull(abgmort) %>% mean(na.rm = TRUE)
-
-avg_quve_five5 <- allmort_awm %>% filter(sp == "quve" & (survey_year == "2014" | survey_year == "2015" | survey_year == "2016" | survey_year == "2017" | survey_year == "2018")) %>% pull(abgmort) %>% mean(na.rm = TRUE)
-
-avg_quve_second5 <- allmort_awm %>% filter(sp == "quve" & (survey_year == "2019" | survey_year == "2020" | survey_year == "2021" | survey_year == "2022" | survey_year == "2023")) %>% pull(abgmort) %>% mean(na.rm = TRUE)
-
-avg_quru_first5 <-  allmort_awm %>% filter(sp == "quru" & (survey_year == "2014" | survey_year == "2015" | survey_year == "2016" | survey_year == "2017" | survey_year == "2018")) %>% pull(abgmort) %>% mean(na.rm = TRUE)
-
-avg_quru_second5 <- allmort_awm %>% filter(sp == "quru" & (survey_year == "2019" | survey_year == "2020" | survey_year == "2021" | survey_year == "2022" | survey_year == "2023")) %>% pull(abgmort) %>% mean(na.rm = TRUE)
-
-
-#Peak for each species
-
-fram_peak <-  allmort_awm %>% filter(sp == "fram") %>% pull(abgmort) %>% max(na.rm = TRUE)
-
-quve_peak <- allmort_awm %>% filter(sp == "quve") %>% pull(abgmort) %>% max(na.rm = TRUE)
-  
-quru_peak <- allmort_awm %>% filter(sp == "quru") %>% pull(abgmort) %>% max(na.rm = TRUE)
-
-qupr_peak <- allmort_awm %>% filter(sp == "qupr") %>% pull(abgmort) %>% max(na.rm = TRUE)
-
-qual_peak <- allmort_awm %>% filter(sp == "quru") %>% pull(abgmort) %>% max(na.rm = TRUE)
-
-litu_peak <- allmort_awm %>% filter(sp == "litu") %>% pull(abgmort) %>% max(na.rm = TRUE)
-
-other_peak <- allmort_awm %>%  mutate(plot_species = if_else(sp %in% top_sp$sp,sp, "Other")) %>% filter(plot_species == "Other") %>% pull(abgmort) %>% max(na.rm = TRUE)
-
-
-##Figure 5
-
-#Total number of recruits in canopy and understory for each region
-
-#Canopy
-group1_canopy <- plotdf %>% filter(Group == "1" & canopy_position == "canopy")%>% pull(n_stems) %>% sum(na.rm = TRUE)
-group2_canopy <- plotdf %>% filter(Group == "2" & canopy_position == "canopy")%>% pull(n_stems) %>% sum(na.rm = TRUE)
-group3_canopy <- plotdf %>% filter(Group == "3" & canopy_position == "canopy")%>% pull(n_stems) %>% sum(na.rm = TRUE)
-
-#Understory
-group1_understory <- plotdf %>% filter(Group == "1" & canopy_position == "understory")%>% pull(n_stems) %>% sum(na.rm = TRUE)
-group2_understory <- plotdf %>% filter(Group == "2" & canopy_position == "understory")%>% pull(n_stems) %>% sum(na.rm = TRUE)
-group3_understory <- plotdf %>% filter(Group == "3" & canopy_position == "understory")%>% pull(n_stems) %>% sum(na.rm = TRUE)
-
-#Number of recruits for oak spp, hickory spp, libe and astr in each of the groups
-
-#Oak recruits
-group1_oakRecruit <- plotdf %>% filter(Group == "1" & plot_sp == "Quercus spp.")%>% pull(n_stems)
-group2_oakRecruit <- plotdf %>% filter(Group == "2" & plot_sp == "Quercus spp.") %>% pull(n_stems)
-group3_oakRecruit <- plotdf %>% filter(Group == "3" & plot_sp == "Quercus spp.")%>% pull(n_stems)
-
-#Hickory Recruits
-group1_hickoryRecruit <- plotdf %>% filter(Group == "1" & plot_sp == "Carya spp.")%>% pull(n_stems)
-group2_hickoryRecruit <- plotdf %>% filter(Group == "2" & plot_sp == "Carya spp.")%>% pull(n_stems)
-group2_hickoryRecruit <- plotdf %>% filter(Group == "3" & plot_sp == "Carya spp.")%>% pull(n_stems)
-
-#libe Recruits
-group1_libeRecruit <- plotdf %>% filter(Group == "1" & plot_sp == "Lindera benzoin") %>% pull(n_stems)
-group2_libeRecruit <- plotdf %>% filter(Group == "2" & plot_sp == "Lindera benzoin") %>% pull(n_stems)
-group3_libeRecruit <- plotdf %>% filter(Group == "3" & plot_sp == "Lindera benzoin") %>% pull(n_stems)
-
-#astr Recruits
-group1_astrRecruit <- plotdf %>% filter(Group == "1" & plot_sp == "Asimina triloba") %>% pull(n_stems)
-group2_astrRecruit <- plotdf %>% filter(Group == "2" & plot_sp == "Asimina triloba") %>% pull(n_stems)
-group3_astrRecruit <- plotdf %>% filter(Group == "3" & plot_sp == "Asimina triloba") %>% pull(n_stems)
-
+source("results-text-files.R")
 ```
 
 \newpage
@@ -356,50 +146,41 @@ This is problematic in that nuisance species – including non-indigenous insect
 
 Non-indigenous pests and pathogens can have a protracted impact on forests, often modifying forest productivity, nutrient cycling, successional trajectories, and geomorphic processes (Lovett et al. 2016, Fischer et al. 2013, Herms and McCullough 2014, Fei et al. 2014). Historically introduced to new ecosystems through intercontinental trade, non-indigenous forest insects and diseases will continue to proliferate with increased globalization and human movement (Fischer et al. 2013, Aukema et al. 2010, Brockerhoff et al. 2006). Many of the prominent pests and pathogens in temperate deciduous forests have dramatic effects on canopy composition and structure, decimating once-abundant canopy species (Aukema et. al 2010,Anderson-Teixeria 2021, Klooster et al. 2013, Ellison et al. 2018). Since many pests and pathogens do not currently occupy the full extent of their host species range, a significant portion of the remaining forest canopy is susceptible to future invasion from nuisance species, further increasing potentials for biomass loss and altered carbon cycle dynamics (Fei et al. 2013).
 
-White-tailed deer (*Odocoileus virginianus*) are a nuisance species prevalent in eastern deciduous forests.*Start with a stronger sentence about the impact of deer on herbivory - Ex. White-tailed deer are the dominant herbivore in eastern deciduous forests (Reference)* Their populations have dramatically increased in the past 50 years (McShea et al. 1997).  *Find a reference with a specific number of increase in deer populations* due in large part to global change drivers. (Found in McGarvey et al. 2013 – Brown et al. 2000, Côté et al. 2004, Rooney 2001). White-tailed deer preferentially browse on woody plant species in their earliest life stages (McGarvey et al. 2013), with overabundant herbivory reduce seedling and sapling survival, growth and density (Found in McGarvey et al. 2013 – Dzieciolowski 1980, Gill and Beardall 2001, Healy 1997, Konig 1976, Putman et al. 1989).   Chronic overabundance has been shown to reduce understory diversity and decrease the abundance of traditionally dominant species (*NEW CITATION*).  Due to climate change and human activity, many non-endemic plant species are being introduced or number in forest ecosystems (Reference).  Deer find many of these species, including pawpaw (Asimina triloba), to be unpalatable (Found in McGarvey 2013 – Asnani 2006), and do not consume them at the same rates relative to their native counterparts (Reference), enabling them to form dense stands in forest understories (Found in Knauer et al. 2023 – Horsley and Marquis 1983; Stromayer and Warren 1997; Royo and Carson 2006).  This lack of browsing pressure, coupled with characteristics such as fast growth rate and greater adaptability to altered conditions precipitated by climate change, allow nuisance plant species to outcompete other species in the understory (Reference). The interaction of these nuisance species on the landscape contributes to a recruitment failure in forests, [*Where individuals from certain tree species do not enter the mature population - Do we need to define recruitment failure, or is that considered common knowledge?  If so, reference*).  The extent of the consequences derived from recruitment failure on species composition and forest structure is often not apparent for years (McGarvey et al. 2013) 
+Another category of nuisance species is mammals whose population densities have been inflated due to human activities (Murphey et al. 2013, Clout & Russel), including white-tailed deer (*Odocoileus virginianus*) in U.S. eastern deciduous forests. Their populations have dramatically increased in the past 50 years (McShea et al. 1997), due in large part to global change (McGarvey et al. 2013, Brown et al. 2000, Côté et al. 2004, Rooney 2001). White-tailed deer preferentially browse on woody plant species in the seedling and sapling life stages, which reduces survival, growth and density (McGarvey et al. 2013). Chronic white-tailed deer overabundance can reduce understory plant diversity and decrease the abundance of traditionally dominant species (Bugalho et al. 2013) while giving an advantage to species they find less palatable, including both indigenous (e.g., pawpaw, *Asimina tribola*; spicebush, *Lindera benzoin*) and non-indigenous (e.g., XX ) species (REFS). The strong impact of deer browsing, exacerbated by competition with dense deer-resistant understory vegetation and possibly climate change  results in dramatic reduction of canopy tree species in the understory (McGarvey et al. 2013; Russell et al., 2017; Miller & McGill, 2019; Gorchov et al., 2021; Miller et al., 2023).
 
-The capacity to regenerate following disturbances, including ongoing gap formation through mortality of canopy trees, critically influences long-term forest dynamics.
-Regeneration depends first upon seed production and then upon seedling recruitment, survival, and growth into trees.
-When any one of these steps fails, the stage is set for disturbance to push forest ecosystems over a tipping point, whereby there is little chance that a forest will recover to it's pre-disturbance state in the foreseeable future [@refs].
-Global change pressures can set the stage for such critical transitions by gradually shifting baseline conditions, making post-disturbance recovery unlikely despite the persistence of mature trees [@anderson-teixeira_altered_2013; @mcdowell_pervasive_2020; @refs]. 
-In the mid-Atlantic region of eastern North America, forests face a severe “regeneration debt”, meaning that there are insufficient juveniles of current canopy tree species to replace the mature cohort when they eventually die [@miller_compounding_2019;@miller_overabundant_2023]. 
-Low juvenile abundance in the region is driven by a combination of over-abundant deer, competition with non-endemic species, and possibly climate change [@russell_interactions_2017; @miller_compounding_2019;@miller_overabundant_2023;@gorchov_differential_2021].
-Deer are the biggest problem [@gorchov_differential_2021].
-The juveniles that are present tend to represent a different, more mesophytic set of species (*Acer spp.*, *Fagus grandifolia*) than currently dominate much of the region (*Quercus spp.*, *Carya spp.*, @miller_compounding_2019; @nowacki_climate_2015]--a dynamic driven by fire suppression and mesophication [@refs].
+In combination, increased canopy tree mortality and reduced canopy species recruitment in the understory is likely to have profound impacts on deciduous forests of eastern North America.  When global change pressures (e.g., climate change, nuisance species) inhibit recruitment of canopy species, the stage is set for disturbances to push forest ecosystems over a tipping point, whereby there is little chance that a forest will recover to its pre-disturbance state in the foreseeable future  (Anderson-Teixeira et al., 2013; McDowell et al., 2020, CITATION). In the mid-Atlantic region of the eastern United States, forests face a severe “regeneration debt”, meaning that there are insufficient juveniles of canopy tree species to replace the mature cohort when they eventually die (Miller & McGill, 2019; Miller et al., 2023). The juvenile canopy trees that are most common in contemporary mid-Atlantic forests represent a more mesophytic set of species (e.g., Acer spp., Fagus grandifolia) than historically dominated much of the region (e.g., Quercus spp., Carya spp., Miller & McGill (2019); Nowacki & Abrams (2015)], but even these are often not present in sufficient abundance to replace the current canopy (??).
 
-
-Understanding the combined effects of multiple nuisance species on forest ecosystem processes requires data on both the forest understory and canopy over extended time periods. Here, we use 15 years of detailed census data from a large forest dynamics plot including a 4-ha deer exclosure to test the following hypotheses: (1) Aboveground C stocks in living biomass have declined since the initial census (-∆AGB) (2) canopy tree mortality and associated woody biomass loss are increasing, in large part due to non-indigenous nuisance species (3) Recruitment and biomass gains from tree growth have not kept pace with tree mortality, suggesting that future mortality will result in substantial net biomass loss and sustained decrease in the C storage potential of this ecosystem.
+Understanding the combined effects of multiple nuisance species on forest ecosystem processes requires data on both the forest canopy and understory over an extended time. Here, we use 15 years of detailed census from a large forest dynamics plot the mid-Atlantic region of the eastern United States to understand the effects of non-indigenous pests and pathogens and white-tailed deer on the forest carbon balance and regeneration potential.  We test the following hypotheses: (1) canopy tree mortality and associated woody biomass loss are increasing, in large part due to non-indigenous nuisance species, (2) biomass gains from tree growth and recruitment have not kept pace with tree mortality, resulting in a decline in aboveground living biomass (-∆AGB), and (3) deer browsing has decimated the abundance of canopy tree saplings, suggesting that future mortality will result in substantial net biomass loss and sustained decrease in the C storage potential of this ecosystem.
 
 # Materials and Methods 
 
 ## Site Description
 
-The study was conducted in the 25.6-hectare Large Forest Dynamics plot at the National Zoo and Conservation Biology Institute in Front Royal, Virginia (38$^\circ$ 53' 36.6''N, 78$^\circ$  08’ 43.4''W). The plot, which is located in the central Appalachian Mountains adjacent to Shenandoah National Park, is composed of mature secondary eastern deciduous forest. Situated in the Appalachian Oak forest region, the canopy is dominated by tulip poplar (*Liriodendron tulipifera*), oak (*Quercus* spp.), and hickory (*Carya* spp.) and the understory is primarily composed of spicebush (*Lindera benzoin*), paw-paw (*Asimina triloba*), American hornbeam (*Carpinus caroliniana*), and witch hazel (*Hamamelis virginiana*). The land-use history of the site is varied, including periods of agricultural development and intensive logging, with dendrological data estimating canopy tree establishment around 1900 (SI archives, Bourg et al. 2013).  Natural disturbances at the plot consist of wind and infrequent ice storms (Anderson-Teixiera 2015).  The plot, which includes a four-hectare deer exclosure that has decreased the presence of deer since 1990, is divided into 640 quadrats, each measuring 20 x 20 meters. It is one of 78 sites in the Forest Global Earth Observatory (ForestGEO), a global network of forest dynamic plots that promotes comparative forest ecology studies around the world. 
+The study was conducted in the 25.6-hectare Forest Dynamics plot at the Smithsonian’s National Zoo and Conservation Biology Institute (SCBI) in Front Royal, Virginia (38$^\circ$ 53' 36.6''N, 78$^\circ$  08’ 43.4''W). The forest dynamics plot, which is located in the central Appalachian Mountains adjacent to Shenandoah National Park, is composed of mature secondary eastern deciduous forest. As part of the Appalachian Oak forest region, the canopy is dominated by tulip poplar (*Liriodendron tulipifera*), oak (*Quercus* spp.), and hickory (*Carya* spp.) and the understory is primarily composed of spicebush (*Lindera benzoin*), paw-paw (*Asimina triloba*), American hornbeam (*Carpinus caroliniana*), and witch hazel (*Hamamelis virginiana*). The land-use history of the site is varied, including periods of agricultural development and intensive logging, with dendrological data estimating canopy tree establishment around 1900 (SI archives, Bourg et al. 2013). The plot, which includes a four-hectare deer exclosure that has decreased the presence of deer since 1990, is divided into 640 quadrats, each measuring 20 x 20 meters. It is one of 78 sites in the Forest Global Earth Observatory (ForestGEO), a global network of forest dynamic plots that facilitates comparative forest ecology studies around the world (Anderson-Teixeira et al. 2015, Davies et al. 2021). 
 
-In addition to our consideration of the plot as a whole, we give special consideration to three portions of the plot, all upland forest (i.e., excluding low-lying areas around streams):
-(1) Low deer, low canopy vulnerability: A 4-ha portion of upland forest in the SE quarter of the plot, fenced in 1990 and maintained with only occasional deer presence for the past 24 years that has a low abundance of canopy species vulnerable to non-indigenous pests and pathogens (Holm *et al.* 2013);
-(2) high deer, low canopy vulnerability: 16.3 ha of upland forest outside of the deer exclosure with low abundance of canopy species affected by non-indigenous pests and pathogens; 
-(3) high deer, high canopy vulnerability: 2.2 ha of upland forest outside the deer exclosure with high abundance of canopy species affected by non-indigenous pests and pathogens. 
-Upland forest was defined according to the topographic wetness index, originally calculated for the SCBI plot in @mcgregor_tree_2021.
-Vulnerability to non-indigenous insects and pathogens was defined based on the abundance of canopy species affected by non-indigenous pests and pathogens at the time of plot establishment. The following canopy species were classified as affected: ash (*Fraxinus* spp.), elm (*Ulmus* spp.), butternut (*Juglans cinerea*), and American chestnut (*Carya dentata*).
+In addition to our consideration of the entire forest plot, we focus further on three portions of the plot, all upland forest (i.e., excluding low-lying areas around streams), with varying levels of exposure non-indigenous insects and pathogens and white-tailed deer (Fig. 1).  The first portion we define as“Low deer, low canopy vulnerability”: A 4-ha portion of upland forest in the SE quarter of the plot (Fig. 1a), fenced in 1990 and maintained with only occasional deer presence over the past 24 years. This portion has a low abundance of canopy species vulnerable to non-indigenous pests and pathogens (Holm et al. 2013). The second focal area is a “high deer, low canopy vulnerability” 16.3 ha upland forest area outside the deer exclosure with low abundance of canopy species affected by non-indigenous pests and pathogens (Fig. 1b). The third focal portion of the plot has high deer, high canopy vulnerability: corresponding to 2.2 ha of upland forest outside the deer exclosure with high abundance of canopy species affected by non-indigenous pests and pathogens. We defined upland forest according to topographic wetness index, which was calculated for the forest plot by McGregor et al. (2021). We defined vulnerability to non-indigenous insects and pathogens based on the abundance of canopy species affected by non-indigenous pests and pathogens at the time of plot establishment (2008). The following canopy species were identified as vulnerable: ash (Fraxinus spp.), elm (Ulmus spp.), butternut (Juglans cinerea), and American chestnut (Carya dentata) (Anderson-Teixeira et al. 2021).
 
-
-![**_Figure `r map_and_photos`. Map and photos of the Forest Global Earth Observatory (ForestGEO) plot at the Smithsonian Conservation Biology Institute (SCBI) in Virginia, USA._** Our analysis focuses on three habitat types: (a) low deer density, low abundance of canopy trees vulnerable to non-indigenous insects & pathogens, (b) high deer density, low abundance of canopy trees vulnerable to non-indigenous insects & pathogens, and (c) high deer density, high abundance of canopy trees vulnerable to non-indigenous insects & pathogens. *All photos taken September 2023 by K. Anderson-Teixeira; aerial photography from ESRI World Imagery*.](display/Figure1.png)
+![**_Figure `r map_and_photos`. Map and photos of the Forest Global Earth Observatory (ForestGEO) plot at the Smithsonian's Conservation Biology Institute (SCBI) in Virginia, USA._** Our analysis focuses on three portions of the plot: (a) low deer density, low abundance of canopy trees vulnerable to non-indigenous insects & pathogens, (b) high deer density, low abundance of canopy trees vulnerable to non-indigenous insects & pathogens, and (c) high deer density, high abundance of canopy trees vulnerable to non-indigenous insects & pathogens. *All photos taken September 2023 by K. Anderson-Teixeira; aerial photography from ESRI World Imagery*.](display/Figure1.png)
 
 ## Data collection
 
-As part of the ForestGEO network, the plot undergoes a comprehensive woody plant inventory every five years according to the protocol detailed in Condit (1998). This inventory, hereafter referred to as the census, includes all stems greater than one centimeter in diameter at breast height (1.3 meters; dbh).  The census records information regarding the dbh, species, living status and location of each stem included in the survey.  Each individual is marked with an identifying number for sequential data collection in subsequent censuses. In multi-stemmed individuals, each additional stem that surpasses the dbh threshold receives a stem number and associated tag. The plot was established in 2008 and recensused three times since, comprising 15 years of forest dynamics data. In the last census, data cleaning was continuously implemented 1) in an ESRI ArcGIS Field Maps application via built-in checks and 2) on a daily basis, via error reports generated by GitHub actions (Kim et al., 2022). Each individual's location was recorded in the Field Maps application using a digitized map of the plot (*citation*). Additional checks and fixes were performed at the conclusion of the last census. In addition to the ForestGEO census, since 2014, a tree mortality survey has been conducted annually at the site. Initiated, in part, as a response to the presence of emerald ash borer (*Agrilus planipennis*), the mortality survey is conducted on all trees that had a dbh $\geq$ 10 centimeters in the previous census. Through assessing individual tree health, we document trends in forest mortality and identify factors that are associated with death. Data is collected on the current status, canopy position, percentage of crown living and intact, and visible indicators of poor tree health, such as physical damage, potential pathogens and insect infestation. 
+As part of the ForestGEO network, the plot undergoes a comprehensive woody plant inventory every five years according to the protocol detailed in Condit (1998). This inventory, hereafter referred to as the census, includes all stems greater than one centimeter in diameter at breast height (1.3 meters; dbh). The census records the dbh, species, living status, and spatial location of each censused stem. Each individual is marked with an identifying number for sequential data collection in subsequent censuses. In multi-stemmed individuals, each additional stem that surpasses the dbh threshold receives a stem number and associated tag. The plot was established in 2008 and recensused three times (2013, 2018, 2023) since, comprising 15 years of forest dynamics data. In the last census, data cleaning was continuously implemented 1) in an ESRI ArcGIS Field Maps application via built-in checks and 2) on a daily basis, via error reports generated through GitHub actions (Kim et al., 2022). Each individual’s location was recorded in the Field Maps application using a digitized map of the plot (citation). In addition to the ForestGEO census, a tree health and mortality survey was conducted annually starting in 2014 on all trees with a dbh ≥ 10 cm in the previous census (Gonzalez-Akre et al. 2016). Data were collected on the current status, canopy position, percentage of crown living and intact, and visible indicators of tree health, such as physical damage, potential pathogens and insect infestation.
 
 
 ## Calculating biomass dynamics and stem recruitment
 
-We estimated total aboveground biomass (AGB) from the measured dbh of each stem in each census using extra-tropical allometric equations from the R package *allodb* (Gonzalez-Akre, 2024). *allodb* creates species-specific allometric equations through weighting of all applicable allometries within its database filtered by tree size, geography, and taxa information. Using the calculated stem AGB, we estimated AGB stocks at each census year for each of the plot regions and the plot as a whole. We evaluated trends in AGB over time by calculating annualized AGB fluxes including: 1) the net change in AGB, 2) aboveground woody growth (AWG; the addition of woody biomass from tree growth), 3) aboveground woody mortality (AWM; the change of living biomass to necromass due to tree mortality), and 4) aboveground woody recruitment (AWR; the addition of living biomass through recruitment) for each census interval and plot region. We further assessed the role of nuisance species on mortality by calculating AWM flux for each year and each species using the annual mortality survey data. 
+We estimated total aboveground biomass (AGB) from the dbh of each stem in each census using extra-tropical allometric equations from the R package *allodb* (Gonzalez-Akre, 2024). The *allodb* package creates species-specific allometric equations by weighting all applicable allometries within its database filtered by tree size, geography, and taxonomic information. Using the calculated stem AGB, we estimated AGB stocks at each census year for each of the plot study regions and the entire 25.6-ha plot. We quantified trends in AGB over time by calculating annualized AGB fluxes including: 1) the net change in AGB, 2) aboveground woody growth (AWG; the addition of woody biomass from tree growth), 3) aboveground woody mortality (AWM; the change of living biomass to necromass due to tree mortality), and 4) aboveground woody recruitment (AWR; the addition of living biomass through recruitment) for each census interval and plot region. We further assessed the role of nuisance species on mortality by calculating AWM flux for each year and each species using the annual mortality survey data.
 
-In addition to the estimation of AWR biomass flux, we analyzed the effects of nuisance species on recruitment through counts of newly recruited stems. We categorized each species as either canopy or understory based on expert knowledge of life history traits. *Quercus* spp. and *Carya* spp. were grouped by genera to better assess differences between the recruitment of canopy and understory species. We then calculated the number of new stems for each census interval for each  species or genera. Finally, we assessed the spatial overlap of biomass loss and recruitment of canopy species. For each .4 hectare quadrat, we calculated the net change in AGB from 2008 to 2023 and AGB stock of canopy species in the understory in 2023. 
+In addition to the estimation of AWR biomass flux, we analyzed the effects of nuisance species on recruitment through counts of newly recruited stems. We categorized each species as either canopy or understory based on expert knowledge of life history traits. *Quercus* spp. and *Carya* spp. were grouped by genera to better assess differences between the recruitment of canopy and understory species. We then calculated the number of new stems for each census interval for each species or genera. Finally, we assessed the spatial overlap of biomass loss and recruitment of canopy species. We calculated the net change in AGB within each 0.4 hectare quadrat  between 2008 and 2023 and the AGB of canopy species in the understory in 2023.
 
 # Results 
 
-For the first time since the establishment of  the SCBI ForestGEO site, whole-plot aboveground C stocks decreased (Figure 2). From 2018 to 2023, whole-plot C stocks have decreased from `r wp_ABG_2018` to `r wp_ABG_2023` Mg C ha^-1^. In regions with  high deer density and high canopy vulnerability AGB decreased significantly over the past two censuses, from `r hdhn_ABG_2013` Mg C ha^-1^ in 2013, to `r hdhn_ABG_2018` Mg C ha^-1^ in 2018, and `r hdhn_ABG_2023` Mg C ha^-1^ in 2023. Areas with low density of vulnerable canopy species experienced minor decreases in AGB; C stocks inside and outside of the deer exclosure decreased from **"X to X"**  and **"X to X"** Mg C ha^-1^, respectively.  C stock decrease **is related to/ is explained by** above ground net biomass change. In the first two census intervals, 2008 to 2013 and 2013 to 2018, there were positive C fluxes, but for the 2018 to 2023 interval there was a negative C flux of **VALUE** Mg C/ha/year (Figure 3a).
+For the first time since the establishment of  the SCBI ForestGEO plot, whole-plot aboveground C stocks decreased over the 2018-2023 census interval (Figure 2) . From 2018 to 2023, whole-plot C stocks have decreased from `r wp_AGB_2018` to `r wp_AGB_2023` Mg C ha^-1^. Prior to this census interval, biomass 
+
+In regions with  high deer density and high canopy vulnerability AGB decreased significantly over the past two censuses, from `r hdhn_AGB_2013` Mg C ha^-1^ in 2013, to `r hdhn_AGB_2018` Mg C ha^-1^ in 2018, and `r hdhn_AGB_2023` Mg C ha^-1^ in 2023. Areas with low density of vulnerable canopy species experienced small losses of AGB between 2018 and 2023; inside and outside of the deer exclosure, biomass decreased from `r hdlv_AGB_2018` to `r hdlv_AGB_2023` Mg C ha^-1^  and `r ldlv_AGB_2018` to `r ldlv_AGB_2023` Mg C ha^-1^, respectively. 
+
+
+C stock decrease **is related to/ is explained by** above ground net biomass change. In the first two census intervals, 2008 to 2013 and 2013 to 2018, there were positive C fluxes, but for the 2018 to 2023 interval there was a negative C flux of **VALUE** Mg C/ha/year (Figure 3a).
 
 ![**_Figure `r biomass_trends`. Aboveground biomass at the SCBI ForestGEO plot since 2008 establishment._** Values are shown for the plot as a whole and for habitats differentiated by intensity of deer browsing and 2008 abundance of canopy tree species vulnerable to non-indigenous pests and pathogens.](display/Figure2.jpeg)
 
