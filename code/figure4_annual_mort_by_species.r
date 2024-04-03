@@ -20,10 +20,10 @@ mort_plot_df <- allmort_awm  %>%
   right_join(allspyr)  %>% 
   mutate(abgmort = if_else(is.na(abgmort),0, abgmort))  %>% 
   mutate(sp = if_else(sp %in% c("caco","cagl","caovl","cato"), "Hickory spp.",sp))  %>% 
-  mutate(plotspecies = if_else(sp %in% top_sp$sp,sp, "Other"))  %>% 
+  mutate(plotspecies = if_else(sp %in% top_sp$sp,sp, "All other taxa"))  %>% 
   group_by(survey_year, plotspecies)  %>% 
   summarize(mort_woody = sum(abgmort))  %>% 
-  mutate(plotspecies = factor(plotspecies, levels = c(top_sp$sp, "Other")))
+  mutate(plotspecies = factor(plotspecies, levels = c(top_sp$sp, "All other taxa")))
 
 mort_plot_df$plotspecies <- gsub('fram', 'Fraxinus americana', mort_plot_df$plotspecies)
 mort_plot_df$plotspecies <- gsub('Hickory spp.', 'Carya spp.', mort_plot_df$plotspecies)
@@ -34,7 +34,7 @@ mort_plot_df$plotspecies <- gsub('quru', 'Quercus rubra', mort_plot_df$plotspeci
 mort_plot_df$plotspecies <- gsub('quve', 'Quercus velutina', mort_plot_df$plotspecies)
 
 facet_order <- c("Fraxinus americana", "Quercus velutina", "Quercus rubra", 
-                 "Quercus prinus", "Quercus alba", "Liriodendron tulipifera", "Other")
+                 "Quercus prinus", "Quercus alba", "Liriodendron tulipifera", "All other taxa")
 
 facet_years <- c(2013, 2023)
 
@@ -62,7 +62,7 @@ barp <- ggplot(plotdf, aes(x = survey_year, y = mort_woody, fill = as.ordered(su
         axis.title.x = element_blank(),
         panel.spacing.x = unit(0, "lines"),
         #strip.background = element_blank(),
-        strip.text = element_markdown(size = 9.5), 
+        strip.text = element_markdown(size = 10.5), 
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         legend.position = "none") 
@@ -70,7 +70,7 @@ barp <- ggplot(plotdf, aes(x = survey_year, y = mort_woody, fill = as.ordered(su
 
 barp
 ggsave(barp,filename = "doc/display/Figure4.jpeg", units = "in",
-        height = 6, width = 10, dpi = 300)
+        height = 6, width = 11, dpi = 300)
 
 
 ##### III - Linear regressions plots of trend over time #####

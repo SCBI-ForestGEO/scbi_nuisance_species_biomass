@@ -106,16 +106,18 @@ awr_group1_2013 <- fig3_textresults %>% filter(Census == "2" & Group == "1" & Fl
 awr_group1_2018 <- fig3_textresults %>% filter(Census == "3" & Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
 awr_group1_2023 <- fig3_textresults %>% filter(Census == "4" & Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
 
+awr_group1_avg <- fig3_textresults %>% filter(Group == "1" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% mean()  %>% round(digits = 3)
+
 #Group 2
 awr_group2_2013 <- fig3_textresults %>% filter(Census == "2" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
 awr_group2_2018 <- fig3_textresults %>% filter(Census == "3" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
 awr_group2_2023 <- fig3_textresults %>% filter(Census == "4" & Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
+awr_group2_avg <- fig3_textresults %>% filter(Group == "2" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% mean()  %>% round(digits = 3)
 #Group 3
 awr_group3_2013 <- fig3_textresults %>% filter(Census == "2" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
 awr_group3_2018 <- fig3_textresults %>% filter(Census == "3" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
 awr_group3_2023 <- fig3_textresults %>% filter(Census == "4" & Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
-
+awr_group3_avg <- fig3_textresults %>% filter(Group == "3" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% mean()  %>% round(digits = 3)
 #Whole Plot
 awr_wholePlot_2013 <- fig3_textresults %>% filter(Census == "2" & Group == "Whole Plot" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
 awr_wholePlot_2018 <- fig3_textresults %>% filter(Census == "3" & Group == "Whole Plot" & Flux == "AWR") %>% pull(MgC_Yr_Ha) %>% round(digits = 1)
@@ -127,20 +129,23 @@ awr_wholePlot_2023 <- fig3_textresults %>% filter(Census == "4" & Group == "3" &
 #Averages
 
 avg_fram <- figure4_textresults %>% filter(plotspecies == "Fraxinus americana") %>% 
-  pull(mort_woody) %>% sum()/11
+  pull(mort_woody) %>% sum()/11  
 avg_quve <- figure4_textresults %>% filter(plotspecies == "Quercus velutina") %>% 
-  pull(mort_woody) %>% sum()/11
+  pull(mort_woody) %>% sum()/11 
 avg_quru <- figure4_textresults %>% filter(plotspecies == "Quercus rubra") %>% 
-  pull(mort_woody) %>% sum()/11
+  pull(mort_woody) %>% sum()/11 
 avg_qupr <- figure4_textresults %>% filter(plotspecies == "Quercus prinus") %>% 
-  pull(mort_woody) %>% sum()/11
+  pull(mort_woody) %>% sum()/11 
 avg_qual <- figure4_textresults %>% filter(plotspecies == "Quercus alba") %>% 
-  pull(mort_woody) %>% sum()/11
+  pull(mort_woody) %>% sum()/11 
 avg_litu <- figure4_textresults %>% filter(plotspecies == "Liriodendron tulipifera") %>% 
-  pull(mort_woody) %>% sum()/11
+  pull(mort_woody) %>% sum()/11 
 avg_other <- figure4_textresults %>% filter(plotspecies == "Other") %>% 
-  pull(mort_woody) %>% sum()/11
+  pull(mort_woody) %>% sum()/11 
 
+avg_fram_quve <- (avg_fram + avg_quve) %>% round(1)
+
+avg_all_other <- (avg_other + avg_litu + avg_qual + avg_qupr + avg_quru)  %>% round(1)
 
 #Five Year Averages for top three species -- Calculated with survey_years 2014-2023
 
@@ -159,9 +164,9 @@ avg_quru_second5 <- figure4_textresults %>% filter(plotspecies == "Quercus rubra
 
 #Peak for each species
 
-fram_peak <- figure4_textresults %>% filter(plotspecies == "Fraxinus americana") %>% pull(mort_woody) %>% max()
+fram_peak <- figure4_textresults %>% filter(plotspecies == "Fraxinus americana") %>% pull(mort_woody) %>% max()  %>% round(1)
 
-quve_peak <- figure4_textresults %>% filter(plotspecies == "Quercus velutina") %>% pull(mort_woody) %>% max()
+quve_peak <- figure4_textresults %>% filter(plotspecies == "Quercus velutina") %>% pull(mort_woody) %>% max() %>% round(1)
 
 quru_peak <- figure4_textresults %>% filter(plotspecies == "Quercus rubra") %>% pull(mort_woody) %>% max()
 
@@ -181,6 +186,7 @@ other_peak <- figure4_textresults %>% filter(plotspecies == "Other") %>% pull(mo
 group1_canopy <- figure5_textresults %>% filter(Group == "1" & canopy_position == "canopy")%>% pull(n_stems) %>% sum(na.rm = TRUE)
 group2_canopy <- figure5_textresults %>% filter(Group == "2" & canopy_position == "canopy")%>% pull(n_stems) %>% sum(na.rm = TRUE)
 group3_canopy <- figure5_textresults %>% filter(Group == "3" & canopy_position == "canopy")%>% pull(n_stems) %>% sum(na.rm = TRUE)
+group2_3_canopy <- figure5_textresults %>% filter(Group %in% c("2","3") & canopy_position == "canopy") %>% group_by(plot_sp)  %>% summarize(n_stems = mean(n_stems,na.rm = T))  %>%  pull(n_stems) %>% sum(na.rm = TRUE)
 
 #Understory
 group1_understory <- figure5_textresults %>% filter(Group == "1" & canopy_position == "understory")%>% pull(n_stems) %>% sum(na.rm = TRUE)
