@@ -189,7 +189,7 @@ group3_canopy <- figure5_textresults %>% filter(Group == "3" & canopy_position =
 group2_3_canopy <- figure5_textresults %>% filter(Group %in% c("2","3") & canopy_position == "canopy") %>% group_by(plot_sp)  %>% summarize(n_stems = mean(n_stems,na.rm = T))  %>%  pull(n_stems) %>% sum(na.rm = TRUE)
 
 #Understory
-group1_understory <- figure5_textresults %>% filter(Group == "1" & canopy_position == "understory")%>% pull(n_stems) %>% sum(na.rm = TRUE)
+group1_understory <- figure5_textresults %>% filter(Group == "1" & canopy_position == "understory")%>% pull(n_stems) %>% sum(na.rm = TRUE)  %>% round()
 group2_understory <- figure5_textresults %>% filter(Group == "2" & canopy_position == "understory")%>% pull(n_stems) %>% sum(na.rm = TRUE)
 group3_understory <- figure5_textresults %>% filter(Group == "3" & canopy_position == "understory")%>% pull(n_stems) %>% sum(na.rm = TRUE)
 
