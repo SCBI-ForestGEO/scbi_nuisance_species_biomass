@@ -4,9 +4,9 @@ library(terra)
 library(tidyterra)
 
 
-setwd("C:/Work/Smithsonian/Repos/SCBI-ForestGEO-Data/")
-load("tree_main_census/data/scbi.stem1.rdata")
-load("tree_main_census/data/scbi.spptable.rdata")
+#setwd("C:/Work/Smithsonian/Repos/SCBI-ForestGEO-Data/")
+scbi.stem1 <- load("data/census_data/scbi.stem1.corrected.rdata")
+scbi.spptable <- load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.spptable.rdata"))
 
 quadrats <- st_read("spatial_data/shapefiles/20m_grid.shp")
 dem <- rast("spatial_data/elevation/rasters/plot_elevation.tif")

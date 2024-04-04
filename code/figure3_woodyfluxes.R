@@ -40,7 +40,7 @@ fig3_woodyfluxes <- group_trends  %>%
                               Census == 4 ~ "2018-\n2023")
   )
 
-
+ 
 colz <- c("#E7BC40","#C7622B", "#750000","#7e937f")
 flux_names <- as_labeller(c("AWM" = "Aboveground Woody Mortality",
                             "AWP" = "Aboveground Woody Growth",
@@ -67,6 +67,7 @@ fig3 <- ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, gr
         axis.text.x = element_text(size = 18, margin = margin(t = .15,r = 0, b = .05,l = 0,unit = "in"), angle = 45, hjust = 1),
         axis.text.y = element_text(size = 18, margin = margin(t = 0,r = .08, b = 0,l = 0, unit = "in")),
         axis.title = element_text(size = 20)) 
+
 
 fig3
 
