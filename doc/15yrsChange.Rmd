@@ -201,13 +201,21 @@ Recruitment of canopy tree species was low throughout the plot (Fig. `r recruitm
 Moreover, low recruitment of canopy species in areas with high canopy vulnerability suggests that heavy deer browsing on canopy species may be exacerbated in areas with canopy openings due to nuisance-species driven mortality where fast-growing understory species that are resistant to deer can take advantage, further competing with canopy recruitment.
 Thus, nuisance species have severely compromised both recent and future carbon sequestration in this forest, contradicting models projecting increases in AGB [@wu_uncertainty_2023].
 
+While nuisance species have had a large impact on AGB loss at our site, simultaneous changes including stand aging and climate change have also contributed to observed trends.
+The majority of AGB loss has occurred through increased EAB-driven mortality of *Fraxinus spp.* [@anderson-teixeira_longterm_2021], yet mortality among oak species, which is not linked to a non-indigenous nuisance species, is substantial as well (Fig. `r mortality_by_genera`).
+As is the case at our site, oak species in the region are generally found in older, relatively even aged cohorts, and this can contribute to accelerated mortality rates (Oak et al., 2016).
+However, large oak mortality events, which often occur over protracted periods of time, have been common globally over the past century and are often termed “oak decline” due to the complex abiotic and biotic factors which interact to incite mortality (Manion and Lachance, 1992).
+Oak decline is believed to be the result of climate-driven imbalances in carbohydrate dynamics, which weakens oak trees’ resistance to pest and pathogen invasion, eventually leading to mortality (Manion and Lachance, 1992).<!--KAT added "climate-driven" . Not entirely sure that's true -- need to verify.-->
+Similarly, stand aging and climate change may both have contributed to the observed decline in AWP, which in turn contributed to reduced AGB.
+Specifically, reductions in individual tree growth rates at this site are associated with increasing stem diameters, an aging stand, and rising summer temperatures **(Anderson-Teixeira et al. 2022, Dow et al. 2022)**.<!--refs need to be inserted.-->
+These complexities underscore the importance of multiple anthropogenic stressors, including but not limited to nuisance species, in shaping 21^st^ century forest carbon dynamics.
+
+The observed trends in AGB loss, including increasing AWM and decreasing AWP, will not necessarily be maintained as simple directional trends in the future.
+The top dirver of increasing AWM has been EAB-driven mortality of *Fraxinus spp.*, but *Fraxinus* AWM has started declining as most individuals ≥10 cm have already died (Fig. `r mortality_by_genera`).
+...
 
 
-While nuisance species have had a large impact on AGB loss at our site (primarily through increased AWM of *Fraxinus americana*; Anderson-Teixeira et al, 2021), mortality among oak species, which is not linked to a non-indigenous nuisance species, is substantial as well.
-Oak species in the region are generally found in older, even aged cohorts, which can contribute to accelerated mortality rates (Oak et al., 2016).
-However, large oak mortality events, which often occur over protracted periods of time, have been common globally over the past century.
-These mortality events are often termed “oak decline” due to the complex abiotic and biotic factors which interact to incite mortality (Manion and Lachance, 1992).
-Oak decline is believed to be the result of an imbalance in carbohydrate dynamics, which weakens oak trees’ resistance to pest and pathogen invasion, eventually leading to mortality (Manion and Lachance, 1992).
+
 
 Relying on the current understory as a proxy for future canopy presents challenges.
 White-tailed deer populations have varied greatly over the last century [@hanberry_regaining_2020].
