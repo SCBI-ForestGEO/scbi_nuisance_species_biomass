@@ -210,12 +210,11 @@ Similarly, stand aging and climate change may both have contributed to the obser
 Specifically, reductions in individual tree growth rates at this site are associated with increasing stem diameters, an aging stand, and rising summer temperatures [@dow_warm_2022; @anderson-teixeira_joint_2022].
 These complexities underscore the importance of multiple anthropogenic stressors, including but not limited to nuisance species, in shaping 21^st^ century forest carbon dynamics.
 
-Relying on the current understory as a proxy for future canopy presents challenges.
-White-tailed deer populations have varied greatly over the last century [@hanberry_regaining_2020].
-Moreover, some canopy species, including some *Quercus* spp., are hypothesized to recruit in synchronized pulse events [@koenig_brief_2021].
-A decline in deer population that reduces browsing pressure and coincides with a recruitment pulse could allow for substantial, rapid regeneration of canopy species.
+Similarly, a complex chain of processes -- from seed production to germination and seedling survival -- affects sapling recruitment, and relying on the current understory as a proxy for future canopy presents challenges.
+Some canopy species, including some *Quercus* spp., are hypothesized to recruit in synchronized pulse events [@koenig_brief_2021].
+Moreover, white-tailed deer populations have varied greatly over the last century [@hanberry_regaining_2020], and a decline in deer population that reduces browsing pressure and coincides with a recruitment pulse could allow for substantial, rapid regeneration of canopy species.
 However, current recruitment levels are below a rate which we would expect in maturing secondary forests.
-When overlaid with increasing mortality, regeneration may be insufficient to prevent extended periods without a closed canopy.
+When overlaid with increasing mortality, regeneration is likely to be insufficient to prevent extended periods without a closed canopy.
 
 The observed trends in AGB loss, including increasing AWM and decreasing AWP, will not necessarily be maintained as continuous directional trends in the future.
 The top driver of increasing AWM has been EAB-driven mortality of *Fraxinus spp.*, but *Fraxinus* AWM has started declining as most individuals ≥10 cm have already died (Fig. `r mortality_by_genera`).
