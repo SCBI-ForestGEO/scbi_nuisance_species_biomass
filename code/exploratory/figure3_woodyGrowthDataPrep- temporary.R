@@ -11,12 +11,12 @@ create_stem_UID <- function(census_df, TID_col = "tag", SID_col = "StemTag") {
 }
 
 #Read in data from ALL censuses and the species table
-grouped_quadrats <- read.csv("C:/Work/Smithsonian/Repos/15yrsChange/data/grouped_quadrats.csv")  %>% 
+grouped_quadrats <- read.csv("data/grouped_quadrats.csv")  %>% 
   mutate(quadrat = sprintf("%04d",quadrat))
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem1.corrected.rdata")
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem2.corrected.rdata")
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem3.corrected.rdata")
-load("C:/Work/Smithsonian/Repos/15yrsChange/data/census_data/scbi.stem4.corrected.rdata")
+load("data/census_data/scbi.stem1.corrected.rdata")
+load("data/census_data/scbi.stem2.corrected.rdata")
+load("data/census_data/scbi.stem3.corrected.rdata")
+load("data/census_data/scbi.stem4.corrected.rdata")
 
 load(url("https://github.com/SCBI-ForestGEO/SCBI-ForestGEO-Data/raw/master/tree_main_census/data/scbi.spptable.rdata"))
 
