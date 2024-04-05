@@ -195,30 +195,31 @@ There were significant areas of suppressed regeneration of canopy species, often
 
 Our results reveal that aThe combination of declining biomass (-∆AGB) and limited recruitment of canopy species in the understory is compromising the potential carbon sink of the SCBI ForestGEO plot, now and into the future. 
 Decreases in AGB were largest in the plot areas with high canopy vulnerability to pests and pathogens.
-These regions also exhibited the lowest recruitment of canopy species in the understory. Deer severely depleted regeneration of canopy species and the region with low deer density maintained the highest amount of canopy species in the understory.
+These regions also exhibited the lowest recruitment of canopy species in the understory.
+Deer severely depleted regeneration of canopy species and the region with low deer density maintained the highest amount of canopy species in the understory.
 Despite localized increases in AGB, notably in areas with low canopy vulnerability, on net, these increases are not outpacing AGB lost through a combination of increased AWM and decreasing AWG.
 Total ABG stocks in the plot were lower in 2023 than in 2013. Moreover, the low recruitment of canopy species in areas with high canopy vulnerability suggests that heavy deer browsing on canopy species may be exacerbated in areas with canopy openings due to nuisance-species driven mortality where fast-growing understory species that are resistant to deer can take advantage, further competing with canopy recruitment.
 
 While nuisance species have had a large impact on AGB loss at our site (primarily through increased AWM of *Fraxinus americana*; Anderson-Teixeira et al, 2021), mortality among oak species, which is not linked to a non-indigenous nuisance species, is substantial as well.
 Oak species in the region are generally found in older, even aged cohorts, which can contribute to accelerated mortality rates (Oak et al., 2016).
 However, large oak mortality events, which often occur over protracted periods of time, have been common globally over the past century.
-These mortality events are often termed “oak decline” events due to the complex abiotic and biotic factors which interact to incite mortality (Manion and Lachance, 1992).
+These mortality events are often termed “oak decline” due to the complex abiotic and biotic factors which interact to incite mortality (Manion and Lachance, 1992).
 Oak decline is believed to be the result of an imbalance in carbohydrate dynamics, which weakens oak trees’ resistance to pest and pathogen invasion, eventually leading to mortality (Manion and Lachance, 1992).
 
 Relying on the current understory as a proxy for future canopy presents challenges.
-White-tailed deer populations have varied greatly over the last century (citation).
+White-tailed deer populations have varied greatly over the last century [@citation].
 Moreover, some canopy species, including some *Quercus* spp., are hypothesized to recruit in synchronized pulse events (Koenig, 2021).
-A decline in deer population that reduces browsing pressure and coincides with a recruitment pulse, could allow for substantial, rapid regeneration of canopy species.
+A decline in deer population that reduces browsing pressure and coincides with a recruitment pulse could allow for substantial, rapid regeneration of canopy species.
 However, current recruitment levels are below a rate which we would expect in maturing secondary forests.
 When overlaid with increasing mortality, regeneration may be insufficient to prevent extended periods without a closed canopy.
 
 Despite inherent limitations in extrapolating findings from a single site, we find robust evidence suggesting broader applicability.
 Mixed-hardwood forests, akin to our study site, are typical of the mid-Atlantic region. The persistently elevated deer populations documented at this site are reported throughout eastern US forests.
-Furthermore,the widespread occurrence of vulnerable species (*e.g.* *Fraxinus* spp.) and continued spread of non-indigenous nuisance species (*e.g.* emerald ash borer, EAB) reinforces the relevance of our findings to the broader regional context.
+Furthermore, the widespread occurrence of vulnerable species (*e.g.* *Fraxinus* spp.) and continued spread of non-indigenous nuisance species (*e.g.* emerald ash borer, EAB) reinforces the relevance of our findings to the broader regional context.
 EAB consistently induces near-total mortality in *Fraxinus* spp. once infected, to such an extent that five species in North America (including *Fraxinus americana*) are now critically endangered (Knight et al, 2013, IUCN Red list). 
 
 Our results underscore the importance of accounting for nuisance species in higher-level models and understanding of temperate forest ecosystem processes.
-Nuisance species, driven by human introduction and perturbations to ecological equilibriums, interact with other anthropogenic changes to modify forest ecosystems.
+Nuisance species, driven by human introduction and perturbations to ecological equilibria, interact with other anthropogenic changes to modify forest ecosystems.
 By increasing mortality, nuisance species have the capacity to alter short-term carbon dynamics, resulting in large carbon losses that would not be expected in models that exclude them.
 Through recruitment suppression, nuisance species can have long-term effects that may alter successional dynamics. They can delay recovery from disturbances, anthropogenic or natural, and even suppress regeneration into a closed-canopy for sustained periods.
 They also can decrease resilience to other pressures as pests and pathogens decrease canopy diversity by shrinking the number of possible canopy species.
