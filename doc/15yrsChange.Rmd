@@ -91,11 +91,11 @@ for submission to Anthromes joint special collection in New Phytologist: https:/
 #Figures
 map_and_photos = 1
 
-biomass_trends = 2 #line plot showing biomass through time for entire plot and each of the 3 focal sections
+loss_gain_net = 2 # 4-panel figure showing ∆AGB, loss, and gain for (a) whole plot, (b) deer exclosure, (c) upland, (d) graveyard
 
-loss_gain_net = 3 # 4-panel figure showing ∆AGB, loss, and gain for (a) whole plot, (b) deer exclosure, (c) upland, (d) graveyard
+mortality_by_genera = 3 # 2-panel figure showing annual biomass mortality by genera for (a) canopy species and (b) understory species
 
-mortality_by_genera = 4 # 2-panel figure showing annual biomass mortality by genera for (a) canopy species and (b) understory species
+biomass_trends = 4 #line plot showing biomass through time for entire plot and each of the 3 focal sections
 
 recruitment_by_genera = 5 # 2-panel figure showing # of recruited stems by genera for (a) canopy species and (b) understory species by plot regions
 
