@@ -80,7 +80,7 @@ Kristina J. Anderson-Teixeira^1,2^ ( Orcid ID : 0000-0001-8461-9713)
 
 **Running head:** <!-- ≤45 characters-->
 
-for submission to Anthromes joint special collection in New Phytologist/ Plants, People, Planet: https://www.newphytologist.org/news/view/332 
+for submission to Anthromes joint special collection in New Phytologist: https://www.newphytologist.org/news/view/332 
 
 
 ```{r eval = TRUE, echo=FALSE, warning=FALSE, results='hide'}
@@ -193,12 +193,14 @@ There were significant areas of suppressed regeneration of canopy species, often
 
 # Discussion 
 
-Our results reveal that aThe combination of declining biomass (-∆AGB) and limited recruitment of canopy species in the understory is compromising the potential carbon sink of the SCBI ForestGEO plot, now and into the future. 
-Decreases in AGB were largest in the plot areas with high canopy vulnerability to pests and pathogens.
-These regions also exhibited the lowest recruitment of canopy species in the understory.
-Deer severely depleted regeneration of canopy species and the region with low deer density maintained the highest amount of canopy species in the understory.
-Despite localized increases in AGB, notably in areas with low canopy vulnerability, on net, these increases are not outpacing AGB lost through a combination of increased AWM and decreasing AWG.
-Total ABG stocks in the plot were lower in 2023 than in 2013. Moreover, the low recruitment of canopy species in areas with high canopy vulnerability suggests that heavy deer browsing on canopy species may be exacerbated in areas with canopy openings due to nuisance-species driven mortality where fast-growing understory species that are resistant to deer can take advantage, further competing with canopy recruitment.
+Our results reveal that nuisance species have compromised biomass stocks and regenerative capacity at the SCBI ForestGEO plot, reducing the recent and future carbon sink of this forest.
+Canopy tree mortality and associated AWM increased, particularly in plot areas affected most heavily by non-indigenous insects and pathogens (hypothesis 1, Figs. 2-3).
+These increases in AWM were not offset by biomass increases through AWP, which decreased, or recruitment, resulting in net biomass loss (hypothesis 2, Figs. 2,4).
+This net AGB loss occurred despite localized increases in AGB across most of the plot, particularly in areas with low canopy vulnerability (Fig. 6).
+Recruitment of canopy tree species was low throughout the plot (Fig. 5), and there was low biomass of canopy species in the understory, particularly in areas with high deer density (Fig. 6). 
+Moreover, low recruitment of canopy species in areas with high canopy vulnerability suggests that heavy deer browsing on canopy species may be exacerbated in areas with canopy openings due to nuisance-species driven mortality where fast-growing understory species that are resistant to deer can take advantage, further competing with canopy recruitment.
+Thus, nuisance species have severely compromised both recent and future carbon sequestration in this forest, contradicting models projecting increases in AGB [@wu_uncertainty_2023].
+
 
 While nuisance species have had a large impact on AGB loss at our site (primarily through increased AWM of *Fraxinus americana*; Anderson-Teixeira et al, 2021), mortality among oak species, which is not linked to a non-indigenous nuisance species, is substantial as well.
 Oak species in the region are generally found in older, even aged cohorts, which can contribute to accelerated mortality rates (Oak et al., 2016).
