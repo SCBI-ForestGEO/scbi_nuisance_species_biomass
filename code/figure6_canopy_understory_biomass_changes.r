@@ -176,7 +176,7 @@ barp <- ggplot(barp_df) +
   theme_classic() +
   scale_fill_identity() +
   ylab("% Area") +
-  scale_x_discrete(labels  = c("1" = "Low deer,\nlow vulnerable species","2" = "High deer,\n low vulnerable species","3" = "High deer,\n high vulnerable species")) +
+  scale_x_discrete(labels  = c("1" = "Low deer,\nlow canopy vulnerability","2" = "High deer,\n low canopy vulnerability","3" = "High deer,\n high canopy vulnerability")) +
   theme(axis.text = element_text(angle = 45, hjust = 1, size = 16),
         axis.title.y = element_text(size = 18),
         axis.title.x = element_blank())
@@ -189,7 +189,7 @@ fig6 <- cowplot::ggdraw() +
 fig6
 
 
-ggsave(fig6,filename = "C:/Work/Smithsonian/Repos/15yrsChange/doc/display/Figure6.jpeg", units = "in", height = 8, width = 10, dpi = 300)
+ggsave(fig6,filename = "doc/display/Figure6.jpeg", units = "in", height = 8, width = 10, dpi = 300)
 
 
 
