@@ -105,17 +105,22 @@ plotdf <- quadrat_shp  %>%
   left_join(bivariate_color_scale) 
 
 map <- ggplot(data = plotdf) +
+    labs(tag = "(a)") +
     scale_alpha(name = "",range = c(.6,0),guide = F) +
-    geom_sf(aes(fill = fill),color = "white",size = .1) +
+    geom_sf(aes(fill = fill),color = "black",size = .1) +
     geom_sf(data = deer_exclosure, colour = "black", fill = NA,lwd = 1.5) +
     scale_fill_identity() +
     # geom_sf(data = deer_exclosure, colour = "black", fill = NA,lwd = 1.5) +
-    theme_classic() +
-    theme(plot.margin = unit(c(0,0,0,10), "cm"),
+#    theme_classic() +
+    theme_bw() +
+    theme(plot.margin = unit(c(0,0,0,0), "cm"),
           legend.position = "none",
-          axis.line = element_blank(),
+          #axis.line = element_blank(),
           axis.text = element_blank(),
-          axis.ticks = element_blank())
+          #axis.ticks = element_blank(),
+       #   plot.background = element_rect(color = "black", linewidth = 1),
+          plot.tag = element_text(face = "bold",size = 18),
+          plot.tag.position = c(.05,.98))
 
 
 legend <- ggplot() +
@@ -134,8 +139,9 @@ legend <- ggplot() +
   theme_classic() +
   # make font small enough
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    axis.title = element_text(size = 12)
+    axis.text.x = element_text(angle = 45, hjust = 1,size = 12),
+    axis.text.y = element_text(size = 14),
+    axis.title = element_text(size = 16)
   ) +
   # quadratic tiles
   coord_fixed()
@@ -172,23 +178,32 @@ barp_df2 <- barp_df  %>%
 barp <- ggplot(barp_df) +
   geom_bar(stat = "identity",aes(x = as.character(Group), y = pct_area,group = plot_group ,fill = fill)) +
 #  geom_bar(data = barp_df2, stat = "identity", aes( x = as.character(Group), y = pct_area,group = factor(understory)), col = "white", fill = "transparent", lwd = 1.2) +
-  geom_vline(xintercept = 3.5) +
+  geom_vline(xintercept = 3.5,lwd = 1.3) +
   theme_classic() +
   scale_fill_identity() +
   ylab("% Area") +
-  scale_x_discrete(labels  = c("1" = "Low deer,\nlow canopy vulnerability","2" = "High deer,\n low canopy vulnerability","3" = "High deer,\n high canopy vulnerability")) +
-  theme(axis.text = element_text(angle = 45, hjust = 1, size = 16),
+  scale_x_discrete(labels  = c("1" = "Low deer,\nlow canopy\n vulnerability","2" = "High deer,\n low canopy\nvulnerability","3" = "High deer,\n high canopy\n vulnerability")) +
+  labs(tag = "(b)") +
+  theme(plot.margin = unit(c(.1,.1,0,0), "cm"),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 14),
         axis.title.y = element_text(size = 18),
-        axis.title.x = element_blank())
+        axis.title.x = element_blank(),
+        plot.background = element_rect(color = "black", linewidth = 1),
+        plot.tag = element_text(face = "bold",size = 18),
+        plot.tag.position = c(.04,.94))
+
 fig6 <- cowplot::ggdraw() +
-  cowplot::draw_plot(map, 0, 0, 1, 1) +
-  cowplot::draw_plot(legend, x = 0.15, y = 0.6, width = 0.25, height = 0.3) +
-  cowplot::draw_plot(barp, x = .10,  y = 0.0001,width =  .35, height = 0.6)
-
-
+  cowplot::draw_plot(map, 0.2, 0, 1, 1) +
+  cowplot::draw_plot(legend, x = 0.05, y = 0.6, width = 0.4, height = 0.35) +
+  cowplot::draw_plot(barp, x = 0,  y = 0,width =  .43, height = 0.6)
 fig6
 
-
+theme_border <- theme_gray() + 
+  theme(plot.background = element_rect(fill = NA, colour = 'black', size = 1))
+fig6 <- fig6 +  
+  plot_annotation(theme = theme_border)
+fig6
 ggsave(fig6,filename = "doc/display/Figure6.jpeg", units = "in", height = 8, width = 10, dpi = 300)
 
 
