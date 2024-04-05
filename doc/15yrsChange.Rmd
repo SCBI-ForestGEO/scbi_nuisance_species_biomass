@@ -214,7 +214,8 @@ Future research should build on our results by expanding these analyses to other
 
 # Acknowledgements {-#Acknowledgements}
 
-- Funding: ForestGEO
+We gratefully acknowledge the many researchers who have collected data at the SCBI ForestGEO plot over the years. 
+This research was funded by Smithsonian's Forest Global Earth Observatory, Smithsonian's National Zoo and Conservation Biology Institute, NSF Macrosystems grant #2106015, and grants from Virginia Native Plants Society<!--2017 and 2019 mortality censuses--> and Shenandoah National Park Trust<!--2018 mortality census-->.
 
 
 # Competing Interests {-#Conflict}
@@ -222,7 +223,7 @@ The authors declare no conflict of interest.
 
 # Author Contributions {-#Authors}
 
-LLM, RMH, KJB, IAK, EM, CT, JS, KAT, WJM and NAB conceived the ideas and designed methodology; RMH, KJB, IAK, EM, CT, CP, EGA, JJ, JS and LM collected the data; LLM, RH, KJB, IAK, EM and VH analyzed the data; LLM and RMH led the writing of the manuscript. All authors contributed critically to the drafts and gave final approval for publication.
+LLM, RMH, KJB, IAK, EM, CT, DM, JS, NAB, WJM, and KAT conceived the ideas and designed methodology; all researchers contributed to data collection; LLM, RH, KJB, IAK, EM and VH analyzed the data; LLM and RMH led the writing of the manuscript. All authors contributed critically to the drafts and gave final approval for publication.
 
 # Data availability {-#Data}
 
