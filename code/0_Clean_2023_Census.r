@@ -35,7 +35,7 @@ census2023_hom_corrections <- census2023  %>%
          taper_sp = if_else(true_sp %in% scbi_taper_coefficients$spcd, true_sp, "other"),
          hom = if_else((is.na(hom)) & status_current %in% c("LI"), 1.3, hom))  %>%  #correct living stems that have a HoM of 0 or NA -> 1.3m 
   left_join(scbi_taper_coefficients,by = c("taper_sp" = "spcd"))  %>% 
-  mutate(dbhc_mm = if_else(!(status_current %in% c("LI")), NA,  usfs_taper(dh = dbh_current / 1000, h = hom, stump_taper = Stump.taper.rate, stem_taper = Stem.taper.rate)) * 10,
+  mutate(dbhc_mm = if_else(!(status_current %in% c("LI")), NA,  usfs_taper(dh = dbh_current / 1000, h = hom, stump_taper = Stump.taper.rate, stem_taper = Stem.taper.rate)) * 10, #apply tapering corrections
          dbh_mm = dbh_current)  
 
 

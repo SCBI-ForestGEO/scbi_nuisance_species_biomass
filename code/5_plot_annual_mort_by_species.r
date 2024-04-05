@@ -45,7 +45,7 @@ facet_years <- c(2013, 2023)
 ##### II - Plot mortality by species #####
 plotdf <- mort_plot_df  %>% 
   mutate(plotspecies = factor(plotspecies, levels = facet_order))
-facet_labels <- if_else(!grepl("Other",facet_order), paste0("*",facet_order,"*"),facet_order)
+facet_labels <- if_else(!grepl("All other taxa",facet_order), paste0("*",facet_order,"*"),facet_order)
 names(facet_labels) <- facet_order
 
 barp <- ggplot(plotdf, aes(x = survey_year, y = mort_woody, fill = as.ordered(survey_year))) +
