@@ -7,3 +7,5 @@ doc/display/.DS_Store
 *.dtmp
 *.bkp
 .Rproj.user
+.Rdata
+.Rhistory
