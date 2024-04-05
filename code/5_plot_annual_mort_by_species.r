@@ -9,8 +9,8 @@ top_sp <- allmort_awm  %>%
   #mutate(sp = if_else(sp %in% c("caco","cagl","caovl","cato"), "Hickory spp.",sp))  %>% 
   ungroup()  %>% 
   group_by(sp)  %>% 
-  mutate(abgmort = if_else(is.na(abgmort),0, abgmort))  %>% 
-  summarize(abgmort = sum(abgmort))  %>% 
+  mutate(abgmort = if_else(is.na(agb_yr),0, agb_yr))  %>% 
+  summarize(abgmort = sum(abgmort) / 25.6 )  %>% 
   arrange(desc(abgmort))  %>% 
   slice_head(n = 7)
 
@@ -18,11 +18,11 @@ allspyr <- allmort_awm  %>%
   expand(sp,survey_year)
 mort_plot_df <- allmort_awm  %>% 
   right_join(allspyr)  %>% 
-  mutate(abgmort = if_else(is.na(abgmort),0, abgmort))  %>% 
+  mutate(abgmort = if_else(is.na(agb_yr),0, agb_yr))  %>% 
   mutate(sp = if_else(sp %in% c("caco","cagl","caovl","cato"), "Hickory spp.",sp))  %>% 
   mutate(plotspecies = if_else(sp %in% top_sp$sp,sp, "All other taxa"))  %>% 
   group_by(survey_year, plotspecies)  %>% 
-  summarize(mort_woody = sum(abgmort))  %>% 
+  summarize(mort_woody = sum(abgmort) / 25.6)  %>% 
   mutate(plotspecies = factor(plotspecies, levels = c(top_sp$sp, "All other taxa")))
 
 mort_plot_df$plotspecies <- gsub('fram', 'Fraxinus americana', mort_plot_df$plotspecies)
