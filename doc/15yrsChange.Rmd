@@ -206,16 +206,9 @@ The majority of AGB loss has occurred through increased EAB-driven mortality of 
 As is the case at our site, oak species in the region are generally found in older, relatively even aged cohorts, and this can contribute to accelerated mortality rates (Oak et al., 2016).
 However, large oak mortality events, which often occur over protracted periods of time, have been common globally over the past century and are often termed “oak decline” due to the complex abiotic and biotic factors which interact to incite mortality (Manion and Lachance, 1992).
 Oak decline is believed to be the result of climate-driven imbalances in carbohydrate dynamics, which weakens oak trees’ resistance to pest and pathogen invasion, eventually leading to mortality (Manion and Lachance, 1992).<!--KAT added "climate-driven" . Not entirely sure that's true -- need to verify.-->
-Similarly, stand aging and climate change may both have contributed to the observed decline in AWP, which in turn contributed to reduced AGB.
-Specifically, reductions in individual tree growth rates at this site are associated with increasing stem diameters, an aging stand, and rising summer temperatures **(Anderson-Teixeira et al. 2022, Dow et al. 2022)**.<!--refs need to be inserted.-->
+Similarly, stand aging and climate change may both have contributed to the observed decline in AWP (Fig. `r loss_gain_net`b), which in turn contributed to reduced AGB (Figs. `r loss_gain_net`, `r biomass_trends`).
+Specifically, reductions in individual tree growth rates at this site are associated with increasing stem diameters, an aging stand, and rising summer temperatures [@dow_warm_2022; @anderson-teixeira_joint_2022].
 These complexities underscore the importance of multiple anthropogenic stressors, including but not limited to nuisance species, in shaping 21^st^ century forest carbon dynamics.
-
-The observed trends in AGB loss, including increasing AWM and decreasing AWP, will not necessarily be maintained as simple directional trends in the future.
-The top dirver of increasing AWM has been EAB-driven mortality of *Fraxinus spp.*, but *Fraxinus* AWM has started declining as most individuals ≥10 cm have already died (Fig. `r mortality_by_genera`).
-...
-
-
-
 
 Relying on the current understory as a proxy for future canopy presents challenges.
 White-tailed deer populations have varied greatly over the last century [@hanberry_regaining_2020].
@@ -223,6 +216,14 @@ Moreover, some canopy species, including some *Quercus* spp., are hypothesized t
 A decline in deer population that reduces browsing pressure and coincides with a recruitment pulse could allow for substantial, rapid regeneration of canopy species.
 However, current recruitment levels are below a rate which we would expect in maturing secondary forests.
 When overlaid with increasing mortality, regeneration may be insufficient to prevent extended periods without a closed canopy.
+
+The observed trends in AGB loss, including increasing AWM and decreasing AWP, will not necessarily be maintained as continuous directional trends in the future.
+The top driver of increasing AWM has been EAB-driven mortality of *Fraxinus spp.*, but *Fraxinus* AWM has started declining as most individuals ≥10 cm have already died (Fig. `r mortality_by_genera`).
+It is possible that increasing AWM will be maintained by trends of increasing oak mortality or by other non-indigenous insects or pathogen, which have arrived in the region in multiple waves over the past century [@anderson-teixeira_longterm_2021]. 
+While it is also possible that AWM will return to its previously low level as EAB recedes, we consider it very likely that oak decline, additional non-indigenous insects or pathogen species (e.g., beech leaf disease), and climate stressors will continue to elevate tree mortality at this site in the coming decades.
+Similarly, the observed long-term declines at this site in AWP (Fig. `r loss_gain_net`b) and individual tree growth [@anderson-teixeira_joint_2022] remain poorly understood, hindering prediction of their future trends.
+Overall, there remains large uncertainty as to the future trend in AGB at this site, but our analysis makes it clear that these trends have been and will continue to be substantially impacted by nuisance species.
+
 
 Despite inherent limitations in extrapolating findings from a single site, we find robust evidence suggesting a broader applicability of our results. 
 Mixed-hardwood forests, akin to our study site, are typical of the mid-Atlantic region. The persistently elevated deer populations documented at this site are reported throughout eastern US forests.
