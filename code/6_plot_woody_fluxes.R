@@ -57,6 +57,11 @@ fig3 <- ggplot(fig3_woodyfluxes, aes(x = as.ordered(cens_int), y = MgC_Yr_Ha, gr
   geom_point(data = fig3_woodyfluxes %>% filter(Group %in% c("3")), pch = 22, cex = 3, fill = "#750000") +
   geom_point (data = fig3_woodyfluxes %>% filter(Group %in% c("Whole Plot")), pch = 16, cex = 3, fill = "#7e937f") +
   geom_hline(data = fig3_woodyfluxes  %>% filter(Flux %in% c("NetFlux")),aes(yintercept = 0), lty = "dashed") +
+  geom_text(data = fig3_woodyfluxes  %>% 
+              group_by(Flux)  %>%  
+              slice(1)  %>% 
+              mutate(label = paste0("(",letters[as.numeric(Flux)],")")),
+              aes(label = label, x = .6, y = c(1.2,7.4,2.85,0.0295)), color = "black", fontface = "bold", cex = 8) +
   scale_color_manual(name = element_blank(),labels = c("Low deer, low canopy vulnerability","High deer, low canopy vulnerability", "High deer, high canopy vulnerability", "Whole Plot"), values = colz, guide = guide_legend(nrow = 2)) +
   labs(y = expression("Carbon Flux"~(Mg~C~ha^-1~yr^-1)), x = "Census") +
   theme_bw() +
