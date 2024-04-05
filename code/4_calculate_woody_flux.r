@@ -1,5 +1,3 @@
-
-
 library(tidyverse)
 library(allodb)
 
@@ -86,19 +84,7 @@ woody_fluxes <- AWP  %>%
 write.csv(woody_fluxes, "C:/Work/Smithsonian/Repos/15yrsChange/data/processed_data/WoodyFluxes.csv")
 
 
-##### IV - Decomposing census mortality & recruitment by species #####
-
-# ### Mortality by species ###
-# AWM_sp <- all_censuses  %>% 
-#   group_by(UID) %>%  
-#   arrange(UID,Census) %>% 
-#   mutate(FutMeasInt = lead(Meas_Int))  %>% 
-#   filter(DFstatus %in% c("alive") & lead(DFstatus) %in% c("dead","broken_below","stem dead"))  %>% 
-#   mutate(WoodyMort = ABG / as.numeric(FutMeasInt), Census = Census + 1)  %>% 
-#   ungroup()  %>% 
-#   group_by(Census,sp)  %>%
-#   summarize(AWM = sum(WoodyMort,na.rm = T) / 1000 /.47)
-
+##### IV - Decomposing recruitment by species #####
 
 ### Recruitment by species ###
 AWR_sp <- all_censuses  %>% 
