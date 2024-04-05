@@ -225,7 +225,10 @@ The authors declare no conflict of interest.
 
 LLM, RMH, KJB, IAK, EM, CT, DM, JS, NAB, WJM, and KAT conceived the ideas and designed methodology; all researchers contributed to data collection; LLM, RH, KJB, IAK, EM and VH analyzed the data; LLM and RMH led the writing of the manuscript. All authors contributed critically to the drafts and gave final approval for publication.
 
-# Data availability {-#Data}
+# Data and code availability {-#Data}
+
+All data and code supporting this analysis are available via the public GitHub repository "15yrsChange" within the SCBI-ForestGEO organization (https://github.com/SCBI-ForestGEO/15yrsChange) and archived in Zenodo (DOI: TBD)<!--this can be obtained once the repo is made public-->.
+The most up-to-date versions of the data products analyzed here are publicly available via the ForestGEO data portal (https://forestgeo.si.edu/explore-data) and the SCBI-ForestGEO GitHub organization (https://github.com/SCBI-ForestGEO).
 
 \newpage
 
