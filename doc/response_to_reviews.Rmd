@@ -1,0 +1,151 @@
+---
+output: 
+    #pdf_document: 
+    bookdown::word_document2: 
+      md_extensions: +raw_html-markdown_in_html_blocks
+      pandoc_args: ['--lua-filter', 'read_html.lua']
+      reference_docx: word-styles-reference.docx #make sure this line is indented! see this guide for formatting: https://rmarkdown.rstudio.com/articles_docx.html
+  #officedown::rdocx_document
+bibliography: citations.bib
+csl: new-phytologist.csl
+
+
+---
+# RESPONSE TO REVIEWS {-}
+
+NPH-MS-2024-46851 Nuisance species compromise carbon sequestration potential in an Eastern US temperate deciduous forest by Morreale, Luca; Hoffman, Rachel; Bagnaschi, Krystal; Kennedy, Iris; MacMonigle, Erin; Troy, Caroline; Dow, Cameron; Gonzalez-Akre, Erika; Herrmann, Valentine; Jordan, Jennifer; Magee, Lukas; Mitre, David; Pate, Christopher; Shue, Jessica; Bourg, Norman; McShea, William; Anderson-Teixeira, Kristina
+
+# Editor {-}
+
+The paper you submitted to New Phytologist, " Nuisance species compromise carbon sequestration potential in an Eastern US temperate deciduous forest" (NPH-MS-2024-46851) has been read by three reviewers, whose comments are below. The reviewers agreed that this is a well written paper on an interesting and important topic, and they recognize the value of long-term observations at a well characterized site. Nevertheless, they identified some substantial problems with the current analysis that preclude publication in New Phytologist. However, if you are able to fully address the current shortcomings, you are invited to submit a revised manuscript as a new paper for consideration.
+
+Although your focus is on temporal trends in carbon storage sequestration, you do not present quantitative data on ecosystem C. Reviewer 1 points out that you have said little about the fate of C in dead trees and have not considered soil C at all. Reviewer 2 discusses the lack of any consideration of variability or any statistical support for your conclusions. The reviewer suggests analyzing variation among quadrants – yes, this would be pseudoreplication, but that is probably better than no replication at all.
+Reviewer 2 and 3 both question your unsubstantiated statements about long-term trends and the provocative conclusion about a tipping point or possible transition to a net C source. I think that in this regard, some analysis of both near-term and long-term trends of forest growth and dynamics at the site prior to the current study could be useful (site history, tree-ring analysis?). For example, had you done this study a century ago when a nuisance species was decimating the American chestnut (perhaps not at this particular site, but certainly at similar Appalachian forests), would you have made similar conclusions about transition to lower biomass forest and perhaps a C source?
+
+You emphasize that the effect of nuisance species should be included in models, but you provide no guidance on how this might be accomplished.
+
+If you choose to revise your manuscript for reconsideration by New Phytologist, please address the other suggestions and concerns of the reviewers in addition to the major ones highlighted above. You should submit your revision via Manuscript Central as a new paper (see instructions below), and it will be sent out for review again. You will be asked to include a detailed description of how you responded to each of the reviewers' comments. Please note that it is the policy of New Phytologist to permit only one such resubmission, and I think that in this case the bar is high for a revision that meets all of these concerns. If on the other hand you decide instead to send your paper to another journal, I do hope you will find these reviewers' comments helpful.
+
+Thank you for submitting your work to New Phytologist.
+
+Sincerely,
+
+Richard Norby
+Editor, New Phytologist
+
+
+
+# Referee: 1 {-}
+
+In this paper titled “Nuisance species compromise carbon sequestration potential in an Eastern US temperate deciduous forest” Morreale et al. describe different aspects of  carbon accumulation at a  25.6-hectare Forest plot that are very well studied. Results are very interesting and eye opening, since they found that problematic animals and microbes can drastically reduce carbon sequestration and storage.  I have some questions about the paper and some suggestions.
+
+My main concern is how some of these numbers were calculated. Based on my reading (but I may be confused) they seem to imply that dead trees do not sequester carbon. Although it is clear that dead trees stop increasing their biomass, they keep their carbon for decades (carbon storage) and in the meantime younger trees occupy their space since more light reach the understory. The authors show a 50% decrease in late succession species in areas with high density of deer. But you only need one tree to replace another, so even a 50% decrease may not imply that there will not be replacement.  I am not an expert on the models used here (and I guess that most readers are not), so some clarification on this can be important.
+
+The first thing I thought when I read the title was about invasive plants, not animals and pathogens. You are focused here only is a subset of “nuisance species”. I wonder if results would change if you considered weeds in the mix (including nonnative trees). We have done some research on related topics (tree invasion in treeless areas, see for example papers titled “Unintended consequences of planting native and non-native trees in treeless ecosystems to mitigate climate change” or “Should tree invasions be used in treeless ecosystems to mitigate climate change?”) and it likely that even in your sites invasive plants actually reduce carbon, but it would be interesting if you mention something about nonnative plants in the discussion. Alternatively, you can change the title to make it more clear to what you are referring to. Lots of readers of this journal are plant focused.
+
+The article highlighted the limitations that this was done only in one area, but there is another key limitation in my opinion. It is about the lack of data of soil carbon and belowground biomass. If we are curious about carbon sequestration in forests, soils are truly a fundamental part. Some discussion on this would be important.
+
+All in all, this paper has some limitations but the data is indeed very interesting. I hope the authors can address these issues.
+
+
+# Referee: 2 {-}
+
+
+## Synopsis: {-}
+
+Morreale et al. present a study of forest carbon dynamics in portions of the SCBI ForestGEO plot representing different scenarios of canopy tree pest/pathogens and white-tailed deer browsing. They evaluate trends in biomass change, growth, mortality, and recruitment of both the canopy and understory in these different scenarios of pathogens and deer browsing. Overall, they provide evidence that biomass is declining at SCBI, primarily driven by high mortality of Ash trees due to emerald ash borer, that woody growth has not kept pace to offset the high mortality, and that the species dominating woody recruitment are being heavily influenced by deer browsing. The authors posit that this evidence suggest we are overestimating the future temperate forest C sink and that we should be directly incorporating nuisance species into our Earth System Models.
+
+## General Comments: {-}
+
+Overall, I found this study very interesting and the paper to be extremely well written. The topic of nuisance species is an important one in temperate forests, and the interaction between pathogens and deer browsing is critical to the topic. That said, I had substantial concerns when reading the manuscript – mostly relating to the quantitative evidence for the claims made in the text. My largest concerns are the lack of statistical evidence for the claims made and the incomplete study design of the different “treatments” assessed. I have provided sets of general and specific comments that I hope assist the authors in improving the work:
+
+While I appreciate the challenges of running statistics within a single plot and single exclosure area, most of the results section feels weakened by the lack of statistical support for the claims you make. Using 20x20m quadrats as replicates, accounting for spatial autocorrelation, and rarefying to get equal sample sizes or something like that could allow you to run statistical models to evaluate the claims you make with the 4-group figures you currently present. An analysis and paper of this sort needs statistics behind it.
+
+
+The lack of a “high canopy vulnerability, low deer” designation in your study creates some fundamental challenges when interpreting the results – particularly on the influence of deer. The fact that within the exclosure, it looks like 75% of your quadrats have healthy canopies (Fig 6), means that the dynamics within the exclosure could be some combination of few deer, and relatively little canopy mortality. Are there areas within the exclosure that you could use as “high canopy vulnerability” such as the ~17 light blue quadrats in Fig inside the exclosure, or is the reduced canopy biomass in these driven by Oaks?
+
+
+The substantial differences in plot area represented in your three “treatment” groups creates some challenges in the interpretation. While you don’t use statistics, in the broad sense you’re pulling information from groups with very different sample sizes. This makes it hard to know how much the deer story is attributable to the exclosure or to the limited area of the plot where the exlosure sits. This is even more prominent for the high-deer, high-vulnerability group, which is a few small portions of the plot with what look to be fairly unique topographic qualities (see additional general comment below).
+
+
+I suggest that the assertion of a potential “tipping point” for these forests is too strong given the data presented here (and certainly too strong to be a bullet point in the Abstract). While I suspect many would agree with this assertion, at least qualitatively, the data presented here are a bit too site-specific and short term to evaluate this claim (the recruitment following Ash mortality just hasn’t had enough time to play out at this point in my opinion).
+
+
+I think the study would benefit a lot from analyses focusing on the trees that aren’t experiencing large mortality events. Figure 2 presents things in terms of plot-level C, which is certainly important. That said, assessing the growth and mortality rates of the non Ash/Oak canopy trees might give the reader a better impression of how the rest of the forest is doing (i.e. are these baseline mortality rates in other trees higher or lower than normal?)
+
+
+I think there’s important opportunity here to fold in abiotic characteristics into the analyses. Without an elevation map it’s hard to be sure, but the arrangement of the grey “streams” in figure 1 strongly suggests that the “high-deer, high vulnerability” quadrats are in low-lying areas at the top of these streams or something like that. This seems really important as these quadrats are the ones really driving the trends, and at the moment this seems like an important confounding factor that could/should be directly accounted for in your analyses. This could potentially change the conclusion to “there’s a lot of mortality in riparian areas which is strong enough to drive plot-level declines in biomass,” but also add in the capacity to discuss the effects of pathogens on these riparian areas specifically (similar dynamics to the well-documented hemlock wolly adelgid driven effects on streams).
+
+## Specific Comments: {-}
+
+L85-87: Or also the spread of the focal pest/pathogen to the full extent of the host range, right?
+
+
+L227: You need a comma after “plot” to delineate the initial clause
+
+
+L262: Particularly if you use a term like “significantly,” it’s important to provide statistical evidence for the statement
+
+
+L268-271: It seems plausible that at least part of the effect described here (high annual recruitment of canopy taxa in low deer areas) is due to the fact that the low deer area also had low canopy vulnerability (ie the canopy trees were, on average, healthier and more fecund potentially).
+
+
+L273-275: In regions of low deer density, these vulnerable canopy species are already in low abundance so I don’t think we would expect for them to have a substantial impact on total canopy recruitment.
+
+
+L289-297: This seems like an ideal section to refer to Fig 6 for the first time.
+
+
+L343-346: This is a critical statement to much of the language you use around tipping points, etc. As currently stated, this feels like the authors’ opinion, which is a well-informed one, but would be much stronger with some harder evidence to support the statement.
+
+
+L366-380: This paragraph would be much stronger with some citation support for the actual spatial extent of this forest type, Fraxinus spp, EAB infection, increases in deer populations, etc. You provide citations that support that these nuisance species are important (as stated previously in the manuscript), but the argument of broad applicability would be much stronger if you provide numbers from the literature on how widespread the focal forest and nuisance species ranges are.
+
+
+L381-395: I am not a modeler but work with them enough to know that they struggle with this sort of passage – effectively claiming that we need to incorporate some highly complex process into ESMs without any concrete ideas on how to do so. Modelers are flooded with things that could be incorporated into their models, but that incorporation is, of course, challenging. I would suggest either making a set of clear suggestions for how we might incorporate nuisance species into ESMs or cutting this paragraph.
+
+
+L393-394: I understand and appreciate the sentiment with this statement, but it’s not uncommon for the elimination of canopy species to increase biodiversity – particularly in the understory and in the soil food web. This statement certainly isn’t a given and needs better support (or rewording/removal).
+
+
+L403: I think you might mean “natural climate solution” here
+
+
+L396-403: The final paragraph is very well worded and does a great job of wrapping up the discussion and the topic writ large.
+
+**Thank you.**
+
+# Referee: 3 {-}
+ 
+## Comments to the Author {-}
+In this manuscript, the author presents an interesting work about how nuisance species (i.e., non-indigenous pests and pathogens and deer density) could impact the carbon sequestration potential in an Eastern US temperate deciduous forest by analyzing 15 years of census data from a 25.6-ha plot deciduous forest. They found that pest and pathogen-driven tree mortality and reduced tree recruitment mainly led to the net carbon loss in this area, finally, the authors underscore the importance of including nuisance species in the carbon cycle model to better understand the future carbon changes and propose some forest management actions which could help to protect this ecosystem from the perspective of carbon sink. In general, I think this is a well-designed study and most of the manuscript is well-structured and easy to follow. This is a valuable contribution to the field of carbon sequestration potential and its impact from the biotic agents. However, I have two main comments that should be addressed.
+
+## Major comments: {-}
+
+1. The main conclusion in this study that nuisance species mainly led to the net carbon loss in the historical period is dependent on the census data in the past 15 years, I agree with this. However, the authors think this trend will also be in the future (Line 305), which I cannot fully agree with because there is not strong evidence in this analysis. How would the density of pests and pathogens and deer population change in the future? There are a lot of uncertainties here. I think necessary assumptions should be clearly made if the authors prefer to link their analysis to future predictions.
+
+2. Expect nuisance species, many other factors impact forest carbon sequestration, for example, drought, windstorms, or even fires (although fires are much earlier to be identified). That is, the question here is how authors exclude other factors that can impact carbon change when you conclude that nuisance species are the most important factors. In addition, sorry I am not an expert on pests and pathogens, is there any difference between “non-indigenous” and “indigenous” pests and pathogens? If they are different, have the authors considered indigenous pests?
+
+## Other comments: {-}
+
+Line 52: change it to “carbon cycle models that have not considered [your conclusion]”
+
+
+Line 271 and Figure 5: what are the units here? What does “n ha-1 year-1” mean here? 38.7 and 19 are far larger than the figure maximum numbers in the left panel.
+
+
+Figure 6 is very different to understand, i.e., I even do not understand the authors’s main takeaways from this figure. I suggest modifying this figure and reorganizing the results part regarding this figure.
+
+
+Line 308: What is AWP? Aboveground woody productivity? The authors used AWG in the first part of the manuscript.
+
+
+Line 321: define “EAB” here
+
+
+Lines 381. I totally agree that the inclusion of nuisance species in the carbon cycle model is a good point, but how? If the authors could elaborate on this a bit, that would be better.
+
+# References {-}
+
+<div id="refs"></div>
+
