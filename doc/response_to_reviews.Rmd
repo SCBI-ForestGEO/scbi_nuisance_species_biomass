@@ -41,9 +41,22 @@ In this paper titled “Nuisance species compromise carbon sequestration potenti
 
 My main concern is how some of these numbers were calculated. Based on my reading (but I may be confused) they seem to imply that dead trees do not sequester carbon. Although it is clear that dead trees stop increasing their biomass, they keep their carbon for decades (carbon storage) and in the meantime younger trees occupy their space since more light reach the understory. The authors show a 50% decrease in late succession species in areas with high density of deer. But you only need one tree to replace another, so even a 50% decrease may not imply that there will not be replacement.  I am not an expert on the models used here (and I guess that most readers are not), so some clarification on this can be important.
 
+- Clarify language about carbon uptake vs. storage.
+  - Pests & pathogens are prematurely decreasing uptake
+  - Climate change is increasing decomposition, but unable to say anything about downed woody debris at this site specifically?
+- Look for numbers in literature about needed density of understory to replace overstory
+
 The first thing I thought when I read the title was about invasive plants, not animals and pathogens. You are focused here only is a subset of “nuisance species”. I wonder if results would change if you considered weeds in the mix (including nonnative trees). We have done some research on related topics (tree invasion in treeless areas, see for example papers titled “Unintended consequences of planting native and non-native trees in treeless ecosystems to mitigate climate change” or “Should tree invasions be used in treeless ecosystems to mitigate climate change?”) and it likely that even in your sites invasive plants actually reduce carbon, but it would be interesting if you mention something about nonnative plants in the discussion. Alternatively, you can change the title to make it more clear to what you are referring to. Lots of readers of this journal are plant focused.
 
+- Add discussion on role of non-indigenous plants
+  - Do we have data on non-indigenous plants?
+
+
 The article highlighted the limitations that this was done only in one area, but there is another key limitation in my opinion. It is about the lack of data of soil carbon and belowground biomass. If we are curious about carbon sequestration in forests, soils are truly a fundamental part. Some discussion on this would be important.
+
+- Add discussion about soils and belowground biomass
+  - We expect belowground biomass to track with aboveground
+  - Including how increasing canopy gaps would likely increase soil respiration (CO2 efflux) through increased temperatures
 
 All in all, this paper has some limitations but the data is indeed very interesting. I hope the authors can address these issues.
 
@@ -61,20 +74,28 @@ Overall, I found this study very interesting and the paper to be extremely well 
 
 While I appreciate the challenges of running statistics within a single plot and single exclosure area, most of the results section feels weakened by the lack of statistical support for the claims you make. Using 20x20m quadrats as replicates, accounting for spatial autocorrelation, and rarefying to get equal sample sizes or something like that could allow you to run statistical models to evaluate the claims you make with the 4-group figures you currently present. An analysis and paper of this sort needs statistics behind it.
 
+- Use quadrats as replicates to calculate statistical differences
+  - Calculate bootstrapped confidence intervals using quadrats
+  - Look into Rutishauser et al for use of quadrats
 
 The lack of a “high canopy vulnerability, low deer” designation in your study creates some fundamental challenges when interpreting the results – particularly on the influence of deer. The fact that within the exclosure, it looks like 75% of your quadrats have healthy canopies (Fig 6), means that the dynamics within the exclosure could be some combination of few deer, and relatively little canopy mortality. Are there areas within the exclosure that you could use as “high canopy vulnerability” such as the ~17 light blue quadrats in Fig inside the exclosure, or is the reduced canopy biomass in these driven by Oaks?
 
+- Doublecheck that the canopy mortality in exclosure is driven by Oaks
 
 The substantial differences in plot area represented in your three “treatment” groups creates some challenges in the interpretation. While you don’t use statistics, in the broad sense you’re pulling information from groups with very different sample sizes. This makes it hard to know how much the deer story is attributable to the exclosure or to the limited area of the plot where the exlosure sits. This is even more prominent for the high-deer, high-vulnerability group, which is a few small portions of the plot with what look to be fairly unique topographic qualities (see additional general comment below).
 
-
 I suggest that the assertion of a potential “tipping point” for these forests is too strong given the data presented here (and certainly too strong to be a bullet point in the Abstract). While I suspect many would agree with this assertion, at least qualitatively, the data presented here are a bit too site-specific and short term to evaluate this claim (the recruitment following Ash mortality just hasn’t had enough time to play out at this point in my opinion).
 
+- Soften language around "tipping point"
 
 I think the study would benefit a lot from analyses focusing on the trees that aren’t experiencing large mortality events. Figure 2 presents things in terms of plot-level C, which is certainly important. That said, assessing the growth and mortality rates of the non Ash/Oak canopy trees might give the reader a better impression of how the rest of the forest is doing (i.e. are these baseline mortality rates in other trees higher or lower than normal?)
 
+- Compare baseline mortality rates of other species with those from literature
+- Analysis of growth rates of trees not experiencing mortality events?
 
 I think there’s important opportunity here to fold in abiotic characteristics into the analyses. Without an elevation map it’s hard to be sure, but the arrangement of the grey “streams” in figure 1 strongly suggests that the “high-deer, high vulnerability” quadrats are in low-lying areas at the top of these streams or something like that. This seems really important as these quadrats are the ones really driving the trends, and at the moment this seems like an important confounding factor that could/should be directly accounted for in your analyses. This could potentially change the conclusion to “there’s a lot of mortality in riparian areas which is strong enough to drive plot-level declines in biomass,” but also add in the capacity to discuss the effects of pathogens on these riparian areas specifically (similar dynamics to the well-documented hemlock wolly adelgid driven effects on streams).
+
+- Analyze differences in TWI/topographical position in areas with high mortality
 
 ## Specific Comments: {-}
 
@@ -101,11 +122,16 @@ L343-346: This is a critical statement to much of the language you use around ti
 
 L366-380: This paragraph would be much stronger with some citation support for the actual spatial extent of this forest type, Fraxinus spp, EAB infection, increases in deer populations, etc. You provide citations that support that these nuisance species are important (as stated previously in the manuscript), but the argument of broad applicability would be much stronger if you provide numbers from the literature on how widespread the focal forest and nuisance species ranges are.
 
+- Provide area from USFS or FIA about extent of this forest type. 
+  - Also extent of Fraxinus spp.
 
 L381-395: I am not a modeler but work with them enough to know that they struggle with this sort of passage – effectively claiming that we need to incorporate some highly complex process into ESMs without any concrete ideas on how to do so. Modelers are flooded with things that could be incorporated into their models, but that incorporation is, of course, challenging. I would suggest either making a set of clear suggestions for how we might incorporate nuisance species into ESMs or cutting this paragraph.
 
+- Do we want to make specific suggestions or cut this?
 
 L393-394: I understand and appreciate the sentiment with this statement, but it’s not uncommon for the elimination of canopy species to increase biodiversity – particularly in the understory and in the soil food web. This statement certainly isn’t a given and needs better support (or rewording/removal).
+
+- Remove reference to biodiversity
 
 
 L403: I think you might mean “natural climate solution” here
@@ -124,7 +150,14 @@ In this manuscript, the author presents an interesting work about how nuisance s
 
 1. The main conclusion in this study that nuisance species mainly led to the net carbon loss in the historical period is dependent on the census data in the past 15 years, I agree with this. However, the authors think this trend will also be in the future (Line 305), which I cannot fully agree with because there is not strong evidence in this analysis. How would the density of pests and pathogens and deer population change in the future? There are a lot of uncertainties here. I think necessary assumptions should be clearly made if the authors prefer to link their analysis to future predictions.
 
+- Is softening language around tipping points/future trends enough to address this? 
+
 2. Expect nuisance species, many other factors impact forest carbon sequestration, for example, drought, windstorms, or even fires (although fires are much earlier to be identified). That is, the question here is how authors exclude other factors that can impact carbon change when you conclude that nuisance species are the most important factors. In addition, sorry I am not an expert on pests and pathogens, is there any difference between “non-indigenous” and “indigenous” pests and pathogens? If they are different, have the authors considered indigenous pests?
+
+- Add text clarifying that the mortality survey confirms that this site has not been affected by any large disturbances of windstorms or fires
+
+- Add some text discussing role of indigenous pest
+
 
 ## Other comments: {-}
 
